@@ -1,4 +1,4 @@
-import { World, ComponentType, Juice } from "@tiny-aster/core";
+import { World, ComponentType, Juice, CoreComponentRegistry } from "@tiny-aster/core";
 import { System } from "@tiny-aster/core";
 import { Entity } from "@tiny-aster/core";
 import { EventBus } from "@tiny-aster/core";
@@ -74,14 +74,16 @@ export class SpaceInvadersCollisionSystem extends System<SpaceInvadersComponentR
       });
 
       // Apply Squash & Stretch to Player ship on hit
-      Juice.squash(world as any, target, 0.7, 1.4, 300);
+      Juice.squash(world as World<CoreComponentRegistry>, target, 0.7, 1.4, 300);
+
+      // Contextual heavy screen shake on player hit
+      Juice.shake(world as World<CoreComponentRegistry>, 10, 300);
 
       const health = world.getComponent(target, "Health");
       world.mutateSingleton("GameState", (gs) => {
         if (health) {
           gs.lives = health.current;
         }
-        gs.screenShake = { intensity: 10, duration: 0.3, elapsed: 0, totalDuration: 0.3 };
         if (health && health.current <= 0) {
           gs.isGameOver = true;
             const eventBus = world.getEventBus();
@@ -111,8 +113,9 @@ export class SpaceInvadersCollisionSystem extends System<SpaceInvadersComponentR
           render.hitFlashFrames = 5;
         });
 
-        // Apply Squash & Stretch to Boss on hit
-        Juice.squash(world as any, target, 1.2, 0.8, 200);
+        // Apply hit-stop (50ms) and Squash & Stretch to Boss on hit
+        world.setResource("GameplayFreeze", { remaining: 0.05 });
+        Juice.squash(world as World<CoreComponentRegistry>, target, 1.2, 0.8, 200);
 
         const pos = world.getComponent(target, "Transform");
         if (pos) {
@@ -134,6 +137,16 @@ export class SpaceInvadersCollisionSystem extends System<SpaceInvadersComponentR
       world.mutateComponent(target, "Render", (render) => {
         render.hitFlashFrames = 4;
       });
+
+      // Apply micro freeze-frame hit-stop (40ms) and Squash & Stretch deformation on invader hit
+      world.setResource("GameplayFreeze", { remaining: 0.04 });
+      Juice.squash(world as World<CoreComponentRegistry>, target, 1.25, 0.75, 120);
+
+      const pos = world.getComponent(target, "Transform");
+      if (pos) {
+        this.createExplosion(world, pos.x, pos.y, "#00FFFF");
+      }
+
       const eventBus = world.getEventBus();
       if (eventBus && !world.isReSimulating) {
         eventBus.emitDeferred("PlaySFX", { name: "hit" });
@@ -180,13 +193,23 @@ export class SpaceInvadersCollisionSystem extends System<SpaceInvadersComponentR
         if (pos) {
           const explosionX = pos.x;
           const explosionY = pos.y;
-          const comboText = `x${nextMultiplier}`;
 
           this.createExplosion(world, explosionX, explosionY, "#FFFFFF");
 
-          // Floating combo popup
-          spawnScorePopup(world, explosionX, explosionY, comboText, "#FFFF00");
+          // Dynamic popup text & color based on combo multiplier
+          let popupColor = "#FFFF00";
+          if (nextMultiplier >= 6) popupColor = "#FFD700"; // Gold
+          else if (nextMultiplier >= 4) popupColor = "#FF00FF"; // Magenta
+          else if (nextMultiplier >= 2) popupColor = "#00FFFF"; // Cyan
+
+          const popupText = nextMultiplier > 1 ? `+${scoreGain} (x${nextMultiplier})` : `+${scoreGain}`;
+          spawnScorePopup(world, explosionX, explosionY, popupText, popupColor);
         }
+
+        // Contextual screen shake: light for single kills, medium for fast combo chains
+        const shakeIntensity = nextCombo >= 5 ? 5.5 : 2.5;
+        const shakeDuration = nextCombo >= 5 ? 180 : 100;
+        Juice.shake(world as World<CoreComponentRegistry>, shakeIntensity, shakeDuration);
 
         const eventBus = world.getEventBus();
         if (eventBus) {

@@ -910,14 +910,14 @@
     "total": 13
   },
   "src/games/space-invaders/systems/SpaceInvadersCollisionSystem.ts": {
-    "anyCount": 10,
+    "anyCount": 8,
     "unknownCount": 0,
-    "total": 10
+    "total": 8
   },
   "src/games/space-invaders/systems/SpaceInvadersInputSystem.ts": {
-    "anyCount": 3,
+    "anyCount": 2,
     "unknownCount": 0,
-    "total": 3
+    "total": 2
   },
   "src/games/space-invaders/systems/WaveTransitionSystem.ts": {
     "anyCount": 2,

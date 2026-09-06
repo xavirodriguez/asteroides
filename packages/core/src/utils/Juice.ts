@@ -35,6 +35,30 @@ export class Juice {
             res.intensity = Math.max(res.intensity, intensity);
             res.duration = Math.max(res.duration, duration);
             res.remaining = Math.max(res.remaining, duration);
+        } else {
+            // Fallback for GameState singleton holding screenShake (e.g. Space Invaders)
+            const gameState = world.getSingleton("GameState" as Extract<keyof CoreComponentRegistry, string>) as { screenShake?: { intensity?: number; duration?: number; totalDuration?: number } } | undefined;
+            if (gameState && "screenShake" in gameState) {
+                const durSec = duration > 10 ? duration / 1000 : duration;
+                world.mutateSingleton("GameState" as Extract<keyof CoreComponentRegistry, string>, (gs: import("../ecs/Component").Component) => {
+                    const currentShake = (gs as { screenShake?: { intensity?: number; duration?: number; totalDuration?: number } }).screenShake;
+                    if (!currentShake || (currentShake.duration ?? 0) <= 0) {
+                        (gs as { screenShake?: unknown }).screenShake = {
+                            intensity,
+                            duration: durSec,
+                            elapsed: 0,
+                            totalDuration: durSec
+                        };
+                    } else {
+                        (gs as { screenShake?: unknown }).screenShake = {
+                            intensity: Math.max(currentShake.intensity ?? 0, intensity),
+                            duration: Math.max(currentShake.duration ?? 0, durSec),
+                            elapsed: 0,
+                            totalDuration: Math.max(currentShake.totalDuration ?? 0, durSec)
+                        };
+                    }
+                });
+            }
         }
     }
   }

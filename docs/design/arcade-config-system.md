@@ -10,7 +10,7 @@ Al crear un nuevo juego, en lugar de definir un objeto plano con valores harcode
 
 ### 1. Reutilizar Shapes Existentes
 
-En `src/games/shared/arcade/types/ArcadeConfigSchema.ts` existen shapes reutilizables para las características comunes:
+En `@tiny-aster/gameplay-kit` existen shapes reutilizables para las características comunes:
 
 - `ScreenDimensionsSchema`: `SCREEN_WIDTH`, `SCREEN_HEIGHT`, `SCREEN_CENTER_X`, `SCREEN_CENTER_Y`.
 - `ComboConfigSchema`: `COMBO_TIMEOUT`, `MAX_MULTIPLIER`.
@@ -28,7 +28,7 @@ import {
   ScreenDimensionsSchema,
   PlayerMovementSchema,
   JumpPhysicsSchema
-} from "../../shared/arcade/types/ArcadeConfigSchema";
+} from "@tiny-aster/gameplay-kit";
 
 export const MiJuegoConfigSchema = BaseConfigSchema.extend({
   ...ScreenDimensionsSchema.shape,

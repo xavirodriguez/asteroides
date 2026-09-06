@@ -387,11 +387,11 @@ pnpm run ci                   # Executes all required pre-commit checks in seque
 When comparing the initial specifications in `GDD.md` against actual implementation code, developers should be aware of the following documented discrepancies:
 
 1. **Asteroids Spawning Architecture (`GDD.md` Part 4.3 vs `AsteroidGameStateSystem.ts`)**
-   - *Specification*: `GDD.md` originally proposed migrating all wave spawning across games to the central `SpawnDirectorSystem` (`src/games/shared/spawn/`).
+   - *Specification*: `GDD.md` originally proposed migrating all wave spawning across games to the central `SpawnDirectorSystem` (`@tiny-aster/gameplay-kit`).
    - *Actual Implementation*: Asteroids intentionally retains its procedural wave spawner in `AsteroidGameStateSystem.ts`. Because asteroid spawning requires spatial wrap-around checks away from player ship coordinates rather than linear wave queues, applying `SpawnDirectorSystem` would introduce unnecessary overhead. This postponement is an acknowledged design decision documented in `GDD.md`.
 2. **Pong Combo Triggering (`GDD.md` Part 4.1 vs `PongCollisionSystem.ts`)**
    - *Specification*: `GDD.md` lists combo multipliers for Space Invaders and Geometry Wars.
-   - *Actual Implementation*: Pong also utilizes `ComboComponent` and `ComboSystem` from `src/games/shared/arcade/`, incrementing combo multipliers on consecutive paddle deflections and resetting upon scoring.
+   - *Actual Implementation*: Pong also utilizes `ComboComponent` and `ComboSystem` from `@tiny-aster/gameplay-kit`, incrementing combo multipliers on consecutive paddle deflections and resetting upon scoring.
 3. **Core Story Package Location (`AGENTS.md` vs `packages/core/src/story/`)**
    - *Specification*: Ideally, engine cores should not bundle high-level game content.
    - *Actual Implementation*: `story/` currently resides inside `@tiny-aster/core`. Extensibility checks in `scripts/check-core-boundaries.sh` ensure `story/` maintains absolute zero dependencies on platform packages or specific games. Extracting `story/` into `@tiny-aster/story` remains an acknowledged future architectural roadmap task.

@@ -135,6 +135,14 @@ export class ComponentSetPool<T extends Record<string, Component>> {
   }
 
   /**
+   * Clears the underlying pool and active tracking.
+   */
+  public clear(): void {
+    this.pool.clear();
+    this.activeEntities.clear();
+  }
+
+  /**
    * Returns the number of available entity component sets in the pool.
    */
   public get size(): number {

@@ -71,8 +71,8 @@
   },
   "packages/core/src/physics/collision/BroadPhase.ts": {
     "anyCount": 0,
-    "unknownCount": 2,
-    "total": 2
+    "unknownCount": 1,
+    "total": 1
   },
   "packages/core/src/physics/collision/CollisionSystems.ts": {
     "anyCount": 0,
@@ -203,6 +203,11 @@
     "anyCount": 1,
     "unknownCount": 0,
     "total": 1
+  },
+  "packages/core/tests/CollisionPipeline.integration.test.ts": {
+    "anyCount": 3,
+    "unknownCount": 0,
+    "total": 3
   },
   "packages/core/tests/CollisionSystems.test.ts": {
     "anyCount": 1,
@@ -658,6 +663,11 @@
     "anyCount": 9,
     "unknownCount": 1,
     "total": 10
+  },
+  "src/games/flappybird/rendering/FlappyBirdBackgroundData.ts": {
+    "anyCount": 1,
+    "unknownCount": 0,
+    "total": 1
   },
   "src/games/flappybird/rendering/FlappyBirdCanvasVisuals.ts": {
     "anyCount": 1,

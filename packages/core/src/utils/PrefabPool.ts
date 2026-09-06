@@ -62,6 +62,13 @@ export class PrefabPool<T extends Record<string, Component>, I> {
   }
 
   /**
+   * Clears all pooled instances.
+   */
+  public clear(): void {
+    this.pool.clear();
+  }
+
+  /**
    * Current size of the underlying pool.
    */
   public get size(): number {

@@ -5,9 +5,15 @@ import {
   StarfieldStar,
   generateStarfield,
   calculateSquashAndStretch,
-  calculateMegastructurePosition,
   calculateFlappyPipeGeometry
 } from "../../shared/rendering/geometry";
+import {
+  calculateWarpFactor,
+  calculateMegastructureData,
+  calculateGroundHazardFlicker,
+  BACKGROUND_NEBULAE,
+  MegastructureData
+} from "./FlappyBirdBackgroundData";
 
 // DUP-04: duplicación intencional de dibujadores visuales entre Canvas2D y Skia.
 // Solo se extrajeron los cálculos puros a src/games/shared/rendering/geometry.ts. Ver docs/tech-debt/duplication.md
@@ -218,6 +224,24 @@ export const drawFlappyBird: ShapeDrawer<CanvasRenderingContext2D, FlappyBirdCom
 
     const vy = birdComp.velocityY;
     const isAlive = birdComp.isAlive;
+
+    // --- TRIGGER NEAR-MISS CYAN SPARKS ---
+    const hasNearMissTriggered = birdComp.nearMissTimer > 0 && state.lastNearMissTimer <= 0;
+    if (hasNearMissTriggered && isAlive) {
+      const transformPos = world.getComponent(entity, "Transform") as TransformComponent;
+      const x = transformPos.worldX ?? transformPos.x;
+      const y = transformPos.worldY ?? transformPos.y;
+      const nmSparkCount = world.renderRandom.nextInt(5, 9);
+      for (let i = 0; i < nmSparkCount; i++) {
+        const angleVal = world.renderRandom.next() * Math.PI * 2;
+        const speedVal = world.renderRandom.nextRange(60, 120);
+        const pVx = Math.cos(angleVal) * speedVal;
+        const pVy = Math.sin(angleVal) * speedVal;
+        const lifeVal = world.renderRandom.nextRange(0.25, 0.45);
+        const sizeVal = world.renderRandom.nextRange(2, 4);
+        spawnVisualParticle("spark", x, y, pVx, pVy, lifeVal, sizeVal, "#00F3FF", angleVal);
+      }
+    }
 
     // --- TRIGGER SPARKS ON BOOST THRUST ---
     const flapStrength = FLAPPY_CONFIG.FLAP_STRENGTH;
@@ -540,10 +564,23 @@ export const drawFlappyPipe: ShapeDrawer<CanvasRenderingContext2D, FlappyBirdCom
       ctx.fill();
     }
 
-    // --- STROBOSCOPIC RED WARNING BEACONS (#FF0000) ---
+    // --- STROBOSCOPIC RED WARNING BEACONS (#FF0000) WITH SOFT AMBIENT GLOW HALO ---
     const beaconPulse = 0.35 + 0.65 * Math.abs(Math.sin(world.tick * 0.2));
 
     ctx.save();
+    // Soft radial ambient light halo projecting onto nearby background
+    const beaconGlowGrad = getCachedCanvasGradient(ctx, `beacon_halo_${beaconPulse.toFixed(2)}`, () => {
+      const g = ctx.createRadialGradient(0, beaconY, 4, 0, beaconY, 45);
+      g.addColorStop(0, "rgba(255, 0, 0, 0.25)");
+      g.addColorStop(0.5, "rgba(255, 0, 0, 0.08)");
+      g.addColorStop(1, "rgba(255, 0, 0, 0)");
+      return g;
+    });
+    ctx.fillStyle = beaconGlowGrad;
+    ctx.beginPath();
+    ctx.arc(0, beaconY, 45, 0, Math.PI * 2);
+    ctx.fill();
+
     ctx.fillStyle = `rgba(255, 0, 0, ${beaconPulse})`;
     ctx.shadowColor = "#FF0000";
     ctx.shadowBlur = beaconPulse * 12;
@@ -586,18 +623,22 @@ export const drawFlappyGround: ShapeDrawer<CanvasRenderingContext2D, FlappyBirdC
     ctx.fillStyle = baseGrad;
     ctx.fillRect(-width / 2, -height / 2, width, height);
 
-    // Yellow / Black hazard warning caution rim at the top
+    // Yellow / Black hazard warning caution rim at the top with non-linear flickering
     const hazardHeight = 8;
+    const hazardFlicker = calculateGroundHazardFlicker(world.tick);
+
     ctx.save();
     ctx.beginPath();
     ctx.rect(-width / 2, -height / 2, width, hazardHeight);
     ctx.clip();
 
     ctx.fillStyle = "#FFCC00"; // Yellow caution
+    ctx.globalAlpha = hazardFlicker;
     ctx.fillRect(-width / 2, -height / 2, width, hazardHeight);
 
     // Black diagonal stripes scrolling with camera
     ctx.fillStyle = "#111116";
+    ctx.globalAlpha = hazardFlicker;
     const stripeWidth = 12;
     const stripeOffset = (world.tick * 3) % (stripeWidth * 2);
 
@@ -630,6 +671,78 @@ export const drawFlappyGround: ShapeDrawer<CanvasRenderingContext2D, FlappyBirdC
   }
 };
 
+// Helper to draw 4 distinct megastructure silhouette designs in Canvas2D
+function drawCanvasMegastructure(ctx: CanvasRenderingContext2D, data: MegastructureData): void {
+  const { megaIndex, megaX, megaY, beaconAlpha } = data;
+  ctx.save();
+  ctx.fillStyle = "rgba(15, 18, 28, 0.65)"; // Dark void silhouette
+
+  if (megaIndex === 0) {
+    // Design 0: Radial Station (Hub core + radial spoke arms)
+    ctx.beginPath();
+    ctx.arc(megaX, megaY, 36, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.fillRect(megaX - 85, megaY - 4, 170, 8);
+    ctx.fillRect(megaX - 4, megaY - 85, 8, 170);
+    ctx.fillRect(megaX - 80, megaY - 25, 6, 50);
+    ctx.fillRect(megaX + 74, megaY - 25, 6, 50);
+
+    ctx.fillStyle = `rgba(255, 0, 0, ${beaconAlpha})`;
+    ctx.beginPath();
+    ctx.arc(megaX, megaY - 85, 2.5, 0, Math.PI * 2);
+    ctx.fill();
+  } else if (megaIndex === 1) {
+    // Design 1: Ship Wreckage (Angular wedge hull fragment + solar arrays)
+    ctx.beginPath();
+    ctx.moveTo(megaX - 60, megaY - 30);
+    ctx.lineTo(megaX + 70, megaY - 10);
+    ctx.lineTo(megaX + 40, megaY + 35);
+    ctx.lineTo(megaX - 50, megaY + 20);
+    ctx.closePath();
+    ctx.fill();
+
+    ctx.fillRect(megaX - 90, megaY - 45, 12, 90);
+    ctx.fillRect(megaX - 90, megaY - 3, 100, 6);
+
+    ctx.fillStyle = `rgba(255, 0, 0, ${beaconAlpha})`;
+    ctx.beginPath();
+    ctx.arc(megaX + 70, megaY - 10, 2.5, 0, Math.PI * 2);
+    ctx.fill();
+  } else if (megaIndex === 2) {
+    // Design 2: Broken Ring (Fragmented orbital ring arc)
+    ctx.lineWidth = 14;
+    ctx.strokeStyle = "rgba(15, 18, 28, 0.65)";
+    ctx.beginPath();
+    ctx.arc(megaX, megaY, 55, -Math.PI * 0.7, Math.PI * 0.5);
+    ctx.stroke();
+
+    ctx.fillRect(megaX - 10, megaY - 60, 20, 10);
+    ctx.fillRect(megaX + 48, megaY - 10, 10, 20);
+
+    ctx.fillStyle = `rgba(255, 0, 0, ${beaconAlpha})`;
+    ctx.beginPath();
+    ctx.arc(megaX - 10, megaY - 60, 2.5, 0, Math.PI * 2);
+    ctx.fill();
+  } else {
+    // Design 3: Communications Tower (Tall lattice spire + transmitter dish)
+    ctx.fillRect(megaX - 6, megaY - 90, 12, 180);
+    ctx.fillRect(megaX - 25, megaY - 40, 50, 6);
+    ctx.fillRect(megaX - 35, megaY + 10, 70, 8);
+
+    ctx.beginPath();
+    ctx.arc(megaX, megaY - 70, 22, Math.PI * 0.2, Math.PI * 0.8);
+    ctx.fill();
+
+    ctx.fillStyle = `rgba(255, 0, 0, ${beaconAlpha})`;
+    ctx.beginPath();
+    ctx.arc(megaX, megaY - 90, 2.5, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  ctx.restore();
+}
+
 // ============================================================================
 // THE DEEP VOID PARALLAX BACKGROUND (#050510) WITH WARP & MEGASTRUCTURE
 // ============================================================================
@@ -652,6 +765,37 @@ export const scrollingBackgroundEffect: EffectDrawer<CanvasRenderingContext2D, F
     ctx.fillStyle = "#050510";
     // TODO(refactor): código duplicado detectado (bloque) con flappybird/rendering/FlappyBirdSkiaVisuals.ts:602-612. Considerar extraer a función compartida. Ref: e7c4cf1f
     ctx.fillRect(0, 0, width, height);
+
+    // --- ANIMATED LOW-OPACITY RADIAL NEBULAE CLOUDS ---
+    for (let n = 0; n < BACKGROUND_NEBULAE.length; n++) {
+      const neb = BACKGROUND_NEBULAE[n];
+      const nx = width * neb.xRatio + Math.sin(world.tick * 0.01 + n) * 15;
+      const ny = height * neb.yRatio + Math.cos(world.tick * 0.008 + n * 2) * 10;
+      const nebGrad = getCachedCanvasGradient(ctx, `neb_${n}_${width}_${height}`, () => {
+        const g = ctx.createRadialGradient(nx, ny, 10, nx, ny, neb.radius);
+        g.addColorStop(0, neb.colorHex);
+        g.addColorStop(0.6, neb.colorHex + "66");
+        g.addColorStop(1, "#05051000");
+        return g;
+      });
+      ctx.save();
+      ctx.fillStyle = nebGrad;
+      ctx.globalAlpha = 0.35;
+      ctx.fillRect(0, 0, width, height);
+      ctx.restore();
+    }
+
+    // --- SPORADIC DISTANT BACKGROUND DEBRIS / SPARKS ---
+    // Deterministically spawn faint distant sparks/shards approx every 4-8 seconds (240-480 ticks)
+    if (world.tick % 300 === 0 && world.renderRandom.next() > 0.3) {
+      const dx = world.renderRandom.nextRange(20, width - 20);
+      const dy = world.renderRandom.nextRange(40, height * 0.7);
+      const angle = world.renderRandom.next() * Math.PI * 2;
+      const speed = world.renderRandom.nextRange(15, 35);
+      const vx = Math.cos(angle) * speed;
+      const vy = Math.sin(angle) * speed;
+      spawnVisualParticle("star", dx, dy, vx, vy, world.renderRandom.nextRange(1.0, 2.0), world.renderRandom.nextRange(1.5, 3.0), "#5A6173", angle);
+    }
 
     // Hypervelocity combo factor calculation
     let warpFactor = 1.0;
@@ -694,32 +838,37 @@ export const scrollingBackgroundEffect: EffectDrawer<CanvasRenderingContext2D, F
       ctx.restore();
     }
 
-    // --- OCCASIONAL ISOLATED ABANDONED MEGASTRUCTURE SILHOUETTE ---
-    const megaState = calculateMegastructurePosition(tick, width, height);
-    if (megaState.visible) {
-      const { megaX, megaY, beaconAlpha } = megaState;
+    // --- AD-HOC RADIAL WARP SPEED LINES (WARPFACTOR > 1.5) ---
+    // Opting for an ad-hoc local implementation instead of registering global SharedVFX
+    // to preserve zero side-effects on shared VFX state across other minigames (e.g. Geometry Wars)
+    // while pinning radial speed lines strictly to Flappy Bird's viewport center and combo factor.
+    if (warpFactor > 1.5) {
+      const cx = width / 2;
+      const cy = height / 2;
+      const lineCount = 20;
+      const maxR = Math.sqrt(cx * cx + cy * cy);
+      const intensity = Math.min((warpFactor - 1.5) / 1.5, 1.0);
 
       ctx.save();
-      ctx.fillStyle = "rgba(15, 18, 28, 0.65)"; // Dark void silhouette
-      ctx.beginPath();
+      ctx.strokeStyle = "rgba(0, 243, 255, " + (0.15 * intensity).toFixed(3) + ")";
+      ctx.lineWidth = 1.2;
 
-      // Main station hub core
-      ctx.arc(megaX, megaY, 40, 0, Math.PI * 2);
-      ctx.fill();
-
-      // Extended solar/antenna arrays
-      ctx.fillRect(megaX - 90, megaY - 4, 180, 8);
-      ctx.fillRect(megaX - 85, megaY - 25, 6, 50);
-      ctx.fillRect(megaX + 80, megaY - 25, 6, 50);
-      ctx.fillRect(megaX - 4, megaY - 80, 8, 160);
-
-      // Faint beacon on station tip
-      ctx.fillStyle = `rgba(255, 0, 0, ${beaconAlpha})`;
-      ctx.beginPath();
-      ctx.arc(megaX, megaY - 80, 2, 0, Math.PI * 2);
-      ctx.fill();
-
+      for (let l = 0; l < lineCount; l++) {
+        const angle = (l / lineCount) * Math.PI * 2 + (tick * 0.02);
+        const innerR = 40 + (l * 17 + tick * 8) % (maxR * 0.5);
+        const outerR = innerR + 40 * warpFactor;
+        ctx.beginPath();
+        ctx.moveTo(cx + Math.cos(angle) * innerR, cy + Math.sin(angle) * innerR);
+        ctx.lineTo(cx + Math.cos(angle) * outerR, cy + Math.sin(angle) * outerR);
+        ctx.stroke();
+      }
       ctx.restore();
+    }
+
+    // --- OCCASIONAL ISOLATED ABANDONED MEGASTRUCTURE SILHOUETTE ---
+    const megaData = calculateMegastructureData(tick, width, height);
+    if (megaData.visible) {
+      drawCanvasMegastructure(ctx, megaData);
     }
 
     // --- DRAW ACTIVE PARTICLES (SPARKS & SHARDS) ---

@@ -267,6 +267,7 @@ export const drawSkiaSpaceInvadersBullet: ShapeDrawer<any, SpaceInvadersComponen
     const render = world.getComponent(entity, "Render") as RenderComponent | undefined;
     if (!render) return;
 
+    // TODO(refactor): código duplicado detectado (bloque) con space-invaders/rendering/SpaceInvadersCanvasVisuals.ts:458-484. Considerar extraer a función compartida. Ref: d2d6b392
     const size = render.size || 4;
     const isPlayerBullet = world.hasComponent(entity, "PlayerBullet");
 

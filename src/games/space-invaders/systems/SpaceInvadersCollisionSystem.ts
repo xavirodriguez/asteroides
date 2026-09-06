@@ -1,4 +1,4 @@
-import { World, ComponentType, Juice, CoreComponentRegistry } from "@tiny-aster/core";
+import { World, ComponentType, Juice, CoreComponentRegistry, createEmitter } from "@tiny-aster/core";
 import { System } from "@tiny-aster/core";
 import { Entity } from "@tiny-aster/core";
 import { EventBus } from "@tiny-aster/core";
@@ -17,6 +17,7 @@ import {
 import { SpaceInvadersConfig } from "../types/SpaceInvadersConfigSchema";
 import { ParticlePool } from "../EntityPool";
 import { createSharedParticle } from "../../shared/rendering/SharedVFX";
+import { spawnLayeredExplosion } from "../rendering/SpaceInvadersCanvasVisuals";
 
 /**
  * System that handles game-specific collision reactions and combat side-effects.
@@ -144,6 +145,23 @@ export class SpaceInvadersCollisionSystem extends System<SpaceInvadersComponentR
 
       const pos = world.getComponent(target, "Transform");
       if (pos) {
+        // Small spark burst emitter (3-6 sparks)
+        const sparkEmitter = createEmitter(world, {
+          type: "spark",
+          x: pos.x,
+          y: pos.y,
+          rate: 0,
+          burst: true,
+          count: 5,
+          lifetime: [0.15, 0.3],
+          speed: [80, 180],
+          size: [2, 4],
+          color: ["#00FFFF", "#FFFFFF", "#FFFF00"],
+          angle: [0, 360],
+          loop: false
+        });
+        world.getCommandBuffer().addComponent(sparkEmitter, { type: "TTL", timeLeft: 0.3, remaining: 0.3 });
+
         this.createExplosion(world, pos.x, pos.y, "#00FFFF");
       }
 
@@ -390,6 +408,7 @@ export class SpaceInvadersCollisionSystem extends System<SpaceInvadersComponentR
     // Solución: Usar el stream diseñado para la reproducción determinista en la fase de simulación
     const rng = world.gameplayRandom;
 
+    // Layer 1: Immediate flash (ECS particles)
     for (let i = 0; i < this.config!.PARTICLE_COUNT; i++) {
       const angle = rng.next() * Math.PI * 2;
       const speed = rng.next() * 100 + 50;
@@ -405,6 +424,11 @@ export class SpaceInvadersCollisionSystem extends System<SpaceInvadersComponentR
         2,
         this.config!.PARTICLE_TTL_BASE
       );
+    }
+
+    // Layers 2, 3, 4: Visual-only pool (Expanding ring, debris with gravity, residual smoke)
+    if (!world.isReSimulating) {
+      spawnLayeredExplosion(x, y, color, 1.0);
     }
   }
 

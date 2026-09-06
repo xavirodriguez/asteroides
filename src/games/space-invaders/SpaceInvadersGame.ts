@@ -542,6 +542,10 @@ export class SpaceInvadersGame
         r.registerShape("enemy_bullet", drawSpaceInvadersBullet); // Reuse bullet drawer
         r.registerShape("shield_block", drawSpaceInvadersShield);
         r.registerShape("particle", drawSpaceInvadersParticle);
+        const { drawSpaceInvadersComboHUD } = require("./systems/ComboHUDRenderSystem");
+        r.registerBackgroundEffect("combo_hud", drawSpaceInvadersComboHUD);
+        const { drawExplosionBackgroundEffect } = require("./rendering/SpaceInvadersCanvasVisuals");
+        r.registerBackgroundEffect("explosion_vfx", drawExplosionBackgroundEffect);
       },
       skia: (r) => {
         const {

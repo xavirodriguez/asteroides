@@ -61,8 +61,9 @@ export class HitDetectionSystem extends System<CoreComponentRegistry> {
           eventBus.emitDeferred("hitbox:hit", {
             hitboxEntity,
             hurtboxEntity: otherEntity,
-            attacker: hitboxTrans?.parentEntity,
-            victim: hurtboxTrans?.parentEntity
+            // Fall back to the entity itself when Transform has no parent (common for enemies)
+            attacker: hitboxTrans?.parentEntity ?? hitboxEntity,
+            victim: hurtboxTrans?.parentEntity ?? otherEntity
           });
         }
       }

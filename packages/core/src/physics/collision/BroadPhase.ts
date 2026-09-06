@@ -1,8 +1,9 @@
-import { TransformComponent, ColliderComponent, CoreComponentRegistry } from "../../ecs/CoreComponents";
+import { TransformComponent, ColliderComponent, Collider2DComponent, CoreComponentRegistry } from "../../ecs/CoreComponents";
 import { Entity } from "../../ecs/Entity";
 import { World } from "../../ecs/World";
 import { AABB } from "./CollisionTypes";
 import { getColliderWorldBounds } from "../utils/PhysicsTransform";
+import { ShapeType } from "../shapes/Shapes";
 
 /**
  * Bounds object used for Sweep and Prune.
@@ -63,7 +64,7 @@ export class BroadPhase {
     for (let i = 0; i < count; i++) {
       const entity = entities[i];
       const transform = world.getComponent(entity, "Transform") as unknown as TransformComponent;
-      const collider = world.getComponent(entity, "Collider") as unknown as ColliderComponent;
+      const collider = this.resolveColliderLike(world, entity);
 
       if (!boundsPool[i]) {
         boundsPool[i] = { entity: 0, minX: 0, minY: 0, maxX: 0, maxY: 0 };
@@ -123,5 +124,42 @@ export class BroadPhase {
     }
     pairsPool.length = pairIndex;
     return pairsPool;
+  }
+
+  /**
+   * Resolves a Collider-like view from either `Collider` or `Collider2D`.
+   * Converts Collider2D aabb/circle shapes into NarrowPhase Shape format.
+   */
+  private static resolveColliderLike(
+    world: World<CoreComponentRegistry>,
+    entity: Entity
+  ): ColliderComponent | null {
+    const col = world.getComponent(entity, "Collider") as ColliderComponent | undefined;
+    if (col) return col;
+
+    const c2 = world.getComponent(entity, "Collider2D") as Collider2DComponent | undefined;
+    if (!c2) return null;
+
+    let shape: ColliderComponent["shape"];
+    if (c2.shape.type === "circle") {
+      shape = { type: ShapeType.Circle, radius: c2.shape.radius };
+    } else {
+      shape = {
+        type: ShapeType.Box,
+        width: c2.shape.halfWidth * 2,
+        height: c2.shape.halfHeight * 2
+      };
+    }
+
+    return {
+      type: "Collider",
+      shape,
+      layer: c2.layer as ColliderComponent["layer"],
+      mask: c2.mask as ColliderComponent["mask"],
+      enabled: c2.enabled,
+      isTrigger: c2.isTrigger,
+      offsetX: c2.offsetX,
+      offsetY: c2.offsetY
+    };
   }
 }

@@ -3,7 +3,7 @@
 # Native directories (CNG)
 /ios/
 /android/
-
+/docs/
 # dependencies
 node_modules/
 .turbo/

@@ -5,7 +5,7 @@ import { ComponentRegistry } from "../ecs/Component";
  * Callback function for registering renderer elements.
  * @public
  */
-export type RendererRegistrationCallback = (renderer: Renderer<any, RenderContext>) => void;
+export type RendererRegistrationCallback = (renderer: Renderer<ComponentRegistry, RenderContext>) => void;
 
 /**
  * Configuration for registration callbacks across different rendering pipelines.
@@ -27,10 +27,10 @@ export class RendererUtils {
    * en las clases de los juegos.
    */
   public static registerAssets<T extends ComponentRegistry>(
-    renderer: Renderer<T, any>,
+    renderer: Renderer<T, RenderContext>,
     config: RendererRegistrationConfig
   ): void {
-    const rendererType = (renderer as any).type;
+    const rendererType = (renderer as unknown as { type?: string }).type;
 
     if (rendererType === "canvas" && config.canvas) {
       config.canvas(renderer);

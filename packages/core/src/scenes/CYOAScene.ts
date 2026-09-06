@@ -46,7 +46,7 @@ export class CYOAScene extends Scene {
     const eventBus = world.getEventBus();
     if (eventBus) {
       eventBus.on("story:node_changed", (event) => {
-        const node = (event as any)?.node;
+        const node = (event as { node?: StoryNode })?.node;
         if (node) {
           this.currentNode = node;
           if (this.onNodeChangedCallback) {

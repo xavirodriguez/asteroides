@@ -28,16 +28,19 @@ export abstract class BaseTransitionEffect implements ITransitionEffect {
    * @param options - Configured transition options.
    */
   public render(ctx: RenderContext, progress: number, options?: TransitionOptions): void {
-    const canvas = ctx.canvas;
+    const c = ctx as CanvasRenderingContext2D;
+    const canvas = c.canvas;
     if (!canvas) return;
 
     const width = canvas.width ?? 800;
     const height = canvas.height ?? 600;
 
-    if (this.autoSave) {
-      ctx.save();
+    if (this.autoSave && typeof c.save === "function") {
+      c.save();
       this.paint(ctx, progress, width, height, options);
-      ctx.restore();
+      if (typeof c.restore === "function") {
+        c.restore();
+      }
     } else {
       this.paint(ctx, progress, width, height, options);
     }
@@ -102,8 +105,10 @@ export abstract class BaseOffscreenTransitionEffect extends BaseTransitionEffect
     height: number,
     options?: TransitionOptions
   ): void {
-    const off = options?.offscreenCanvas;
-    this.paintOffscreen(ctx, off, progress, width, height, options);
+    const off = options?.offscreenCanvas as CanvasImageSource | HTMLCanvasElement;
+    if (off) {
+      this.paintOffscreen(ctx, off, progress, width, height, options);
+    }
   }
 
   /**

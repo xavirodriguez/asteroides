@@ -69,9 +69,11 @@ export class WebAssetProvider implements IAssetProvider {
     try {
       const fontName = typeof path === "string" ? path.split("/").pop()?.split(".")[0] || "CustomFont" : "CustomFont";
       const fontUrl = typeof path === "string" ? `url(${path})` : `url(${String(path)})`;
-      const fontFace = new (window as any).FontFace(fontName, fontUrl);
+      const win = window as unknown as { FontFace: new (name: string, url: string) => { load: () => Promise<unknown> } };
+      const doc = document as unknown as { fonts: { add: (font: unknown) => void } };
+      const fontFace = new win.FontFace(fontName, fontUrl);
       const loaded = await fontFace.load();
-      (document.fonts as any).add(loaded);
+      doc.fonts.add(loaded);
       return loaded;
     } catch {
       return { font: path };

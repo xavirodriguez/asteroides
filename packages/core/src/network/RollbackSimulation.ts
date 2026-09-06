@@ -29,7 +29,8 @@ export class RollbackSimulation {
     inputsHistory: Map<number, CompactInputFrame>,
     localHashes?: Map<number, string>
   ): void {
-    const world = (this.simulation as any).world ?? (this.simulation as any).getWorld?.();
+    const simAccess = this.simulation as unknown as { world?: import("../ecs/World").World; getWorld?: () => import("../ecs/World").World };
+    const world = simAccess.world ?? simAccess.getWorld?.();
     const prevIsReSimulating = world ? world.isReSimulating : false;
     const random = world ? world.gameplayRandom : undefined;
     const wasLocked = random ? random.isLocked() : false;

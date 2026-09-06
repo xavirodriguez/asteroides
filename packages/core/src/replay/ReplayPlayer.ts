@@ -20,7 +20,7 @@ export class ReplayPlayer {
   /**
    * Plays a single tick of the recorded replay on the given World.
    */
-  public playTick(world: World<any>, deltaTime: number): boolean {
+  public playTick<TRegistry extends import("../ecs/Component").ComponentRegistry = import("../ecs/CoreComponents").CoreComponentRegistry>(world: World<TRegistry>, deltaTime: number): boolean {
     if (this.currentTick >= this.inputs.length) {
       return false; // Replay finished
     }
@@ -34,29 +34,30 @@ export class ReplayPlayer {
     }
 
     if (player !== undefined) {
-      const inputType = "Input";
+      const inputType = "Input" as Extract<keyof TRegistry, string>;
       if (!world.hasComponent(player, inputType)) {
         world.addComponent(player, {
           type: "Input",
           actions: new Set<string>(),
           axes: {}
-        } as any);
+        } as unknown as TRegistry[Extract<keyof TRegistry, string>] & { type: Extract<keyof TRegistry, string> });
       }
 
-      world.mutateComponent(player, inputType, (inputComp: any) => {
-        inputComp.actions = new Set<string>(inputFrame.actions || []);
-        inputComp.axes = { ...inputFrame.axes };
+      world.mutateComponent(player, inputType, (inputComp) => {
+        const ic = inputComp as Record<string, unknown> & { actions: Set<string>; axes: Record<string, number> };
+        ic.actions = new Set<string>(inputFrame.actions || []);
+        ic.axes = { ...inputFrame.axes };
 
         // Map logical actions directly onto individual game-specific boolean fields
         for (const action of inputFrame.actions) {
-          inputComp[action] = true;
+          ic[action] = true;
         }
 
         // Keep Space Invaders and Flappy Bird input state fields in sync
         const actionsToSync = ["moveLeft", "moveRight", "shoot", "flap", "glide", "thrust", "left", "right", "hyperspace"];
         for (const act of actionsToSync) {
-          if (inputComp[act] !== undefined) {
-            inputComp[act] = inputFrame.actions.includes(act);
+          if (ic[act] !== undefined) {
+            ic[act] = inputFrame.actions.includes(act);
           }
         }
       });

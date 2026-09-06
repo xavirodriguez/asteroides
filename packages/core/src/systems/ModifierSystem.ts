@@ -35,7 +35,7 @@ export class ModifierSystem<TComponents extends ComponentRegistry = ComponentReg
     // 1. Process active ModifierComponents
     const entities = world.query("modifier" as Extract<keyof TComponents, string>);
     for (const entity of entities) {
-      const modifierComp = (world as any).getMutableComponent(entity, "modifier") as ModifierComponent | undefined;
+      const modifierComp = world.getMutableComponent(entity, "modifier" as Extract<keyof TComponents, string>) as unknown as ModifierComponent | undefined;
       if (!modifierComp || !modifierComp.modifiers || modifierComp.modifiers.length === 0) continue;
 
       let hasExpired = false;

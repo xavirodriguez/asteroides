@@ -75,7 +75,7 @@ interface DebugTransform {
 export interface BaseGameConfig<
   TComponents extends ComponentRegistry = ComponentRegistry,
   TEvents extends EventRegistry = EventRegistry,
-  TInput extends Record<string, any> = Record<string, any>,
+  TInput extends Record<string, unknown> = Record<string, unknown>,
   TBlueprints extends BlueprintRegistryMap<TComponents> = BlueprintRegistryMap<TComponents>
 > {
   /** Key code to toggle pause state (e.g. `"KeyP"`). */
@@ -130,7 +130,7 @@ export interface BaseGameConfig<
  */
 export abstract class BaseGame<
   TState = unknown,
-  TInput extends Record<string, any> = Record<string, any>,
+  TInput extends Record<string, unknown> = Record<string, unknown>,
   TComponents extends ComponentRegistry = ComponentRegistry,
   TEvents extends EventRegistry = EventRegistry,
   TBlueprints extends BlueprintRegistryMap<TComponents> = BlueprintRegistryMap<TComponents>

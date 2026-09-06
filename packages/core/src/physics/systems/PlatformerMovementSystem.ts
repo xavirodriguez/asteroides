@@ -1,7 +1,7 @@
 import { World } from "../../ecs/World";
 import { System } from "../../ecs/System";
 import { ComponentRegistry } from "../../ecs/Component";
-import { CoreComponentRegistry } from "../../ecs/CoreComponents";
+import { CoreComponentRegistry, PlatformerInputComponent, PlatformerMovementConfigComponent, VelocityComponent, PlatformerGroundStateComponent } from "../../ecs/CoreComponents";
 import { Entity } from "../../ecs/Entity";
 
 /**
@@ -31,11 +31,11 @@ export class PlatformerMovementSystem<TRegistry extends ComponentRegistry = Core
     const entities = world.query(inputType, configType, velocityType);
 
     for (const entity of entities) {
-      const input = world.getComponent(entity, inputType) as any;
-      const config = world.getComponent(entity, configType) as any;
-      const vel = world.getComponent(entity, velocityType) as any;
+      const input = world.getComponent(entity, inputType) as unknown as PlatformerInputComponent | undefined;
+      const config = world.getComponent(entity, configType) as unknown as PlatformerMovementConfigComponent | undefined;
+      const vel = world.getComponent(entity, velocityType) as unknown as VelocityComponent | undefined;
       const groundState = world.hasComponent(entity, groundStateType)
-        ? (world.getComponent(entity, groundStateType) as any)
+        ? (world.getComponent(entity, groundStateType) as unknown as PlatformerGroundStateComponent | undefined)
         : null;
 
       if (!input || !config || !vel) continue;
@@ -51,11 +51,12 @@ export class PlatformerMovementSystem<TRegistry extends ComponentRegistry = Core
 
       const targetSpeed = input.moveDir * config.maxSpeed;
 
-      world.mutateComponent(entity, velocityType, (v: any) => {
+      world.mutateComponent(entity, velocityType, (v) => {
+        const mutableVel = v as unknown as VelocityComponent;
         if (input.moveDir !== 0) {
-          v.vx = this.moveTowards(v.vx, targetSpeed, effectiveAccel * deltaTime);
+          mutableVel.vx = this.moveTowards(mutableVel.vx, targetSpeed, effectiveAccel * deltaTime);
         } else {
-          v.vx = this.moveTowards(v.vx, 0, effectiveDecel * deltaTime);
+          mutableVel.vx = this.moveTowards(mutableVel.vx, 0, effectiveDecel * deltaTime);
         }
       });
     }

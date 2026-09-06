@@ -14,7 +14,7 @@ export class DangerPulseTransition extends BaseTransitionEffect {
    */
   public override readonly drawsBothScenes = false;
 
-  private cachedGrad?: any;
+  private cachedGrad?: CanvasGradient | unknown;
   private cachedCtx?: RenderContext;
   private cachedCX?: number;
   private cachedCY?: number;
@@ -50,6 +50,8 @@ export class DangerPulseTransition extends BaseTransitionEffect {
     const innerRadius = Math.min(width, height) * 0.25;
     const outerRadius = Math.sqrt(cx * cx + cy * cy);
 
+    const c = ctx as CanvasRenderingContext2D;
+
     if (
       !this.cachedGrad ||
       this.cachedCtx !== ctx ||
@@ -59,7 +61,7 @@ export class DangerPulseTransition extends BaseTransitionEffect {
       this.cachedOuterR !== outerRadius ||
       this.cachedColor !== color
     ) {
-      const grad = ctx.createRadialGradient(cx, cy, innerRadius, cx, cy, outerRadius);
+      const grad = c.createRadialGradient(cx, cy, innerRadius, cx, cy, outerRadius);
       grad.addColorStop(0, "rgba(0, 0, 0, 0)");
       grad.addColorStop(1, color);
       this.cachedGrad = grad;
@@ -71,8 +73,8 @@ export class DangerPulseTransition extends BaseTransitionEffect {
       this.cachedColor = color;
     }
 
-    ctx.fillStyle = this.cachedGrad;
-    ctx.globalAlpha = pulseOpacity;
-    ctx.fillRect(0, 0, width, height);
+    c.fillStyle = this.cachedGrad as CanvasGradient;
+    c.globalAlpha = pulseOpacity;
+    c.fillRect(0, 0, width, height);
   }
 }

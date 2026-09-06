@@ -10,7 +10,7 @@ import { IInputSystem } from "./InputSystem";
  * @typeParam TInput - Input action dictionary type.
  * @public
  */
-export class NullInputSystem<TInput extends Record<string, any> = Record<string, any>> implements IInputSystem<TInput> {
+export class NullInputSystem<TInput extends Record<string, unknown> = Record<string, unknown>> implements IInputSystem<TInput> {
   private overrides: Record<string, boolean> = {};
 
   /**

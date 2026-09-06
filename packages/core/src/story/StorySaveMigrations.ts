@@ -1,4 +1,4 @@
-import { NarrativeSaveGame, StoryState } from "./StoryTypes";
+import { NarrativeSaveGame, StoryState, StoryObjective } from "./StoryTypes";
 
 /**
  * Migration pipeline for converting legacy narrative player save game state into standard `NarrativeSaveGame` structures.
@@ -44,7 +44,7 @@ export class StorySaveMigrations {
       };
     }
 
-    const obj = raw as Record<string, any>;
+    const obj = raw as Record<string, unknown>;
 
     let storyState: StoryState;
 
@@ -61,10 +61,10 @@ export class StorySaveMigrations {
 
     const relationships =
       obj.relationships && typeof obj.relationships === "object"
-        ? obj.relationships
+        ? (obj.relationships as Record<string, import("./StoryTypes").RelationshipState>)
         : {};
 
-    const memories = Array.isArray(obj.memories) ? obj.memories : [];
+    const memories = Array.isArray(obj.memories) ? (obj.memories as import("./StoryTypes").CharacterMemory[]) : [];
 
     const saveVersion = typeof obj.saveVersion === "number" ? obj.saveVersion : 1;
     const contentVersion = typeof obj.contentVersion === "string" ? obj.contentVersion : "1.0.0";
@@ -83,7 +83,7 @@ export class StorySaveMigrations {
     };
   }
 
-  private static normalizeStoryState(rawStory: any): StoryState {
+  private static normalizeStoryState(rawStory: unknown): StoryState {
     if (!rawStory || typeof rawStory !== "object") {
       return {
         graphId: null,
@@ -97,49 +97,54 @@ export class StorySaveMigrations {
       };
     }
 
-    const graphId = typeof rawStory.graphId === "string" ? rawStory.graphId : null;
-    const currentNodeId = typeof rawStory.currentNodeId === "string" ? rawStory.currentNodeId : null;
+    const sObj = rawStory as Record<string, unknown>;
+
+    const graphId = typeof sObj.graphId === "string" ? sObj.graphId : null;
+    const currentNodeId = typeof sObj.currentNodeId === "string" ? sObj.currentNodeId : null;
 
     const flags: Record<string, boolean> = {};
-    if (rawStory.flags && typeof rawStory.flags === "object") {
-      for (const [k, v] of Object.entries(rawStory.flags)) {
+    if (sObj.flags && typeof sObj.flags === "object") {
+      for (const [k, v] of Object.entries(sObj.flags as Record<string, unknown>)) {
         flags[k] = Boolean(v);
       }
     }
 
-    const variables: Record<string, any> = {};
-    if (rawStory.variables && typeof rawStory.variables === "object") {
-      for (const [k, v] of Object.entries(rawStory.variables)) {
-        variables[k] = v;
+    const variables: Record<string, number | string | boolean> = {};
+    if (sObj.variables && typeof sObj.variables === "object") {
+      for (const [k, v] of Object.entries(sObj.variables as Record<string, unknown>)) {
+        if (typeof v === "number" || typeof v === "string" || typeof v === "boolean") {
+          variables[k] = v;
+        }
       }
     }
 
-    const selectedChoices = Array.isArray(rawStory.selectedChoices)
-      ? rawStory.selectedChoices.filter((c: any): c is string => typeof c === "string")
+    const selectedChoices = Array.isArray(sObj.selectedChoices)
+      ? sObj.selectedChoices.filter((c): c is string => typeof c === "string")
       : [];
 
-    const objectives: Record<string, any> = {};
-    if (rawStory.objectives && typeof rawStory.objectives === "object") {
-      for (const [k, v] of Object.entries(rawStory.objectives)) {
+    const objectives: Record<string, StoryObjective> = {};
+    if (sObj.objectives && typeof sObj.objectives === "object") {
+      for (const [k, v] of Object.entries(sObj.objectives as Record<string, unknown>)) {
         if (v && typeof v === "object") {
+          const item = v as Record<string, unknown>;
           objectives[k] = {
-            id: typeof (v as any).id === "string" ? (v as any).id : k,
-            titleKey: typeof (v as any).titleKey === "string" ? (v as any).titleKey : k,
-            descriptionKey: typeof (v as any).descriptionKey === "string" ? (v as any).descriptionKey : undefined,
-            targetCount: typeof (v as any).targetCount === "number" ? (v as any).targetCount : 1,
-            currentCount: typeof (v as any).currentCount === "number" ? (v as any).currentCount : 0,
-            completed: Boolean((v as any).completed)
+            id: typeof item.id === "string" ? item.id : k,
+            titleKey: typeof item.titleKey === "string" ? item.titleKey : k,
+            descriptionKey: typeof item.descriptionKey === "string" ? item.descriptionKey : undefined,
+            targetCount: typeof item.targetCount === "number" ? item.targetCount : 1,
+            currentCount: typeof item.currentCount === "number" ? item.currentCount : 0,
+            completed: Boolean(item.completed)
           };
         }
       }
     }
 
-    const evidence = Array.isArray(rawStory.evidence)
-      ? rawStory.evidence.filter((e: any): e is string => typeof e === "string")
+    const evidence = Array.isArray(sObj.evidence)
+      ? sObj.evidence.filter((e): e is string => typeof e === "string")
       : [];
 
-    const history = Array.isArray(rawStory.history)
-      ? rawStory.history.filter((h: any): h is string => typeof h === "string")
+    const history = Array.isArray(sObj.history)
+      ? sObj.history.filter((h): h is string => typeof h === "string")
       : [];
 
     return {

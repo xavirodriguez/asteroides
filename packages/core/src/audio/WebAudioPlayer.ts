@@ -33,8 +33,8 @@ export class WebAudioPlayer implements IAudioPlayer {
   private initContext(): void {
     if (typeof window === "undefined") return;
 
-    const AudioContextClass =
-      window.AudioContext || (window as any).webkitAudioContext;
+    const win = window as unknown as { AudioContext?: typeof AudioContext; webkitAudioContext?: typeof AudioContext };
+    const AudioContextClass = win.AudioContext || win.webkitAudioContext;
     if (!AudioContextClass) return;
 
     try {

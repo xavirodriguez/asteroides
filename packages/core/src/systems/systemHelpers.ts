@@ -9,7 +9,7 @@ import { Entity } from "../ecs/Entity";
  */
 export interface GameplaySystemContext {
   runState: RunState | undefined;
-  eventBus: EventBus<any> | undefined;
+  eventBus: EventBus | undefined;
 }
 
 /**

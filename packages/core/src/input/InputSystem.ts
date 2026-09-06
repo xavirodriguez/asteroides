@@ -2,7 +2,7 @@
  * Interface representing a strongly-typed input system.
  * @public
  */
-export interface IInputSystem<TInput extends Record<string, any>> {
+export interface IInputSystem<TInput extends Record<string, unknown>> {
   /**
    * Manually sets an input action state.
    */
@@ -33,4 +33,4 @@ export interface IInputSystem<TInput extends Record<string, any>> {
  * Interface representing an input system.
  * @public
  */
-export type InputSystem = IInputSystem<Record<string, any>>;
+export type InputSystem = IInputSystem<Record<string, unknown>>;

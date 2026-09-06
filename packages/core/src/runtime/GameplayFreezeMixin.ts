@@ -1,10 +1,11 @@
 import { World } from "../ecs/World";
+import { ComponentRegistry } from "../ecs/Component";
 
 /**
  * Common mixin/helper for gameplay freeze management on an ECS World instance.
  * @public
  */
-export function enterGameplayFreeze(world: World<any>, duration?: number): void {
+export function enterGameplayFreeze<TComponents extends ComponentRegistry = ComponentRegistry>(world: World<TComponents>, duration?: number): void {
   world.setResource("GameplayFreeze", {
     remaining: duration !== undefined ? duration : undefined
   });
@@ -14,7 +15,7 @@ export function enterGameplayFreeze(world: World<any>, duration?: number): void 
  * Exits soft pause / gameplay freeze state, deleting the `GameplayFreeze` world resource.
  * @public
  */
-export function exitGameplayFreeze(world: World<any>): void {
+export function exitGameplayFreeze<TComponents extends ComponentRegistry = ComponentRegistry>(world: World<TComponents>): void {
   world.deleteResource("GameplayFreeze");
 }
 
@@ -22,7 +23,7 @@ export function exitGameplayFreeze(world: World<any>): void {
  * Returns whether gameplay simulation is currently frozen on the world.
  * @public
  */
-export function isGameplayFrozen(world: World<any>): boolean {
+export function isGameplayFrozen<TComponents extends ComponentRegistry = ComponentRegistry>(world: World<TComponents>): boolean {
   return world.getResource("GameplayFreeze") !== undefined;
 }
 
@@ -30,7 +31,7 @@ export function isGameplayFrozen(world: World<any>): boolean {
  * Returns remaining gameplay freeze duration in seconds, or `undefined` if not frozen or infinite.
  * @public
  */
-export function getGameplayFreezeRemaining(world: World<any>): number | undefined {
+export function getGameplayFreezeRemaining<TComponents extends ComponentRegistry = ComponentRegistry>(world: World<TComponents>): number | undefined {
   const freeze = world.getResource<{ remaining?: number }>("GameplayFreeze");
   return freeze ? freeze.remaining : undefined;
 }

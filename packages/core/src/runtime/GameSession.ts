@@ -13,8 +13,8 @@ type GameSessionSimulation = Simulation & {
   kernel?: ArcadeKernel;
   getGameLoop?: () => GameLoop | undefined;
   isGameOver?: () => boolean;
-  getEventBus?: () => EventBus<any> | undefined;
-  eventBus?: EventBus<any>;
+  getEventBus?: () => EventBus | undefined;
+  eventBus?: EventBus;
 };
 
 /**

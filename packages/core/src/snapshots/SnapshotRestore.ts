@@ -44,7 +44,7 @@ export class SnapshotRestore {
     const internal = restoreWorldMetadata(world, state);
 
     for (const type in state.componentData) {
-      const storage = new Map<number, any>();
+      const storage = new Map<number, unknown>();
       const index = new Set<number>();
       const versions = new Map<number, number>();
 

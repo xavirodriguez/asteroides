@@ -6,7 +6,7 @@ import { z } from "zod";
  */
 export const AssetDescriptorSchema = z.object({
   id: z.string(),
-  path: z.any(),
+  path: z.unknown(),
   type: z.enum(["image", "audio", "font", "texture", "json"])
 });
 
@@ -18,10 +18,10 @@ export type AssetDescriptor = z.infer<typeof AssetDescriptorSchema>;
 
 /** @public */
 export interface IAssetProvider {
-  loadImage(path: string): Promise<unknown>;
-  loadAudio(path: string): Promise<unknown>;
-  loadFont(path: string): Promise<unknown>;
-  load?(path: string): Promise<unknown>;
+  loadImage(path: string | unknown): Promise<unknown>;
+  loadAudio(path: string | unknown): Promise<unknown>;
+  loadFont(path: string | unknown): Promise<unknown>;
+  load?(path: string | unknown): Promise<unknown>;
 }
 
 /**
@@ -107,25 +107,32 @@ export class AssetLoader {
    * @param atlasJson - The parsed JSON descriptor from TexturePacker or Aseprite.
    * @returns Map of frame names to source rectangle sub-regions (`{ x, y, w, h }`).
    */
-  public parseAtlas(atlasJson: any): Map<string, { x: number; y: number; w: number; h: number }> {
+  public parseAtlas(atlasJson: unknown): Map<string, { x: number; y: number; w: number; h: number }> {
     const framesMap = new Map<string, { x: number; y: number; w: number; h: number }>();
-    if (!atlasJson) return framesMap;
+    if (!atlasJson || typeof atlasJson !== "object") return framesMap;
 
-    const rawFrames = atlasJson.frames;
+    const rawObj = atlasJson as Record<string, unknown>;
+    const rawFrames = rawObj.frames;
     if (Array.isArray(rawFrames)) {
       // TexturePacker Array format or Aseprite array format
       for (const item of rawFrames) {
-        if (item && item.filename && item.frame) {
-          const { x, y, w, h } = item.frame;
-          framesMap.set(item.filename, { x, y, w, h });
+        if (item && typeof item === "object") {
+          const frameObj = item as { filename?: string; frame?: { x: number; y: number; w: number; h: number } };
+          if (frameObj.filename && frameObj.frame) {
+            const { x, y, w, h } = frameObj.frame;
+            framesMap.set(frameObj.filename, { x, y, w, h });
+          }
         }
       }
     } else if (rawFrames && typeof rawFrames === "object") {
       // TexturePacker Hash format or Aseprite object format
-      for (const [filename, item] of Object.entries<any>(rawFrames)) {
-        if (item && item.frame) {
-          const { x, y, w, h } = item.frame;
-          framesMap.set(filename, { x, y, w, h });
+      for (const [filename, item] of Object.entries(rawFrames as Record<string, unknown>)) {
+        if (item && typeof item === "object") {
+          const frameObj = item as { frame?: { x: number; y: number; w: number; h: number } };
+          if (frameObj.frame) {
+            const { x, y, w, h } = frameObj.frame;
+            framesMap.set(filename, { x, y, w, h });
+          }
         }
       }
     }

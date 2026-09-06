@@ -5,7 +5,11 @@ import { ComponentRegistry } from "../ecs/Component";
  * RenderContext represents the basic rendering target contexts.
  * @public
  */
-export type RenderContext = CanvasRenderingContext2D | any;
+/**
+ * RenderContext represents the basic rendering target contexts (Canvas2D or custom renderer contexts).
+ * @public
+ */
+export type RenderContext = CanvasRenderingContext2D & Record<string, unknown>;
 
 /**
  * Interface for a generic renderer that can visualize the state of an ECS world.
@@ -24,8 +28,8 @@ export interface Renderer<TRegistry extends ComponentRegistry = ComponentRegistr
    */
   render(world: World<TRegistry>, ctx: TContext, interpolation?: number): void;
 
-  registerShape(name: string, drawer: ShapeDrawer<any, TRegistry>): void;
-  registerBackgroundEffect(name: string, drawer: EffectDrawer<any, TRegistry>): void;
+  registerShape(name: string, drawer: ShapeDrawer<RenderContext, TRegistry>): void;
+  registerBackgroundEffect(name: string, drawer: EffectDrawer<RenderContext, TRegistry>): void;
 }
 
 /**

@@ -59,7 +59,7 @@ export const StoryEffectSchema = z.discriminatedUnion("type", [
  *
  * @public
  */
-export const OutcomeConditionSchema: z.ZodType<any> = z.lazy(() =>
+export const OutcomeConditionSchema: z.ZodType<import("./ArcadeIntegrationTypes").OutcomeCondition> = z.lazy(() =>
   z.union([
     z.object({
       field: z.enum(["score", "completed", "durationMs", "gameId", "runId"]),

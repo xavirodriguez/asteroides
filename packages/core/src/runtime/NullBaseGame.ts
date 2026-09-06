@@ -26,8 +26,8 @@ import {
  */
 export abstract class NullBaseGame<
   TState = unknown,
-  TInput extends Record<string, any> = Record<string, any>,
-  TComponents extends ComponentRegistry = ComponentRegistry,
+  TInput extends Record<string, unknown> = Record<string, unknown>,
+  TComponents extends ComponentRegistry = import("../ecs/CoreComponents").CoreComponentRegistry,
   TEvents extends EventRegistry = EventRegistry
 > implements IGame<TState, TInput, TComponents, TEvents> {
   public get tick(): number { return 0; }
@@ -45,7 +45,7 @@ export abstract class NullBaseGame<
       seed: 0,
       nextEntityId: 0,
       freeEntities: []
-    } as any;
+    } as unknown as WorldSnapshot;
   }
 
   public restore(_snapshot: WorldSnapshot): void {}

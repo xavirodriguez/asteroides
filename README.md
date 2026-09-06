@@ -70,6 +70,7 @@ flowchart TD
 | Package                     | Responsibility                                                                                |
 | --------------------------- | --------------------------------------------------------------------------------------------- |
 | `packages/core`             | ECS runtime, physics, systems, snapshots/rollback, component pooling, input, audio, event bus |
+| `packages/gameplay-kit`     | Reusable arcade gameplay systems (combat, spawn, powerups, loot, achievements)                |
 | `packages/renderer-canvas`  | Web/Canvas rendering adapter, shape drawers, background effects                               |
 | `packages/renderer-skia`    | React Native Skia rendering adapter                                                           |
 | `packages/network`          | Networking abstractions shared across transports                                              |

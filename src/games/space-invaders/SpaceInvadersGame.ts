@@ -1,6 +1,6 @@
 import { World, GameLoop, BaseGame, WorldSnapshot, Component, EventBus, UnifiedInputSystem, InputSystem, ConfigService, Renderer, NetworkManager, LocalPredictionSystem, RemoteInterpolationSystem, MutatorSystem, SystemPhase, createEmitter, RendererUtils, NetworkController, InputFrame, WebAudioPlayer, ReplayRecorder, ReplayPlayer, NullBaseGame, loadAudioAssets } from "@tiny-aster/core";
 import { ComboSystem } from "@tiny-aster/core";
-import { LootSystem, PowerUpSystem, PowerUpEffectRegistry } from "../shared/arcade";
+import { LootSystem, PowerUpSystem, PowerUpEffectRegistry } from "@tiny-aster/gameplay-kit";
 import { EnemyFactory } from "./EnemyFactory";
 import { BENEFICIAL_MUTATORS, NEGATIVE_MUTATORS, MutatorRegistry, registerMutatorHook } from "../../utils/MutatorRegistry";
 import { resolveAndApplyMutators } from "../../config/MutatorConfig";
@@ -25,8 +25,8 @@ const __DEV__ = process.env.NODE_ENV !== "production";
  * of one entity affects the whole group (Swarm movement).
  */
 import { TransformComponent, VelocityComponent, RenderComponent, ColliderComponent, CircleShape, BoxShape, ShapeType, CollisionEventsComponent, HealthComponent, BoundaryComponent, BlueprintDefinition, Theme, resolveThemeColor, EntityBuilder } from "@tiny-aster/core";
-import { CollisionLayers } from "../shared/types/CollisionLayers";
-import { FactionComponent, DamageComponent } from "../shared/combat/components/CombatComponents";
+import { CollisionLayers } from "@tiny-aster/gameplay-kit";
+import { FactionComponent, DamageComponent } from "@tiny-aster/gameplay-kit";
 
 export interface SpaceInvadersBlueprintMap extends Record<string, BlueprintDefinition<SpaceInvadersComponentRegistry, any, any>> {
   player: BlueprintDefinition<SpaceInvadersComponentRegistry, any, { x: number, y: number }>;

@@ -1,9 +1,9 @@
 # Copy/paste detection report
 
-> Duplications detection: Found 195 exact clones with 2079(3.97%) duplicated lines in 334 (1 formats) files.
+> Duplications detection: Found 190 exact clones with 2024(3.99%) duplicated lines in 315 (1 formats) files.
 
 | Format | Files analyzed | Total lines | Total tokens | Clones found | Duplicated lines | Duplicated tokens |
 |--------|---------------|-------------|--------------|--------------|------------------|-------------------|
-| typescript | 334 | 52324 | 275285 | 195 | 2079 (3.97%) | 15840 (5.75%) |
-| Total: | 334 | 52324 | 275285 | 195 | 2079 (3.97%) | 15840 (5.75%) |
-| **Total:** | 334 | 52324 | 275285 | 195 | 2079 (3.97%) | 15840 (5.75%) |
+| typescript | 315 | 50686 | 265997 | 190 | 2024 (3.99%) | 15405 (5.79%) |
+| Total: | 315 | 50686 | 265997 | 190 | 2024 (3.99%) | 15405 (5.79%) |
+| **Total:** | 315 | 50686 | 265997 | 190 | 2024 (3.99%) | 15405 (5.79%) |

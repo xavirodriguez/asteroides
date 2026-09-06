@@ -2,7 +2,7 @@
 import { World, System } from "@tiny-aster/core";
 import { AsteroidsComponentRegistry, AsteroidsEventRegistry } from "../types/AsteroidRegistry";
 import { fragmentAsteroid } from "../EntityFactory";
-import { spawnScorePopup } from "../../shared/arcade/helpers/spawnScorePopup";
+import { spawnScorePopup } from "@tiny-aster/gameplay-kit";
 import { createSharedParticle } from "../../shared/rendering/SharedVFX";
 import { getLogsForLevel } from "../story/StoryBeats";
 

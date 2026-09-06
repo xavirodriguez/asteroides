@@ -3,8 +3,8 @@ import { SpaceInvadersComponentRegistry } from "../types/SpaceInvadersTypes";
 import { WaveTransitionSystem } from "../systems/WaveTransitionSystem";
 import { SpaceInvadersGameStateSystem } from "../systems/SpaceInvadersGameStateSystem";
 import { MutatorRegistry, BENEFICIAL_MUTATORS } from "../../../utils/MutatorRegistry";
-import { SpawnDirectorSystem } from "../../shared/spawn/systems/SpawnDirectorSystem";
-import { ComboSystem } from "../../shared/arcade";
+import { SpawnDirectorSystem } from "@tiny-aster/gameplay-kit";
+import { ComboSystem } from "@tiny-aster/core";
 import { SpaceInvadersGame } from "../SpaceInvadersGame";
 
 describe("Space Invaders GDD v2 Mutator Draft System", () => {

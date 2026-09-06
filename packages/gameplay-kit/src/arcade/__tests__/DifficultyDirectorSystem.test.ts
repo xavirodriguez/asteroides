@@ -1,5 +1,5 @@
 import { World, SystemPhase } from "@tiny-aster/core";
-import { DifficultyDirectorSystem } from "../arcade/systems/DifficultyDirectorSystem";
+import { DifficultyDirectorSystem } from "../systems/DifficultyDirectorSystem";
 
 describe("DifficultyDirectorSystem", () => {
   let world: World<any>;

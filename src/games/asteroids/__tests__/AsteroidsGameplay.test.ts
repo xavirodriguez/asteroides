@@ -1,5 +1,5 @@
 import { World, computeShipPhysics } from "@tiny-aster/core";
-import { CollisionLayers } from "../../shared/types/CollisionLayers";
+import { CollisionLayers } from "@tiny-aster/gameplay-kit";
 import { AsteroidsGame } from "../AsteroidsGame";
 import { createShip, createAsteroid, createBullet, fragmentAsteroid } from "../EntityFactory";
 

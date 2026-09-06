@@ -1,6 +1,6 @@
 import { CoreComponentRegistry, CoreEvents, Component, BlueprintRegistryMap } from "@tiny-aster/core";
-import { DamageComponent, FactionComponent } from "../../shared/combat/components/CombatComponents";
-import { SpawnDirectorComponent, WaveMemberComponent } from "../../shared/spawn/components/SpawnComponents";
+import { DamageComponent, FactionComponent } from "@tiny-aster/gameplay-kit";
+import { SpawnDirectorComponent, WaveMemberComponent } from "@tiny-aster/gameplay-kit";
 import { ComboComponent } from "@tiny-aster/core";
 
 /**

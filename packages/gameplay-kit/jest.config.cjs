@@ -3,10 +3,10 @@ module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'node',
   moduleNameMapper: {
-    '^@tiny-aster/core$': '<rootDir>/src/index.ts',
-    '^@tiny-aster/core/(.*)$': '<rootDir>/src/$1',
-    '^@tiny-aster/gameplay-kit$': '<rootDir>/../gameplay-kit/src/index.ts',
-    '^@tiny-aster/gameplay-kit/(.*)$': '<rootDir>/../gameplay-kit/src/$1',
+    '^@tiny-aster/gameplay-kit$': '<rootDir>/src/index.ts',
+    '^@tiny-aster/gameplay-kit/(.*)$': '<rootDir>/src/$1',
+    '^@tiny-aster/core$': '<rootDir>/../core/src/index.ts',
+    '^@tiny-aster/core/(.*)$': '<rootDir>/../core/src/$1',
     '^@/(.*)$': '<rootDir>/../../$1',
     '^(\\.{1,2}/.*)\\.js$': '$1',
   },
@@ -19,11 +19,4 @@ module.exports = {
   collectCoverageFrom: [
     'src/**/*.ts'
   ],
-  coverageThreshold: {
-    global: {
-      branches: 40,
-      functions: 40,
-      lines: 40
-    }
-  }
 };

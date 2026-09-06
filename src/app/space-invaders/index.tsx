@@ -23,7 +23,7 @@ import { useGameSession } from "@/hooks/useGameSession";
 import { useKeyboardControls } from "../../hooks/useKeyboardControls";
 import { RadialBackground } from "@/components/RadialBackground";
 import { sharedScreenStyles } from "@/styles/SharedGameScreenStyles";
-import { AttractModeController } from "../../games/shared/arcade/AttractModeController";
+import { AttractModeController } from "@tiny-aster/gameplay-kit";
 import { useTranslation } from "@/hooks/useTranslation";
 import { hapticSelection } from "@/utils/haptics";
 import { colors, neonTextGlow } from "../../theme";

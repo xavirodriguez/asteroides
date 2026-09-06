@@ -1,6 +1,6 @@
-import { CoreComponentRegistry, CoreEvents } from "@tiny-aster/core";
-import { LootTableComponent, PowerUpComponent, ComboComponent } from "../../shared/arcade";
-import { DamageComponent, FactionComponent } from "../../shared/combat/components/CombatComponents";
+import { CoreComponentRegistry, CoreEvents, ComboComponent } from "@tiny-aster/core";
+import { LootTableComponent, PowerUpComponent } from "@tiny-aster/gameplay-kit";
+import { DamageComponent, FactionComponent } from "@tiny-aster/gameplay-kit";
 import { DialogueBoxComponent } from "../../shared/story/DialogueBoxComponent";
 import {
   GameStateComponent,

@@ -32,6 +32,12 @@
       ],
       "@tiny-aster/network-colyseus": [
         "./packages/network-colyseus/src/index.ts"
+      ],
+      "@tiny-aster/gameplay-kit": [
+        "./packages/gameplay-kit/src/index.ts"
+      ],
+      "@tiny-aster/gameplay-kit/*": [
+        "./packages/gameplay-kit/src/*"
       ]
     }
   },

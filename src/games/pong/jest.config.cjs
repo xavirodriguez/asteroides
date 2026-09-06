@@ -11,6 +11,7 @@ module.exports = {
   },
   extensionsToTreatAsEsm: ['.ts'],
   moduleNameMapper: {
+    '^@tiny-aster/gameplay-kit$': path.resolve(__dirname, "../../../packages/gameplay-kit/src/index.ts"),
     '^@tiny-aster/core$': path.resolve(__dirname, "../../../packages/core/src/index.ts"),
   }
 };

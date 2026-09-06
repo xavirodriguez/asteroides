@@ -1,9 +1,9 @@
 import { System, World, HealthComponent, EventBus, TransformComponent, RenderComponent, Component, ColliderComponent, CircleShape, ShapeType, CollisionEventsComponent } from "@tiny-aster/core";
 import { GameStateComponent, BossComponent, SpaceInvadersComponentRegistry, SpaceInvadersEventRegistry, GAME_CONFIG } from "../types/SpaceInvadersTypes";
-import { FactionComponent } from "../../shared/combat/components/CombatComponents";
+import { FactionComponent } from "@tiny-aster/gameplay-kit";
 import { SpaceInvadersConfig } from "../types/SpaceInvadersConfigSchema";
 import { createEmitter } from "@tiny-aster/core";
-import { CollisionLayers } from "../../shared/types/CollisionLayers";
+import { CollisionLayers } from "@tiny-aster/gameplay-kit";
 import { Juice } from "@tiny-aster/core";
 
 export class BossSystem extends System<SpaceInvadersComponentRegistry, SpaceInvadersEventRegistry> {

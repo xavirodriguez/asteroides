@@ -1,6 +1,6 @@
 import { World, SystemPhase, BlueprintRegistry, EventBus } from "@tiny-aster/core";
 import { SpawnDirectorSystem } from "../systems/SpawnDirectorSystem";
-import { SpawnDirectorComponent, WaveDefinition } from "../components/SpawnComponents";
+import { WaveDefinition } from "../components/SpawnComponents";
 
 describe("SpawnDirectorSystem", () => {
   let world: World<any, any>;

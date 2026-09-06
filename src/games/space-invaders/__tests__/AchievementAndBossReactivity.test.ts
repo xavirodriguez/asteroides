@@ -1,6 +1,6 @@
 import { World, SystemPhase, EventBus } from "@tiny-aster/core";
-import { AchievementSystem } from "../arcade/systems/AchievementSystem";
-import { BossSystem } from "../../space-invaders/systems/BossSystem";
+import { AchievementSystem } from "@tiny-aster/gameplay-kit";
+import { BossSystem } from "../systems/BossSystem";
 import { PersistenceService } from "../../../services/PersistenceService";
 
 jest.mock("../../../services/PersistenceService", () => ({

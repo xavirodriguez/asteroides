@@ -1,4 +1,4 @@
-import { WaveDefinition } from "../../shared/spawn/components/SpawnComponents";
+import { WaveDefinition } from "@tiny-aster/gameplay-kit";
 
 /**
  * Generates deterministic wave definitions for Geometry Wars.

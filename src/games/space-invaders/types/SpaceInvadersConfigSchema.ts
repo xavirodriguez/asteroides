@@ -1,6 +1,6 @@
 import { BaseConfigSchema } from "@tiny-aster/core";
 import { z } from "zod";
-import { ComboConfigSchema, ScreenDimensionsSchema } from "../../shared/arcade/types/ArcadeConfigSchema";
+import { ComboConfigSchema, ScreenDimensionsSchema } from "@tiny-aster/gameplay-kit";
 
 export const SpaceInvadersConfigSchema = BaseConfigSchema.extend({
   ...ScreenDimensionsSchema.shape,

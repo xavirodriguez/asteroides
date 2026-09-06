@@ -1,7 +1,7 @@
 import { World, SystemPhase, EventBus } from "@tiny-aster/core";
 import { SpaceInvadersGameStateSystem } from "../systems/SpaceInvadersGameStateSystem";
 import { GameStateComponent, SpaceInvadersComponentRegistry } from "../types/SpaceInvadersTypes";
-import { AttractModeController } from "../../shared/arcade/AttractModeController";
+import { AttractModeController } from "@tiny-aster/gameplay-kit";
 
 describe("Space Invaders HUD Overlays & Attract Mode Demo", () => {
   let world: World<SpaceInvadersComponentRegistry>;

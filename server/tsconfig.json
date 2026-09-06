@@ -18,7 +18,9 @@
       "@tiny-aster/core": ["../packages/core/src/index.ts"],
       "@tiny-aster/core/games/asteroids": ["../src/games/asteroids/index.ts"],
       "@tiny-aster/react-native": ["../packages/react-native/src/index.ts"],
-      "@tiny-aster/network": ["../packages/network/src/index.ts"]
+      "@tiny-aster/network": ["../packages/network/src/index.ts"],
+      "@tiny-aster/gameplay-kit": ["../packages/gameplay-kit/src/index.ts"],
+      "@tiny-aster/gameplay-kit/*": ["../packages/gameplay-kit/src/*"]
     }
   },
   "include": ["src/**/*.ts"]

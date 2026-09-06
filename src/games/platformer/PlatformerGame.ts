@@ -45,7 +45,7 @@ import { PlatformerGoalSystem } from "./systems/PlatformerGoalSystem";
 import { PlatformerDamageSystem } from "./systems/PlatformerDamageSystem";
 import { PlatformerDashSystem } from "./systems/PlatformerDashSystem";
 import { PlatformerWallJumpSystem } from "./systems/PlatformerWallJumpSystem";
-import { PowerUpSystem, PowerUpRegistry, ArcadeEntityBuilder, registerPlatformerEnemyBlueprints, mutatePlatformerInputState } from "../shared/arcade";
+import { PowerUpSystem, PowerUpRegistry, ArcadeEntityBuilder, registerPlatformerEnemyBlueprints, mutatePlatformerInputState } from "@tiny-aster/gameplay-kit";
 import { drawPlatformerPlayer, drawPlatformerGoal } from "./rendering/PlatformerCanvasVisuals";
 import { drawMemoryFragment, drawCheckpointNode, drawSentinel, drawHopper, drawCharger } from "../echorunner/rendering/EchoRunnerCanvasVisuals";
 import { createThemeFromGameAccents } from "../../theme/gameAccents";

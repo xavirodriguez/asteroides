@@ -1,6 +1,6 @@
 import { World, SystemPhase, CollisionEventsComponent, HealthComponent, EventBus, TransformComponent, RenderComponent, Entity } from "@tiny-aster/core";
 import { SpaceInvadersCollisionSystem } from "../systems/SpaceInvadersCollisionSystem";
-import { CombatSystem } from "../../shared/combat/systems/CombatSystem";
+import { CombatSystem } from "@tiny-aster/gameplay-kit";
 import { SpaceInvadersComponentRegistry } from "../types/SpaceInvadersTypes";
 import { ParticlePool, EnemyBulletPool, PlayerBulletPool } from "../EntityPool";
 

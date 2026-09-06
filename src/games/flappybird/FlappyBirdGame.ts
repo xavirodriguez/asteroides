@@ -16,7 +16,7 @@ import {
 } from "./EntityFactory";
 import { registerMutatorHook } from "../../utils/MutatorRegistry";
 import { resolveAndApplyMutators } from "../../config/MutatorConfig";
-import { AchievementSystem } from "../shared/arcade";
+import { AchievementSystem } from "@tiny-aster/gameplay-kit";
 
 /**
  * Controlador principal del juego Flappy Bird.
@@ -26,7 +26,7 @@ import { AchievementSystem } from "../shared/arcade";
  * Utiliza un sistema de gravedad simple y una única acción de entrada ("jump").
  */
 import { ColliderComponent, CollisionEventsComponent, ShapeType, CircleShape, BoxShape, BoundaryComponent, TransformComponent, VelocityComponent, RenderComponent, HealthComponent, BlueprintDefinition, createEmitter, Theme, resolveThemeColor, EntityBuilder } from "@tiny-aster/core";
-import { CollisionLayers } from "../shared/types/CollisionLayers";
+import { CollisionLayers } from "@tiny-aster/gameplay-kit";
 import { spawnVisualParticle as spawnCanvasParticle } from "./rendering/FlappyBirdCanvasVisuals";
 import { spawnVisualParticle as spawnSkiaParticle } from "./rendering/FlappyBirdSkiaVisuals";
 import { createThemeFromGameAccents } from "../../theme/gameAccents";

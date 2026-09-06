@@ -1,5 +1,5 @@
 import { EntityBlueprint, InvaderBlueprint, AsteroidBlueprint, ProjectileBlueprint, AsteroidSize } from '../types/BlueprintTypes';
-import { CollisionLayers } from '../../shared/types/CollisionLayers';
+import { CollisionLayers } from "@tiny-aster/gameplay-kit";
 
 interface InvaderBlueprintConfig {
   id: string;

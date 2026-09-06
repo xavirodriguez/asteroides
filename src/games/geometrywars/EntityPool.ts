@@ -12,10 +12,10 @@ import {
   ProjectilePool,
   ProjectileParams
 } from "@tiny-aster/core";
-import { CollisionLayers } from "../shared/types/CollisionLayers";
+import { CollisionLayers } from "@tiny-aster/gameplay-kit";
 import { colors } from "../../theme/colors";
-import { DamageComponent, FactionComponent } from "../shared/combat/components/CombatComponents";
-import { SharedParticlePool } from "../shared/arcade/ParticlePool";
+import { DamageComponent, FactionComponent } from "@tiny-aster/gameplay-kit";
+import { SharedParticlePool } from "@tiny-aster/gameplay-kit";
 
 /**
  * Standardized GWBulletPool for Geometry Wars.

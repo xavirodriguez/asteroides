@@ -1,5 +1,5 @@
 import { World, SystemPhase, BlueprintRegistry, EventBus, RandomService } from "@tiny-aster/core";
-import { SpawnDirectorSystem } from "../../shared/spawn/systems/SpawnDirectorSystem";
+import { SpawnDirectorSystem } from "@tiny-aster/gameplay-kit";
 import { generateGeometryWarsWaves } from "../config/GeometryWarsWaves";
 import { registerGeometryWarsBlueprints } from "../entities/GeometryWarsEntities";
 

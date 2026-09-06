@@ -1,10 +1,10 @@
 import { World } from "@tiny-aster/core";
-import { CollisionLayers } from "../shared/types/CollisionLayers";
+import { CollisionLayers } from "@tiny-aster/gameplay-kit";
 import { Entity, BoundaryComponent, TransformComponent, VelocityComponent, RenderComponent, ColliderComponent, CircleShape, ShapeType, CollisionEventsComponent, ReclaimableComponent } from "@tiny-aster/core";
 import { GAME_CONFIG } from "./types/SpaceInvadersTypes";
 import { ProjectilePool, ProjectileParams } from "@tiny-aster/core";
-import { DamageComponent, FactionComponent } from "../shared/combat/components/CombatComponents";
-import { SharedParticlePool } from "../shared/arcade/ParticlePool";
+import { DamageComponent, FactionComponent } from "@tiny-aster/gameplay-kit";
+import { SharedParticlePool } from "@tiny-aster/gameplay-kit";
 
 export type BulletPoolConfig = {
   shape: string;

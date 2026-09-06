@@ -50,7 +50,7 @@ import {
 } from "@tiny-aster/core";
 
 import { ComboSystem } from "@tiny-aster/core";
-import { LootSystem, PowerUpSystem, DifficultyDirectorSystem, AchievementSystem, PowerUpRegistry } from "../shared/arcade";
+import { LootSystem, PowerUpSystem, DifficultyDirectorSystem, AchievementSystem, PowerUpRegistry } from "@tiny-aster/gameplay-kit";
 import { StoryDirectorSystem, DialogueSystem, asteroidsStoryGraph } from "../shared/story";
 import { StoryRuntime, StoryGraph } from "@tiny-aster/core";
 import * as SharedVFX from "../shared/rendering/SharedVFX";
@@ -58,7 +58,7 @@ import { AsteroidsComponentRegistry, AsteroidsEventRegistry, AsteroidsBlueprintM
 import { AsteroidGameStateSystem } from "./systems/AsteroidGameStateSystem";
 import { AsteroidInputSystem } from "./systems/AsteroidInputSystem";
 import { AsteroidCollisionSystem } from "./systems/AsteroidCollisionSystem";
-import { CombatSystem } from "../shared/combat/systems/CombatSystem";
+import { CombatSystem } from "@tiny-aster/gameplay-kit";
 import { INITIAL_GAME_STATE } from "./types/AsteroidTypes";
 import { createShip, createPowerUp, spawnAsteroidWave, registerAsteroidsBlueprints } from "./EntityFactory";
 import type { IAsteroidsGame } from "./types/GameInterfaces";

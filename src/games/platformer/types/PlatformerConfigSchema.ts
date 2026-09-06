@@ -5,7 +5,7 @@ import {
   TileGridSchema,
   PlayerMovementSchema,
   JumpPhysicsSchema
-} from "../../shared/arcade/types/ArcadeConfigSchema";
+} from "@tiny-aster/gameplay-kit";
 
 export const PlatformerConfigSchema = BaseConfigSchema.extend({
   ...ScreenDimensionsSchema.shape,

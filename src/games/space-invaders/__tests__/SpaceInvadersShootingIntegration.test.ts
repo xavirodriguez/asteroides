@@ -1,11 +1,11 @@
 import { World, SystemPhase, CollisionSystem2D, MovementSystem, HierarchySystem, EventBus, TransformComponent } from "@tiny-aster/core";
 import { SpaceInvadersInputSystem } from "../systems/SpaceInvadersInputSystem";
 import { SpaceInvadersCollisionSystem } from "../systems/SpaceInvadersCollisionSystem";
-import { CombatSystem } from "../../shared/combat/systems/CombatSystem";
+import { CombatSystem } from "@tiny-aster/gameplay-kit";
 import { PlayerBulletPool, ParticlePool } from "../EntityPool";
 import { SpaceInvadersComponentRegistry } from "../types/SpaceInvadersTypes";
 import { EnemyFactory } from "../EnemyFactory";
-import { CollisionLayers } from "../../shared/types/CollisionLayers";
+import { CollisionLayers } from "@tiny-aster/gameplay-kit";
 
 describe("Space Invaders Shooting & Collision Integration", () => {
   let world: World<SpaceInvadersComponentRegistry>;

@@ -3,9 +3,9 @@ import { SpaceInvadersConfig } from "./types/SpaceInvadersConfigSchema";
 import { GAME_CONFIG, SpaceInvadersComponentRegistry } from "./types/SpaceInvadersTypes";
 import { PlayerBulletPool, EnemyBulletPool, ParticlePool } from "./EntityPool";
 import { createEmitter } from "@tiny-aster/core";
-import { CollisionLayers } from "../shared/types/CollisionLayers";
+import { CollisionLayers } from "@tiny-aster/gameplay-kit";
 import { Collider2DComponent, BoundaryComponent, TransformComponent, VelocityComponent, RenderComponent, HealthComponent } from "@tiny-aster/core";
-import { LootTableComponent } from "../shared/arcade";
+import { LootTableComponent } from "@tiny-aster/gameplay-kit";
 import {
   InputComponent,
   PlayerComponent,

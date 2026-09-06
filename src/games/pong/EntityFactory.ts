@@ -2,7 +2,7 @@ import { World, spawnBlueprintEntity } from "@tiny-aster/core";
 import { PongConfig, DEFAULT_PONG_CONFIG } from "./types/PongConfigSchema";
 import { TransformComponent, VelocityComponent, ColliderComponent } from "@tiny-aster/core";
 
-import { CollisionLayers } from "../shared/types/CollisionLayers";
+import { CollisionLayers } from "@tiny-aster/gameplay-kit";
 
 /**
  * Factoría para la creación de entidades de Pong.

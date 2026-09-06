@@ -17,8 +17,8 @@ import {
 } from "@tiny-aster/core";
 import { GeometryWarsComponentRegistry, GeometryWarsEventRegistry } from "../types/GeometryWarsRegistry";
 import { GeometryWarsConfig } from "../config/GeometryWarsConfig";
-import { CombatSystem } from "../../shared/combat/systems/CombatSystem";
-import { SpawnDirectorSystem } from "../../shared/spawn/systems/SpawnDirectorSystem";
+import { CombatSystem } from "@tiny-aster/gameplay-kit";
+import { SpawnDirectorSystem } from "@tiny-aster/gameplay-kit";
 import { generateGeometryWarsWaves } from "../config/GeometryWarsWaves";
 import { registerGeometryWarsBlueprints, GeometryWarsEntityFactory } from "../entities/GeometryWarsEntities";
 import { GeometryWarsInputSystem } from "../systems/GeometryWarsInputSystem";
@@ -26,7 +26,7 @@ import { KineticAccumulatorSystem } from "../systems/KineticAccumulatorSystem";
 import { WeaponSystem } from "../systems/WeaponSystem";
 import { GWBulletPool, GWParticlePool } from "../EntityPool";
 import { GeometryWarsAISystem } from "../systems/GeometryWarsAISystem";
-import { WaveDefinition, SpawnRequest } from "../../shared/spawn/components/SpawnComponents";
+import { WaveDefinition, SpawnRequest } from "@tiny-aster/gameplay-kit";
 import { ComboSystem } from "@tiny-aster/core";
 import { GeometryWarsGameStateSystem } from "../systems/GeometryWarsGameStateSystem";
 

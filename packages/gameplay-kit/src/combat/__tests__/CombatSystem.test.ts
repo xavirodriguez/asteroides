@@ -1,16 +1,6 @@
-import { World, SystemPhase, CollisionEventsComponent, HealthComponent, EventBus } from "@tiny-aster/core";
+import { World, SystemPhase, EventBus } from "@tiny-aster/core";
 import { CombatSystem } from "../systems/CombatSystem";
-import { DamageComponent, FactionComponent } from "../components/CombatComponents";
 
-interface TestComponentRegistry {
-  Transform: any;
-  CollisionEvents: CollisionEventsComponent;
-  Health: HealthComponent;
-  Damage: DamageComponent;
-  Faction: FactionComponent;
-  Dead: any;
-  Reclaimable: any;
-}
 
 describe("CombatSystem", () => {
   let world: World<any, any>;

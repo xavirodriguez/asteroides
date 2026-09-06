@@ -66,8 +66,6 @@ export class SpawnDirectorSystem<
       waveElapsedTime += deltaTime;
 
       const remainingSpawns: SpawnRequest[] = [];
-      const blueprints = world.getResource<any>("BlueprintRegistry");
-
       for (const spawn of pendingSpawns) {
         const spawnTime = spawn.spawnTime ?? 0;
         if (waveElapsedTime >= spawnTime) {

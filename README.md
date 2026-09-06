@@ -79,7 +79,7 @@ flowchart TD
 | `src/games/*`               | Game-specific rules, entities, and content built on top of `@tiny-aster/core`                 |
 | `server/`                   | Colyseus authoritative game server                                                            |
 
-Architectural boundaries are not just documented — they're **enforced in CI** via `pnpm check:core-boundaries`, which fails the build if the core imports platform code or game-specific modules.
+Architectural boundaries are not just documented — they're **enforced in CI** via `pnpm check:core-boundaries`, which fails the build if the core imports platform code or game-specific modules. For a deep dive into the monorepo architecture, ECS runtime, netcode, and onboarding guide, consult [`docs/ARCHITECTURE_AND_DEVELOPER_GUIDE.md`](./docs/ARCHITECTURE_AND_DEVELOPER_GUIDE.md).
 
 ---
 
@@ -219,7 +219,7 @@ The test suite spans multiple layers:
 
 ## 🤝 Contributing
 
-1. Read `GDD.md` before touching gameplay systems — mechanics are design-first, not code-first.
+1. Read [`docs/ARCHITECTURE_AND_DEVELOPER_GUIDE.md`](./docs/ARCHITECTURE_AND_DEVELOPER_GUIDE.md) and [`GDD.md`](./GDD.md) before touching gameplay or core systems — architecture and mechanics are design-first.
 2. Never import platform code (`react-native`, `expo-*`, `@shopify/react-native-skia`, `@colyseus`) or game-specific modules (`src/games`, `src/app`) inside `packages/core`. This is enforced automatically and will fail CI.
 3. Add tests alongside new systems — prefer unit tests in `packages/core/src/__tests__` for engine logic and per-game tests for gameplay rules.
 4. Run `pnpm ci` locally before opening a PR.

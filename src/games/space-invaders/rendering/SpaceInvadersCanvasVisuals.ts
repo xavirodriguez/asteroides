@@ -266,22 +266,47 @@ export const drawSpaceInvadersBullet: ShapeDrawer<CanvasRenderingContext2D, Spac
     const glowColor = isPlayerBullet ? colors.cyan : colors.redHot;
     const coreColor = colors.white;
 
+    // Calculate proximity intensity for enemy bullets prior to impact
+    let proximityFactor = 0;
+    if (!isPlayerBullet) {
+      const pos = world.getComponent(entity, "Transform");
+      const ttl = world.getComponent(entity, "TTL");
+
+      let distFactor = 0;
+      if (pos) {
+        // Player target position is near bottom of screen (~550)
+        // As bullet Y progresses past 300 towards 550, increase proximity intensity
+        distFactor = Math.max(0, Math.min(1.0, (pos.y - 300) / 220));
+      }
+
+      let ttlFactor = 0;
+      if (ttl && ttl.timeLeft) {
+        ttlFactor = Math.max(0, Math.min(1.0, 1.0 - (ttl.remaining / ttl.timeLeft)));
+      }
+
+      proximityFactor = Math.max(distFactor, ttlFactor);
+    }
+
     ctx.save();
 
     // 1. Draw glowing outer fading capsules as motion trails
-    ctx.globalAlpha = 0.18;
+    const baseTrailAlpha = isPlayerBullet ? 0.18 : (0.18 + proximityFactor * 0.22);
+    ctx.globalAlpha = baseTrailAlpha;
     ctx.fillStyle = glowColor;
-    const trailOffset = isPlayerBullet ? size * 1.5 : -size * 1.5;
+    const trailOffset = isPlayerBullet ? size * 1.5 : -size * (1.5 + proximityFactor * 0.8);
 
     for (let i = 1; i <= 3; i++) {
       ctx.fillRect(-size / 2, -size + (trailOffset * i), size, size * 2);
     }
 
-    // 2. Draw outer energetic glowing aura
-    ctx.globalAlpha = 0.4;
+    // 2. Draw outer energetic glowing aura (intensifies near target for enemy bullets)
+    const baseAuraAlpha = isPlayerBullet ? 0.4 : (0.4 + proximityFactor * 0.4);
+    const shadowBlurAmount = isPlayerBullet ? 8 : (8 + proximityFactor * 16);
+    ctx.globalAlpha = baseAuraAlpha;
     ctx.shadowColor = glowColor;
-    ctx.shadowBlur = 8;
-    ctx.fillRect(-size * 1.25, -size * 1.25, size * 2.5, size * 2.5);
+    ctx.shadowBlur = shadowBlurAmount;
+    const auraSizeScale = 1.0 + proximityFactor * 0.3;
+    ctx.fillRect(-size * 1.25 * auraSizeScale, -size * 1.25 * auraSizeScale, size * 2.5 * auraSizeScale, size * 2.5 * auraSizeScale);
 
     // 3. Draw solid primary energetic bolt
     ctx.globalAlpha = 1.0;

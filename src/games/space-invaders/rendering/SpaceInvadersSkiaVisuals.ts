@@ -273,6 +273,25 @@ export const drawSkiaSpaceInvadersBullet: ShapeDrawer<any, SpaceInvadersComponen
     const glowColor = isPlayerBullet ? colors.cyan : colors.redHot;
     const coreColor = colors.white;
 
+    // Calculate proximity intensity for enemy bullets prior to impact
+    let proximityFactor = 0;
+    if (!isPlayerBullet) {
+      const pos = world.getComponent(entity, "Transform");
+      const ttl = world.getComponent(entity, "TTL");
+
+      let distFactor = 0;
+      if (pos) {
+        distFactor = Math.max(0, Math.min(1.0, (pos.y - 300) / 220));
+      }
+
+      let ttlFactor = 0;
+      if (ttl && ttl.timeLeft) {
+        ttlFactor = Math.max(0, Math.min(1.0, 1.0 - (ttl.remaining / ttl.timeLeft)));
+      }
+
+      proximityFactor = Math.max(distFactor, ttlFactor);
+    }
+
     canvas.save();
 
     const paint = getPaint();
@@ -281,16 +300,19 @@ export const drawSkiaSpaceInvadersBullet: ShapeDrawer<any, SpaceInvadersComponen
 
     // 1. Draw glowing outer fading capsules as motion trails
     paint.setColor(Skia.Color(glowColor));
-    paint.setAlphaf(0.18);
-    const trailOffset = isPlayerBullet ? size * 1.5 : -size * 1.5;
+    const baseTrailAlpha = isPlayerBullet ? 0.18 : (0.18 + proximityFactor * 0.22);
+    paint.setAlphaf(baseTrailAlpha);
+    const trailOffset = isPlayerBullet ? size * 1.5 : -size * (1.5 + proximityFactor * 0.8);
 
     for (let i = 1; i <= 3; i++) {
       canvas.drawRect(Skia.XYWHRect(-size / 2, -size + (trailOffset * i), size, size * 2), paint);
     }
 
     // 2. Draw outer energetic glowing aura
-    paint.setAlphaf(0.4);
-    canvas.drawRect(Skia.XYWHRect(-size * 1.25, -size * 1.25, size * 2.5, size * 2.5), paint);
+    const baseAuraAlpha = isPlayerBullet ? 0.4 : (0.4 + proximityFactor * 0.4);
+    paint.setAlphaf(baseAuraAlpha);
+    const auraSizeScale = 1.0 + proximityFactor * 0.3;
+    canvas.drawRect(Skia.XYWHRect(-size * 1.25 * auraSizeScale, -size * 1.25 * auraSizeScale, size * 2.5 * auraSizeScale, size * 2.5 * auraSizeScale), paint);
 
     // 3. Draw solid primary energetic bolt
     paint.setAlphaf(1.0);

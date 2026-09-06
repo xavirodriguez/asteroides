@@ -1,4 +1,4 @@
-import { System, World, Juice } from "@tiny-aster/core";
+import { System, World, Juice, CoreComponentRegistry } from "@tiny-aster/core";
 import { TransformComponent, VelocityComponent } from "@tiny-aster/core";
 import { InputComponent, SpaceInvadersComponentRegistry } from "../types/SpaceInvadersTypes";
 import { SpaceInvadersConfig } from "../types/SpaceInvadersConfigSchema";
@@ -112,8 +112,9 @@ export class SpaceInvadersInputSystem extends System<SpaceInvadersComponentRegis
             createPlayerBullet(world, pos.x, pos.y - 25, this.bulletPool);
             nextShootCooldownRemaining = this.config!.PLAYER_SHOOT_COOLDOWN / 1000;
 
-            // Discrete Juice feedback on player shooting recoil
-            Juice.squash(world as any, entity, 0.9, 1.15, 100);
+            // Discrete Juice feedback on player shooting recoil and subtle kickback screen shake
+            Juice.squash(world as World<CoreComponentRegistry>, entity, 0.9, 1.15, 100);
+            Juice.shake(world as World<CoreComponentRegistry>, 1.5, 60);
 
             const eventBus = world.getEventBus();
             if (eventBus) {

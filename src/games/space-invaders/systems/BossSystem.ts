@@ -5,6 +5,7 @@ import { SpaceInvadersConfig } from "../types/SpaceInvadersConfigSchema";
 import { createEmitter } from "@tiny-aster/core";
 import { CollisionLayers } from "@tiny-aster/gameplay-kit";
 import { Juice } from "@tiny-aster/core";
+import { spawnLayeredExplosion } from "../rendering/SpaceInvadersCanvasVisuals";
 
 export class BossSystem extends System<SpaceInvadersComponentRegistry, SpaceInvadersEventRegistry> {
   private config?: SpaceInvadersConfig;
@@ -149,6 +150,9 @@ export class BossSystem extends System<SpaceInvadersComponentRegistry, SpaceInva
         lifetime: [1.0, 2.0],
         loop: false
     });
+    if (!world.isReSimulating) {
+      spawnLayeredExplosion(pos.x, pos.y, "#FF00FF", 2.2); // Intense boss explosion
+    }
     Juice.shake(world, 10, 1000);
     spawnScorePopup(world, pos.x, pos.y, "+5000", "#FFD700");
 

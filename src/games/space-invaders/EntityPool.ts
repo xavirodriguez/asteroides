@@ -61,6 +61,7 @@ function createBulletPoolConfig(config: BulletPoolConfig) {
       data.position.x = p.x;
       data.position.y = p.y;
       data.position.worldX = p.x;
+      // TODO(refactor): código duplicado detectado (bloque) con geometrywars/EntityPool.ts:135-143. Considerar extraer a función compartida. Ref: 3437c2d8
       data.position.worldY = p.y;
       data.position.dirty = true;
       data.velocity.vx = p.dx;

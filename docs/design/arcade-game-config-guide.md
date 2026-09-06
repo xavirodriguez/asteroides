@@ -4,7 +4,7 @@ Esta guía documenta el patrón unificado **Zod + ConfigService** utilizado para
 
 ## Visión General
 
-Todos los minijuegos extienden sus configuraciones a partir de `BaseConfigSchema` y combinan formas (shapes) de Zod reutilizables definidas en `src/games/shared/arcade/types/ArcadeConfigSchema.ts`.
+Todos los minijuegos extienden sus configuraciones a partir de `BaseConfigSchema` y combinan formas (shapes) de Zod reutilizables definidas en `@tiny-aster/gameplay-kit`.
 
 ## Shapes Reutilizables Disponibles
 
@@ -29,7 +29,7 @@ import {
   PlayerMovementSchema,
   JumpPhysicsSchema,
   TileGridSchema
-} from "../../shared/arcade/types/ArcadeConfigSchema";
+} from "@tiny-aster/gameplay-kit";
 
 export const NuevoJuegoConfigSchema = BaseConfigSchema.extend({
   ...ScreenDimensionsSchema.shape,

@@ -35,7 +35,7 @@
     },
     {
       "title": "Monorepo Structure",
-      "purpose": "Explains the Turborepo/pnpm workspace layout: root app (Expo), packages/core, packages/network, packages/network-colyseus, packages/react-native, packages/renderer-canvas, packages/renderer-skia, and the server directory. Describes how packages depend on each other.",
+      "purpose": "Explains the Turborepo/pnpm workspace layout: root app (Expo), packages/core, packages/gameplay-kit, packages/network, packages/network-colyseus, packages/react-native, packages/renderer-canvas, packages/renderer-skia, and the server directory. Describes how packages depend on each other.",
       "parent": "Project Overview",
       "page_notes": [
         {

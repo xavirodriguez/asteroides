@@ -1,4 +1,4 @@
-import { World, TransformComponent, RenderComponent, TTLComponent, Juice, Entity } from "@tiny-aster/core";
+import { World, TransformComponent, RenderComponent, TTLComponent, Entity } from "@tiny-aster/core";
 
 /**
  * Spawns a floating score or combo popup text at (x, y) coordinates.

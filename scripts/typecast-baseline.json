@@ -359,6 +359,61 @@
     "unknownCount": 0,
     "total": 21
   },
+  "packages/gameplay-kit/src/arcade/__tests__/DifficultyDirectorSystem.test.ts": {
+    "anyCount": 6,
+    "unknownCount": 0,
+    "total": 6
+  },
+  "packages/gameplay-kit/src/arcade/__tests__/PowerUpEffectRegistry.test.ts": {
+    "anyCount": 3,
+    "unknownCount": 0,
+    "total": 3
+  },
+  "packages/gameplay-kit/src/arcade/helpers/spawnScorePopup.ts": {
+    "anyCount": 1,
+    "unknownCount": 1,
+    "total": 2
+  },
+  "packages/gameplay-kit/src/arcade/powerups/PowerUpEffectRegistry.ts": {
+    "anyCount": 4,
+    "unknownCount": 2,
+    "total": 6
+  },
+  "packages/gameplay-kit/src/arcade/systems/AchievementSystem.ts": {
+    "anyCount": 3,
+    "unknownCount": 0,
+    "total": 3
+  },
+  "packages/gameplay-kit/src/arcade/systems/DifficultyDirectorSystem.ts": {
+    "anyCount": 5,
+    "unknownCount": 0,
+    "total": 5
+  },
+  "packages/gameplay-kit/src/arcade/systems/LootSystem.ts": {
+    "anyCount": 3,
+    "unknownCount": 0,
+    "total": 3
+  },
+  "packages/gameplay-kit/src/combat/__tests__/CombatSystem.test.ts": {
+    "anyCount": 51,
+    "unknownCount": 0,
+    "total": 51
+  },
+  "packages/gameplay-kit/src/combat/systems/CombatSystem.ts": {
+    "anyCount": 19,
+    "unknownCount": 0,
+    "total": 19
+  },
+  "packages/gameplay-kit/src/spawn/__tests__/SpawnDirectorSystem.test.ts": {
+    "anyCount": 25,
+    "unknownCount": 0,
+    "total": 25
+  },
+  "packages/gameplay-kit/src/spawn/systems/SpawnDirectorSystem.ts": {
+    "anyCount": 10,
+    "unknownCount": 0,
+    "total": 10
+  },
   "packages/renderer-canvas/src/CanvasRenderer.ts": {
     "anyCount": 0,
     "unknownCount": 7,
@@ -764,16 +819,6 @@
     "unknownCount": 0,
     "total": 1
   },
-  "src/games/shared/__tests__/AchievementAndBossReactivity.test.ts": {
-    "anyCount": 10,
-    "unknownCount": 0,
-    "total": 10
-  },
-  "src/games/shared/__tests__/DifficultyDirectorSystem.test.ts": {
-    "anyCount": 6,
-    "unknownCount": 0,
-    "total": 6
-  },
   "src/games/shared/__tests__/InputUnificationRetrofit.test.ts": {
     "anyCount": 16,
     "unknownCount": 0,
@@ -783,56 +828,6 @@
     "anyCount": 12,
     "unknownCount": 0,
     "total": 12
-  },
-  "src/games/shared/arcade/__tests__/PowerUpEffectRegistry.test.ts": {
-    "anyCount": 3,
-    "unknownCount": 0,
-    "total": 3
-  },
-  "src/games/shared/arcade/helpers/spawnScorePopup.ts": {
-    "anyCount": 1,
-    "unknownCount": 1,
-    "total": 2
-  },
-  "src/games/shared/arcade/powerups/PowerUpEffectRegistry.ts": {
-    "anyCount": 4,
-    "unknownCount": 2,
-    "total": 6
-  },
-  "src/games/shared/arcade/systems/AchievementSystem.ts": {
-    "anyCount": 3,
-    "unknownCount": 0,
-    "total": 3
-  },
-  "src/games/shared/arcade/systems/DifficultyDirectorSystem.ts": {
-    "anyCount": 5,
-    "unknownCount": 0,
-    "total": 5
-  },
-  "src/games/shared/arcade/systems/LootSystem.ts": {
-    "anyCount": 3,
-    "unknownCount": 0,
-    "total": 3
-  },
-  "src/games/shared/combat/__tests__/CombatSystem.test.ts": {
-    "anyCount": 51,
-    "unknownCount": 0,
-    "total": 51
-  },
-  "src/games/shared/combat/systems/CombatSystem.ts": {
-    "anyCount": 19,
-    "unknownCount": 0,
-    "total": 19
-  },
-  "src/games/shared/spawn/__tests__/SpawnDirectorSystem.test.ts": {
-    "anyCount": 25,
-    "unknownCount": 0,
-    "total": 25
-  },
-  "src/games/shared/spawn/systems/SpawnDirectorSystem.ts": {
-    "anyCount": 10,
-    "unknownCount": 0,
-    "total": 10
   },
   "src/games/shared/story/DialogueSystem.ts": {
     "anyCount": 14,
@@ -858,6 +853,11 @@
     "anyCount": 29,
     "unknownCount": 0,
     "total": 29
+  },
+  "src/games/space-invaders/__tests__/AchievementAndBossReactivity.test.ts": {
+    "anyCount": 10,
+    "unknownCount": 0,
+    "total": 10
   },
   "src/games/space-invaders/__tests__/SpaceInvadersCombat.test.ts": {
     "anyCount": 23,

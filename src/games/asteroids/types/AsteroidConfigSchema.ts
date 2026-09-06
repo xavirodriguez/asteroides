@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { BaseConfigSchema } from "@tiny-aster/core";
-import { ComboConfigSchema, ScreenDimensionsSchema } from "../../shared/arcade/types/ArcadeConfigSchema";
+import { ComboConfigSchema, ScreenDimensionsSchema } from "@tiny-aster/gameplay-kit";
 
 /** @public */
 export const AsteroidConfigSchema = BaseConfigSchema.extend({

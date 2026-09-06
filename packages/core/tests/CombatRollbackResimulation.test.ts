@@ -1,5 +1,5 @@
 import { World, SystemPhase, EventBus, WorldSnapshot } from "@tiny-aster/core";
-import { CombatSystem } from "../../../src/games/shared/combat/systems/CombatSystem";
+import { CombatSystem } from "@tiny-aster/gameplay-kit";
 import { SpaceInvadersCollisionSystem } from "../../../src/games/space-invaders/systems/SpaceInvadersCollisionSystem";
 import { ParticlePool, PlayerBulletPool } from "../../../src/games/space-invaders/EntityPool";
 import { RollbackSimulation } from "../src/network/RollbackSimulation";

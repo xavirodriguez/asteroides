@@ -746,14 +746,14 @@
         "endLoc": {
           "column": 26,
           "line": 398,
-          "position": 16063
+          "position": 16058
         },
         "name": "asteroids/AsteroidsGame.ts",
         "start": 386,
         "startLoc": {
           "column": 31,
           "line": 386,
-          "position": 15720
+          "position": 15715
         }
       },
       "format": "typescript",
@@ -765,14 +765,14 @@
         "endLoc": {
           "column": 26,
           "line": 691,
-          "position": 28560
+          "position": 28541
         },
         "name": "space-invaders/SpaceInvadersGame.ts",
         "start": 679,
         "startLoc": {
           "column": 26,
           "line": 679,
-          "position": 28217
+          "position": 28198
         }
       },
       "tokens": 52
@@ -783,14 +783,14 @@
         "endLoc": {
           "column": 115,
           "line": 111,
-          "position": 4108
+          "position": 4071
         },
         "name": "asteroids/EntityFactory.ts",
         "start": 106,
         "startLoc": {
           "column": 45,
           "line": 106,
-          "position": 3944
+          "position": 3907
         }
       },
       "format": "typescript",
@@ -802,14 +802,14 @@
         "endLoc": {
           "column": 115,
           "line": 175,
-          "position": 6188
+          "position": 6134
         },
         "name": "geometrywars/entities/GeometryWarsEntities.ts",
         "start": 170,
         "startLoc": {
           "column": 61,
           "line": 170,
-          "position": 6024
+          "position": 5970
         }
       },
       "tokens": 52
@@ -820,14 +820,14 @@
         "endLoc": {
           "column": 13,
           "line": 229,
-          "position": 8165
+          "position": 8128
         },
         "name": "asteroids/EntityFactory.ts",
         "start": 216,
         "startLoc": {
           "column": 28,
           "line": 216,
-          "position": 7687
+          "position": 7650
         }
       },
       "format": "typescript",
@@ -839,14 +839,14 @@
         "endLoc": {
           "column": 9,
           "line": 49,
-          "position": 1642
+          "position": 1588
         },
         "name": "geometrywars/entities/GeometryWarsEntities.ts",
         "start": 44,
         "startLoc": {
           "column": 25,
           "line": 44,
-          "position": 1416
+          "position": 1362
         }
       },
       "tokens": 57
@@ -968,14 +968,14 @@
         "endLoc": {
           "column": 26,
           "line": 64,
-          "position": 2500
+          "position": 2481
         },
         "name": "asteroids/systems/AsteroidCollisionSystem.ts",
         "start": 56,
         "startLoc": {
           "column": 4,
           "line": 56,
-          "position": 2221
+          "position": 2202
         }
       },
       "format": "typescript",
@@ -987,14 +987,14 @@
         "endLoc": {
           "column": 30,
           "line": 162,
-          "position": 6264
+          "position": 6245
         },
         "name": "space-invaders/systems/SpaceInvadersCollisionSystem.ts",
         "start": 154,
         "startLoc": {
           "column": 8,
           "line": 154,
-          "position": 5957
+          "position": 5938
         }
       },
       "tokens": 57
@@ -1005,14 +1005,14 @@
         "endLoc": {
           "column": 18,
           "line": 151,
-          "position": 5092
+          "position": 5100
         },
         "name": "echorunner/EchoRunnerGame.ts",
         "start": 125,
         "startLoc": {
           "column": 4,
           "line": 125,
-          "position": 4138
+          "position": 4146
         }
       },
       "format": "typescript",
@@ -1042,14 +1042,14 @@
         "endLoc": {
           "column": 54,
           "line": 239,
-          "position": 8291
+          "position": 8299
         },
         "name": "echorunner/EchoRunnerGame.ts",
         "start": 211,
         "startLoc": {
           "column": 28,
           "line": 211,
-          "position": 6923
+          "position": 6931
         }
       },
       "format": "typescript",
@@ -1061,14 +1061,14 @@
         "endLoc": {
           "column": 54,
           "line": 131,
-          "position": 4860
+          "position": 4868
         },
         "name": "platformer/PlatformerGame.ts",
         "start": 104,
         "startLoc": {
           "column": 28,
           "line": 104,
-          "position": 3544
+          "position": 3552
         }
       },
       "tokens": 172
@@ -1079,14 +1079,14 @@
         "endLoc": {
           "column": 9,
           "line": 226,
-          "position": 7888
+          "position": 7896
         },
         "name": "echorunner/EchoRunnerGame.ts",
         "start": 216,
         "startLoc": {
           "column": 145,
           "line": 216,
-          "position": 7312
+          "position": 7320
         }
       },
       "format": "typescript",
@@ -1098,14 +1098,14 @@
         "endLoc": {
           "column": 9,
           "line": 78,
-          "position": 4675
+          "position": 4676
         },
         "name": "flappybird/FlappyBirdGame.ts",
         "start": 70,
         "startLoc": {
           "column": 47,
           "line": 70,
-          "position": 4269
+          "position": 4270
         }
       },
       "tokens": 52
@@ -1116,14 +1116,14 @@
         "endLoc": {
           "column": 21,
           "line": 233,
-          "position": 8098
+          "position": 8106
         },
         "name": "echorunner/EchoRunnerGame.ts",
         "start": 216,
         "startLoc": {
           "column": 144,
           "line": 216,
-          "position": 7311
+          "position": 7319
         }
       },
       "format": "typescript",
@@ -1135,14 +1135,14 @@
         "endLoc": {
           "column": 29,
           "line": 117,
-          "position": 5023
+          "position": 5024
         },
         "name": "pong/PongGame.ts",
         "start": 103,
         "startLoc": {
           "column": 52,
           "line": 103,
-          "position": 4442
+          "position": 4443
         }
       },
       "tokens": 84
@@ -1153,14 +1153,14 @@
         "endLoc": {
           "column": 27,
           "line": 226,
-          "position": 7906
+          "position": 7914
         },
         "name": "echorunner/EchoRunnerGame.ts",
         "start": 217,
         "startLoc": {
           "column": 2,
           "line": 217,
-          "position": 7316
+          "position": 7324
         }
       },
       "format": "typescript",
@@ -1172,14 +1172,14 @@
         "endLoc": {
           "column": 27,
           "line": 117,
-          "position": 6371
+          "position": 6352
         },
         "name": "space-invaders/SpaceInvadersGame.ts",
         "start": 109,
         "startLoc": {
           "column": 2,
           "line": 109,
-          "position": 5941
+          "position": 5922
         }
       },
       "tokens": 55
@@ -1190,14 +1190,14 @@
         "endLoc": {
           "column": 8,
           "line": 242,
-          "position": 8328
+          "position": 8336
         },
         "name": "echorunner/EchoRunnerGame.ts",
         "start": 220,
         "startLoc": {
           "column": 12,
           "line": 220,
-          "position": 7488
+          "position": 7496
         }
       },
       "format": "typescript",
@@ -1209,14 +1209,14 @@
         "endLoc": {
           "column": 9,
           "line": 134,
-          "position": 4903
+          "position": 4911
         },
         "name": "platformer/PlatformerGame.ts",
         "start": 113,
         "startLoc": {
           "column": 12,
           "line": 113,
-          "position": 4109
+          "position": 4117
         }
       },
       "tokens": 119
@@ -1227,14 +1227,14 @@
         "endLoc": {
           "column": 65,
           "line": 273,
-          "position": 9531
+          "position": 9539
         },
         "name": "echorunner/EchoRunnerGame.ts",
         "start": 268,
         "startLoc": {
           "column": 69,
           "line": 268,
-          "position": 9360
+          "position": 9368
         }
       },
       "format": "typescript",
@@ -1246,14 +1246,14 @@
         "endLoc": {
           "column": 65,
           "line": 302,
-          "position": 10727
+          "position": 10735
         },
         "name": "platformer/PlatformerGame.ts",
         "start": 297,
         "startLoc": {
           "column": 71,
           "line": 297,
-          "position": 10556
+          "position": 10564
         }
       },
       "tokens": 51
@@ -1264,14 +1264,14 @@
         "endLoc": {
           "column": 30,
           "line": 305,
-          "position": 10925
+          "position": 10933
         },
         "name": "echorunner/EchoRunnerGame.ts",
         "start": 290,
         "startLoc": {
           "column": 106,
           "line": 290,
-          "position": 10370
+          "position": 10378
         }
       },
       "format": "typescript",
@@ -1283,14 +1283,14 @@
         "endLoc": {
           "column": 30,
           "line": 332,
-          "position": 12327
+          "position": 12335
         },
         "name": "platformer/PlatformerGame.ts",
         "start": 317,
         "startLoc": {
           "column": 105,
           "line": 317,
-          "position": 11772
+          "position": 11780
         }
       },
       "tokens": 85
@@ -1301,14 +1301,14 @@
         "endLoc": {
           "column": 53,
           "line": 314,
-          "position": 11309
+          "position": 11317
         },
         "name": "echorunner/EchoRunnerGame.ts",
         "start": 308,
         "startLoc": {
           "column": 8,
           "line": 308,
-          "position": 10992
+          "position": 11000
         }
       },
       "format": "typescript",
@@ -1320,14 +1320,14 @@
         "endLoc": {
           "column": 53,
           "line": 349,
-          "position": 13060
+          "position": 13068
         },
         "name": "platformer/PlatformerGame.ts",
         "start": 343,
         "startLoc": {
           "column": 78,
           "line": 343,
-          "position": 12743
+          "position": 12751
         }
       },
       "tokens": 51
@@ -1338,14 +1338,14 @@
         "endLoc": {
           "column": 41,
           "line": 332,
-          "position": 12261
+          "position": 12269
         },
         "name": "echorunner/EchoRunnerGame.ts",
         "start": 326,
         "startLoc": {
           "column": 106,
           "line": 326,
-          "position": 12029
+          "position": 12037
         }
       },
       "format": "typescript",
@@ -1357,14 +1357,14 @@
         "endLoc": {
           "column": 41,
           "line": 379,
-          "position": 14316
+          "position": 14324
         },
         "name": "platformer/PlatformerGame.ts",
         "start": 373,
         "startLoc": {
           "column": 8,
           "line": 373,
-          "position": 14084
+          "position": 14092
         }
       },
       "tokens": 62
@@ -1375,14 +1375,14 @@
         "endLoc": {
           "column": 9,
           "line": 345,
-          "position": 12678
+          "position": 12686
         },
         "name": "echorunner/EchoRunnerGame.ts",
         "start": 332,
         "startLoc": {
           "column": 106,
           "line": 332,
-          "position": 12326
+          "position": 12334
         }
       },
       "format": "typescript",
@@ -1394,14 +1394,14 @@
         "endLoc": {
           "column": 9,
           "line": 393,
-          "position": 14751
+          "position": 14759
         },
         "name": "platformer/PlatformerGame.ts",
         "start": 379,
         "startLoc": {
           "column": 105,
           "line": 379,
-          "position": 14380
+          "position": 14388
         }
       },
       "tokens": 74
@@ -1412,14 +1412,14 @@
         "endLoc": {
           "column": 30,
           "line": 350,
-          "position": 13093
+          "position": 13101
         },
         "name": "echorunner/EchoRunnerGame.ts",
         "start": 345,
         "startLoc": {
           "column": 51,
           "line": 345,
-          "position": 12720
+          "position": 12728
         }
       },
       "format": "typescript",
@@ -1431,14 +1431,14 @@
         "endLoc": {
           "column": 30,
           "line": 367,
-          "position": 13659
+          "position": 13667
         },
         "name": "echorunner/EchoRunnerGame.ts",
         "start": 363,
         "startLoc": {
           "column": 47,
           "line": 363,
-          "position": 13448
+          "position": 13456
         }
       },
       "tokens": 58
@@ -1449,14 +1449,14 @@
         "endLoc": {
           "column": 30,
           "line": 350,
-          "position": 13093
+          "position": 13101
         },
         "name": "echorunner/EchoRunnerGame.ts",
         "start": 345,
         "startLoc": {
           "column": 51,
           "line": 345,
-          "position": 12720
+          "position": 12728
         }
       },
       "format": "typescript",
@@ -1468,14 +1468,14 @@
         "endLoc": {
           "column": 30,
           "line": 384,
-          "position": 14215
+          "position": 14223
         },
         "name": "echorunner/EchoRunnerGame.ts",
         "start": 380,
         "startLoc": {
           "column": 46,
           "line": 380,
-          "position": 14004
+          "position": 14012
         }
       },
       "tokens": 58
@@ -1486,14 +1486,14 @@
         "endLoc": {
           "column": 29,
           "line": 363,
-          "position": 13430
+          "position": 13438
         },
         "name": "echorunner/EchoRunnerGame.ts",
         "start": 348,
         "startLoc": {
           "column": 21,
           "line": 348,
-          "position": 12985
+          "position": 12993
         }
       },
       "format": "typescript",
@@ -1505,14 +1505,14 @@
         "endLoc": {
           "column": 29,
           "line": 214,
-          "position": 7470
+          "position": 7478
         },
         "name": "platformer/PlatformerGame.ts",
         "start": 194,
         "startLoc": {
           "column": 27,
           "line": 194,
-          "position": 6821
+          "position": 6829
         }
       },
       "tokens": 101
@@ -1523,14 +1523,14 @@
         "endLoc": {
           "column": 29,
           "line": 397,
-          "position": 14555
+          "position": 14563
         },
         "name": "echorunner/EchoRunnerGame.ts",
         "start": 374,
         "startLoc": {
           "column": 27,
           "line": 374,
-          "position": 13861
+          "position": 13869
         }
       },
       "format": "typescript",
@@ -1542,14 +1542,14 @@
         "endLoc": {
           "column": 29,
           "line": 253,
-          "position": 8810
+          "position": 8818
         },
         "name": "platformer/PlatformerGame.ts",
         "start": 229,
         "startLoc": {
           "column": 28,
           "line": 229,
-          "position": 7958
+          "position": 7966
         }
       },
       "tokens": 168
@@ -1560,14 +1560,14 @@
         "endLoc": {
           "column": 28,
           "line": 432,
-          "position": 16119
+          "position": 16127
         },
         "name": "echorunner/EchoRunnerGame.ts",
         "start": 427,
         "startLoc": {
           "column": 82,
           "line": 427,
-          "position": 15810
+          "position": 15818
         }
       },
       "format": "typescript",
@@ -1579,14 +1579,14 @@
         "endLoc": {
           "column": 28,
           "line": 400,
-          "position": 15466
+          "position": 15474
         },
         "name": "platformer/PlatformerGame.ts",
         "start": 396,
         "startLoc": {
           "column": 89,
           "line": 396,
-          "position": 15158
+          "position": 15166
         }
       },
       "tokens": 70
@@ -1597,14 +1597,14 @@
         "endLoc": {
           "column": 28,
           "line": 441,
-          "position": 17032
+          "position": 17040
         },
         "name": "echorunner/EchoRunnerGame.ts",
         "start": 434,
         "startLoc": {
           "column": 48,
           "line": 434,
-          "position": 16386
+          "position": 16394
         }
       },
       "format": "typescript",
@@ -1616,14 +1616,14 @@
         "endLoc": {
           "column": 28,
           "line": 405,
-          "position": 15886
+          "position": 15894
         },
         "name": "platformer/PlatformerGame.ts",
         "start": 399,
         "startLoc": {
           "column": 51,
           "line": 399,
-          "position": 15398
+          "position": 15406
         }
       },
       "tokens": 119
@@ -1634,14 +1634,14 @@
         "endLoc": {
           "column": 28,
           "line": 448,
-          "position": 17561
+          "position": 17569
         },
         "name": "echorunner/EchoRunnerGame.ts",
         "start": 441,
         "startLoc": {
           "column": 51,
           "line": 441,
-          "position": 17055
+          "position": 17063
         }
       },
       "format": "typescript",
@@ -1653,14 +1653,14 @@
         "endLoc": {
           "column": 28,
           "line": 411,
-          "position": 16491
+          "position": 16499
         },
         "name": "platformer/PlatformerGame.ts",
         "start": 407,
         "startLoc": {
           "column": 38,
           "line": 407,
-          "position": 16145
+          "position": 16153
         }
       },
       "tokens": 84
@@ -1671,14 +1671,14 @@
         "endLoc": {
           "column": 28,
           "line": 454,
-          "position": 17997
+          "position": 18005
         },
         "name": "echorunner/EchoRunnerGame.ts",
         "start": 448,
         "startLoc": {
           "column": 82,
           "line": 448,
-          "position": 17615
+          "position": 17623
         }
       },
       "format": "typescript",
@@ -1690,14 +1690,14 @@
         "endLoc": {
           "column": 28,
           "line": 417,
-          "position": 17087
+          "position": 17095
         },
         "name": "platformer/PlatformerGame.ts",
         "start": 414,
         "startLoc": {
           "column": 85,
           "line": 414,
-          "position": 16880
+          "position": 16888
         }
       },
       "tokens": 50
@@ -1708,14 +1708,14 @@
         "endLoc": {
           "column": 9,
           "line": 458,
-          "position": 18238
+          "position": 18246
         },
         "name": "echorunner/EchoRunnerGame.ts",
         "start": 453,
         "startLoc": {
           "column": 86,
           "line": 453,
-          "position": 17965
+          "position": 17973
         }
       },
       "format": "typescript",
@@ -1727,14 +1727,14 @@
         "endLoc": {
           "column": 3,
           "line": 269,
-          "position": 11543
+          "position": 11544
         },
         "name": "pong/PongGame.ts",
         "start": 263,
         "startLoc": {
           "column": 92,
           "line": 263,
-          "position": 11247
+          "position": 11248
         }
       },
       "tokens": 63
@@ -1745,14 +1745,14 @@
         "endLoc": {
           "column": 82,
           "line": 530,
-          "position": 21013
+          "position": 21021
         },
         "name": "echorunner/EchoRunnerGame.ts",
         "start": 519,
         "startLoc": {
           "column": 63,
           "line": 519,
-          "position": 20515
+          "position": 20523
         }
       },
       "format": "typescript",
@@ -1764,14 +1764,14 @@
         "endLoc": {
           "column": 82,
           "line": 446,
-          "position": 18492
+          "position": 18500
         },
         "name": "platformer/PlatformerGame.ts",
         "start": 437,
         "startLoc": {
           "column": 61,
           "line": 437,
-          "position": 18059
+          "position": 18067
         }
       },
       "tokens": 92
@@ -1782,14 +1782,14 @@
         "endLoc": {
           "column": 7,
           "line": 564,
-          "position": 22228
+          "position": 22236
         },
         "name": "echorunner/EchoRunnerGame.ts",
         "start": 550,
         "startLoc": {
           "column": 4,
           "line": 550,
-          "position": 21879
+          "position": 21887
         }
       },
       "format": "typescript",
@@ -1801,14 +1801,14 @@
         "endLoc": {
           "column": 7,
           "line": 473,
-          "position": 19507
+          "position": 19515
         },
         "name": "platformer/PlatformerGame.ts",
         "start": 459,
         "startLoc": {
           "column": 4,
           "line": 459,
-          "position": 19158
+          "position": 19166
         }
       },
       "tokens": 70
@@ -3003,14 +3003,14 @@
         "endLoc": {
           "column": 93,
           "line": 375,
-          "position": 16787
+          "position": 16788
         },
         "name": "flappybird/FlappyBirdGame.ts",
         "start": 367,
         "startLoc": {
           "column": 4,
           "line": 367,
-          "position": 16272
+          "position": 16273
         }
       },
       "format": "typescript",
@@ -3040,14 +3040,14 @@
         "endLoc": {
           "column": 55,
           "line": 381,
-          "position": 17095
+          "position": 17096
         },
         "name": "flappybird/FlappyBirdGame.ts",
         "start": 375,
         "startLoc": {
           "column": 112,
           "line": 375,
-          "position": 16806
+          "position": 16807
         }
       },
       "format": "typescript",
@@ -3059,14 +3059,14 @@
         "endLoc": {
           "column": 55,
           "line": 784,
-          "position": 31982
+          "position": 31963
         },
         "name": "space-invaders/SpaceInvadersGame.ts",
         "start": 778,
         "startLoc": {
           "column": 113,
           "line": 778,
-          "position": 31693
+          "position": 31674
         }
       },
       "tokens": 60
@@ -3077,14 +3077,14 @@
         "endLoc": {
           "column": 128,
           "line": 439,
-          "position": 20414
+          "position": 20415
         },
         "name": "flappybird/FlappyBirdGame.ts",
         "start": 417,
         "startLoc": {
           "column": 6,
           "line": 417,
-          "position": 19321
+          "position": 19322
         }
       },
       "format": "typescript",
@@ -3114,14 +3114,14 @@
         "endLoc": {
           "column": 21,
           "line": 433,
-          "position": 19842
+          "position": 19843
         },
         "name": "flappybird/FlappyBirdGame.ts",
         "start": 422,
         "startLoc": {
           "column": 4,
           "line": 422,
-          "position": 19551
+          "position": 19552
         }
       },
       "format": "typescript",
@@ -3133,14 +3133,14 @@
         "endLoc": {
           "column": 21,
           "line": 776,
-          "position": 31379
+          "position": 31360
         },
         "name": "space-invaders/SpaceInvadersGame.ts",
         "start": 764,
         "startLoc": {
           "column": 4,
           "line": 764,
-          "position": 31066
+          "position": 31047
         }
       },
       "tokens": 59
@@ -3151,14 +3151,14 @@
         "endLoc": {
           "column": 36,
           "line": 444,
-          "position": 20641
+          "position": 20642
         },
         "name": "flappybird/FlappyBirdGame.ts",
         "start": 436,
         "startLoc": {
           "column": 70,
           "line": 436,
-          "position": 20189
+          "position": 20190
         }
       },
       "format": "typescript",
@@ -3188,14 +3188,14 @@
         "endLoc": {
           "column": 8,
           "line": 470,
-          "position": 21872
+          "position": 21873
         },
         "name": "flappybird/FlappyBirdGame.ts",
         "start": 449,
         "startLoc": {
           "column": 192,
           "line": 449,
-          "position": 21223
+          "position": 21224
         }
       },
       "format": "typescript",
@@ -3225,14 +3225,14 @@
         "endLoc": {
           "column": 8,
           "line": 470,
-          "position": 21872
+          "position": 21873
         },
         "name": "flappybird/FlappyBirdGame.ts",
         "start": 455,
         "startLoc": {
           "column": 67,
           "line": 455,
-          "position": 21538
+          "position": 21539
         }
       },
       "format": "typescript",
@@ -3244,14 +3244,14 @@
         "endLoc": {
           "column": 8,
           "line": 871,
-          "position": 36467
+          "position": 36448
         },
         "name": "space-invaders/SpaceInvadersGame.ts",
         "start": 848,
         "startLoc": {
           "column": 83,
           "line": 848,
-          "position": 35375
+          "position": 35356
         }
       },
       "tokens": 67
@@ -3651,14 +3651,14 @@
         "endLoc": {
           "column": 83,
           "line": 438,
-          "position": 16384
+          "position": 16365
         },
         "name": "space-invaders/systems/SpaceInvadersCollisionSystem.ts",
         "start": 431,
         "startLoc": {
           "column": 47,
           "line": 431,
-          "position": 16009
+          "position": 15990
         }
       },
       "tokens": 51
@@ -3667,53 +3667,16 @@
       "firstFile": {
         "end": 52,
         "endLoc": {
-          "column": 15,
-          "line": 52,
-          "position": 1494
-        },
-        "name": "geometrywars/EntityPool.ts",
-        "start": 28,
-        "startLoc": {
-          "column": 4,
-          "line": 28,
-          "position": 936
-        }
-      },
-      "format": "typescript",
-      "fragment": "    super({\n      factory: () => ({\n        position: {\n          type: \"Transform\",\n          x: 0,\n          y: 0,\n          rotation: 0,\n          scaleX: 1,\n          scaleY: 1,\n          worldX: 0,\n          worldY: 0,\n          worldRotation: 0,\n          worldScaleX: 1,\n          worldScaleY: 1,\n          dirty: false\n        } as TransformComponent,\n        velocity: {\n          type: \"Velocity\",\n          vx: 0,\n          vy: 0,\n          angularVelocity: 0\n        } as VelocityComponent,\n        render: {\n          type: \"Render\",\n          shape: \"gw_bullet\",",
-      "isNew": false,
-      "lines": 25,
-      "secondFile": {
-        "end": 57,
-        "endLoc": {
-          "column": 15,
-          "line": 57,
-          "position": 1485
-        },
-        "name": "shared/arcade/ParticlePool.ts",
-        "start": 33,
-        "startLoc": {
-          "column": 4,
-          "line": 33,
-          "position": 927
-        }
-      },
-      "tokens": 94
-    },
-    {
-      "firstFile": {
-        "end": 52,
-        "endLoc": {
           "column": 16,
           "line": 52,
-          "position": 1495
+          "position": 1463
         },
         "name": "geometrywars/EntityPool.ts",
         "start": 28,
         "startLoc": {
           "column": 10,
           "line": 28,
-          "position": 942
+          "position": 910
         }
       },
       "format": "typescript",
@@ -3725,14 +3688,14 @@
         "endLoc": {
           "column": 38,
           "line": 25,
-          "position": 1390
+          "position": 1358
         },
         "name": "space-invaders/EntityPool.ts",
         "start": 21,
         "startLoc": {
           "column": 9,
           "line": 21,
-          "position": 1041
+          "position": 1009
         }
       },
       "tokens": 93
@@ -3741,16 +3704,16 @@
       "firstFile": {
         "end": 143,
         "endLoc": {
-          "column": 13,
+          "column": 20,
           "line": 143,
-          "position": 4370
+          "position": 4345
         },
         "name": "geometrywars/EntityPool.ts",
         "start": 135,
         "startLoc": {
           "column": 60,
           "line": 135,
-          "position": 4179
+          "position": 4147
         }
       },
       "format": "typescript",
@@ -3758,21 +3721,21 @@
       "isNew": false,
       "lines": 9,
       "secondFile": {
-        "end": 133,
+        "end": 70,
         "endLoc": {
-          "column": 13,
-          "line": 133,
-          "position": 3974
+          "column": 18,
+          "line": 70,
+          "position": 3808
         },
-        "name": "shared/arcade/ParticlePool.ts",
-        "start": 124,
+        "name": "space-invaders/EntityPool.ts",
+        "start": 64,
         "startLoc": {
-          "column": 34,
-          "line": 124,
-          "position": 3782
+          "column": 32,
+          "line": 64,
+          "position": 3624
         }
       },
-      "tokens": 51
+      "tokens": 53
     },
     {
       "firstFile": {
@@ -3799,14 +3762,14 @@
         "endLoc": {
           "column": 3,
           "line": 336,
-          "position": 13802
+          "position": 13803
         },
         "name": "pong/PongGame.ts",
         "start": 327,
         "startLoc": {
           "column": 54,
           "line": 327,
-          "position": 13564
+          "position": 13565
         }
       },
       "tokens": 54
@@ -3836,14 +3799,14 @@
         "endLoc": {
           "column": 36,
           "line": 101,
-          "position": 5642
+          "position": 5623
         },
         "name": "space-invaders/SpaceInvadersGame.ts",
         "start": 89,
         "startLoc": {
           "column": 2,
           "line": 89,
-          "position": 5325
+          "position": 5306
         }
       },
       "tokens": 63
@@ -3873,14 +3836,14 @@
         "endLoc": {
           "column": 55,
           "line": 837,
-          "position": 34612
+          "position": 34593
         },
         "name": "space-invaders/SpaceInvadersGame.ts",
         "start": 831,
         "startLoc": {
           "column": 94,
           "line": 831,
-          "position": 34337
+          "position": 34318
         }
       },
       "tokens": 60
@@ -3928,14 +3891,14 @@
         "endLoc": {
           "column": 14,
           "line": 208,
-          "position": 7442
+          "position": 7388
         },
         "name": "geometrywars/entities/GeometryWarsEntities.ts",
         "start": 203,
         "startLoc": {
           "column": 34,
           "line": 203,
-          "position": 7261
+          "position": 7207
         }
       },
       "format": "typescript",
@@ -3947,14 +3910,14 @@
         "endLoc": {
           "column": 14,
           "line": 223,
-          "position": 7811
+          "position": 7757
         },
         "name": "geometrywars/entities/GeometryWarsEntities.ts",
         "start": 218,
         "startLoc": {
           "column": 34,
           "line": 218,
-          "position": 7630
+          "position": 7576
         }
       },
       "tokens": 55
@@ -3965,14 +3928,14 @@
         "endLoc": {
           "column": 14,
           "line": 208,
-          "position": 7442
+          "position": 7388
         },
         "name": "geometrywars/entities/GeometryWarsEntities.ts",
         "start": 203,
         "startLoc": {
           "column": 34,
           "line": 203,
-          "position": 7261
+          "position": 7207
         }
       },
       "format": "typescript",
@@ -3984,14 +3947,14 @@
         "endLoc": {
           "column": 14,
           "line": 238,
-          "position": 8177
+          "position": 8123
         },
         "name": "geometrywars/entities/GeometryWarsEntities.ts",
         "start": 233,
         "startLoc": {
           "column": 33,
           "line": 233,
-          "position": 7996
+          "position": 7942
         }
       },
       "tokens": 55
@@ -4002,14 +3965,14 @@
         "endLoc": {
           "column": 14,
           "line": 282,
-          "position": 9378
+          "position": 9324
         },
         "name": "geometrywars/entities/GeometryWarsEntities.ts",
         "start": 277,
         "startLoc": {
           "column": 28,
           "line": 277,
-          "position": 9196
+          "position": 9142
         }
       },
       "format": "typescript",
@@ -4021,14 +3984,14 @@
         "endLoc": {
           "column": 14,
           "line": 299,
-          "position": 9787
+          "position": 9733
         },
         "name": "geometrywars/entities/GeometryWarsEntities.ts",
         "start": 294,
         "startLoc": {
           "column": 28,
           "line": 294,
-          "position": 9605
+          "position": 9551
         }
       },
       "tokens": 55
@@ -4039,14 +4002,14 @@
         "endLoc": {
           "column": 14,
           "line": 282,
-          "position": 9378
+          "position": 9324
         },
         "name": "geometrywars/entities/GeometryWarsEntities.ts",
         "start": 277,
         "startLoc": {
           "column": 28,
           "line": 277,
-          "position": 9196
+          "position": 9142
         }
       },
       "format": "typescript",
@@ -4058,14 +4021,14 @@
         "endLoc": {
           "column": 14,
           "line": 316,
-          "position": 10205
+          "position": 10151
         },
         "name": "geometrywars/entities/GeometryWarsEntities.ts",
         "start": 311,
         "startLoc": {
           "column": 33,
           "line": 311,
-          "position": 10023
+          "position": 9969
         }
       },
       "tokens": 55
@@ -5186,14 +5149,14 @@
         "endLoc": {
           "column": 15,
           "line": 204,
-          "position": 7095
+          "position": 7103
         },
         "name": "platformer/PlatformerGame.ts",
         "start": 191,
         "startLoc": {
           "column": 51,
           "line": 191,
-          "position": 6550
+          "position": 6558
         }
       },
       "format": "typescript",
@@ -5205,14 +5168,14 @@
         "endLoc": {
           "column": 15,
           "line": 226,
-          "position": 7871
+          "position": 7879
         },
         "name": "platformer/PlatformerGame.ts",
         "start": 214,
         "startLoc": {
           "column": 47,
           "line": 214,
-          "position": 7488
+          "position": 7496
         }
       },
       "tokens": 83
@@ -5223,14 +5186,14 @@
         "endLoc": {
           "column": 23,
           "line": 262,
-          "position": 9199
+          "position": 9207
         },
         "name": "platformer/PlatformerGame.ts",
         "start": 253,
         "startLoc": {
           "column": 50,
           "line": 253,
-          "position": 8831
+          "position": 8839
         }
       },
       "format": "typescript",
@@ -5242,14 +5205,14 @@
         "endLoc": {
           "column": 23,
           "line": 281,
-          "position": 9912
+          "position": 9920
         },
         "name": "platformer/PlatformerGame.ts",
         "start": 272,
         "startLoc": {
           "column": 43,
           "line": 272,
-          "position": 9544
+          "position": 9552
         }
       },
       "tokens": 80
@@ -5438,265 +5401,6 @@
         }
       },
       "tokens": 61
-    },
-    {
-      "firstFile": {
-        "end": 133,
-        "endLoc": {
-          "column": 17,
-          "line": 133,
-          "position": 3978
-        },
-        "name": "shared/arcade/ParticlePool.ts",
-        "start": 120,
-        "startLoc": {
-          "column": 8,
-          "line": 120,
-          "position": 3498
-        }
-      },
-      "format": "typescript",
-      "fragment": "        data.position.x = p.x;\n        data.position.y = p.y;\n        data.position.worldX = p.x;\n        // TODO(refactor): código duplicado detectado (bloque) con geometrywars/EntityPool.ts:134-142. Considerar extraer a función compartida. Ref: e0b47b36\n        data.position.worldY = p.y;\n        data.position.dirty = true;\n\n        data.velocity.vx = p.dx;\n        data.velocity.vy = p.dy;\n\n        data.render.size = p.size;\n        data.render.color = p.color;\n\n        data.ttl.remaining = p.ttl;",
-      "isNew": false,
-      "lines": 14,
-      "secondFile": {
-        "end": 70,
-        "endLoc": {
-          "column": 18,
-          "line": 70,
-          "position": 3840
-        },
-        "name": "space-invaders/EntityPool.ts",
-        "start": 61,
-        "startLoc": {
-          "column": 6,
-          "line": 61,
-          "position": 3538
-        }
-      },
-      "tokens": 92
-    },
-    {
-      "firstFile": {
-        "end": 24,
-        "endLoc": {
-          "column": 28,
-          "line": 24,
-          "position": 867
-        },
-        "name": "shared/arcade/blueprints/enemyBlueprints.ts",
-        "start": 19,
-        "startLoc": {
-          "column": 38,
-          "line": 19,
-          "position": 614
-        }
-      },
-      "format": "typescript",
-      "fragment": "  blueprints.register(\"enemy_sentinel\", {\n    spawn: (world: World<CoreComponentRegistry>, entity: number, args: { x: number; y: number }) => {\n      EntityBuilder.fromEntity(world, entity)\n        .withTransform({ x: args.x, y: args.y })\n        .withVelocity()\n        .withRender({ shape: \"sentinel\", size: 22, order: 2 });",
-      "isNew": false,
-      "lines": 6,
-      "secondFile": {
-        "end": 50,
-        "endLoc": {
-          "column": 28,
-          "line": 50,
-          "position": 2712
-        },
-        "name": "shared/arcade/blueprints/enemyBlueprints.ts",
-        "start": 45,
-        "startLoc": {
-          "column": 36,
-          "line": 45,
-          "position": 2459
-        }
-      },
-      "tokens": 65
-    },
-    {
-      "firstFile": {
-        "end": 24,
-        "endLoc": {
-          "column": 28,
-          "line": 24,
-          "position": 867
-        },
-        "name": "shared/arcade/blueprints/enemyBlueprints.ts",
-        "start": 19,
-        "startLoc": {
-          "column": 38,
-          "line": 19,
-          "position": 614
-        }
-      },
-      "format": "typescript",
-      "fragment": "  blueprints.register(\"enemy_sentinel\", {\n    spawn: (world: World<CoreComponentRegistry>, entity: number, args: { x: number; y: number }) => {\n      EntityBuilder.fromEntity(world, entity)\n        .withTransform({ x: args.x, y: args.y })\n        .withVelocity()\n        .withRender({ shape: \"sentinel\", size: 22, order: 2 });",
-      "isNew": false,
-      "lines": 6,
-      "secondFile": {
-        "end": 73,
-        "endLoc": {
-          "column": 28,
-          "line": 73,
-          "position": 4026
-        },
-        "name": "shared/arcade/blueprints/enemyBlueprints.ts",
-        "start": 68,
-        "startLoc": {
-          "column": 37,
-          "line": 68,
-          "position": 3773
-        }
-      },
-      "tokens": 65
-    },
-    {
-      "firstFile": {
-        "end": 45,
-        "endLoc": {
-          "column": 22,
-          "line": 45,
-          "position": 2445
-        },
-        "name": "shared/arcade/blueprints/enemyBlueprints.ts",
-        "start": 36,
-        "startLoc": {
-          "column": 27,
-          "line": 36,
-          "position": 1892
-        }
-      },
-      "format": "typescript",
-      "fragment": "        machineId: \"patrol\",\n        elapsedMs: 0\n      } as { type: string; [key: string]: unknown });\n      // TODO(refactor): código duplicado detectado (bloque) con shared/arcade/blueprints/enemyBlueprints.ts:59-66. Considerar extraer a función compartida. Ref: 842975b2\n      world.addComponent(entity, { type: \"Hurtbox\" } as { type: string; [key: string]: unknown });\n    }\n  });\n\n  // TODO(refactor): código duplicado detectado (bloque) con shared/arcade/blueprints/enemyBlueprints.ts:19-24. Considerar extraer a función compartida. Ref: 6ab1c6b0\n  blueprints.register(\"enemy_hopper\", {",
-      "isNew": false,
-      "lines": 10,
-      "secondFile": {
-        "end": 68,
-        "endLoc": {
-          "column": 22,
-          "line": 68,
-          "position": 3758
-        },
-        "name": "shared/arcade/blueprints/enemyBlueprints.ts",
-        "start": 61,
-        "startLoc": {
-          "column": 27,
-          "line": 61,
-          "position": 3547
-        }
-      },
-      "tokens": 56
-    },
-    {
-      "firstFile": {
-        "end": 42,
-        "endLoc": {
-          "column": 5,
-          "line": 42,
-          "position": 2252
-        },
-        "name": "shared/arcade/blueprints/enemyBlueprints.ts",
-        "start": 36,
-        "startLoc": {
-          "column": 27,
-          "line": 36,
-          "position": 1892
-        }
-      },
-      "format": "typescript",
-      "fragment": "        machineId: \"patrol\",\n        elapsedMs: 0\n      } as { type: string; [key: string]: unknown });\n      // TODO(refactor): código duplicado detectado (bloque) con shared/arcade/blueprints/enemyBlueprints.ts:59-66. Considerar extraer a función compartida. Ref: 842975b2\n      world.addComponent(entity, { type: \"Hurtbox\" } as { type: string; [key: string]: unknown });\n    }\n  });",
-      "isNew": false,
-      "lines": 7,
-      "secondFile": {
-        "end": 90,
-        "endLoc": {
-          "column": 5,
-          "line": 90,
-          "position": 5242
-        },
-        "name": "shared/arcade/blueprints/enemyBlueprints.ts",
-        "start": 84,
-        "startLoc": {
-          "column": 28,
-          "line": 84,
-          "position": 4882
-        }
-      },
-      "tokens": 52
-    },
-    {
-      "firstFile": {
-        "end": 32,
-        "endLoc": {
-          "column": 99,
-          "line": 32,
-          "position": 1262
-        },
-        "name": "shared/arcade/builders/ArcadeEntityBuilder.ts",
-        "start": 27,
-        "startLoc": {
-          "column": 31,
-          "line": 27,
-          "position": 838
-        }
-      },
-      "format": "typescript",
-      "fragment": "  public static override create<\n    TComponents extends ComponentRegistry = CoreComponentRegistry,\n    TEvents extends EventRegistry = EventRegistry,\n    TBlueprints extends BlueprintRegistryMap<TComponents> = BlueprintRegistryMap<TComponents>\n  >(world: World<TComponents, TEvents, TBlueprints>): ArcadeEntityBuilder<TComponents, TEvents, TBlueprints> {\n    return createBuilderInstance((w, e, cb) => new ArcadeEntityBuilder(w, e, cb), world, undefined, false);",
-      "isNew": false,
-      "lines": 6,
-      "secondFile": {
-        "end": 54,
-        "endLoc": {
-          "column": 99,
-          "line": 54,
-          "position": 2384
-        },
-        "name": "shared/arcade/builders/ArcadeEntityBuilder.ts",
-        "start": 49,
-        "startLoc": {
-          "column": 39,
-          "line": 49,
-          "position": 1960
-        }
-      },
-      "tokens": 72
-    },
-    {
-      "firstFile": {
-        "end": 47,
-        "endLoc": {
-          "column": 7,
-          "line": 47,
-          "position": 2263
-        },
-        "name": "shared/combat/systems/CombatSystem.ts",
-        "start": 37,
-        "startLoc": {
-          "column": 10,
-          "line": 37,
-          "position": 1651
-        }
-      },
-      "format": "typescript",
-      "fragment": "          if (entityA >= entityB) continue;\n\n          // Double Security B: Ensure both entities still exist and aren't already queued for destruction\n          if (!this.entityExists(world, entityA) || !this.entityExists(world, entityB)) continue;\n          if (this.destroyedEntities.has(entityA) || this.destroyedEntities.has(entityB)) continue;\n\n          // Resolve damage in both directions (A damages B, and B damages A)\n          this.resolveDamageDirection(world, entityA, entityB, this.destroyedEntities);\n          this.resolveDamageDirection(world, entityB, entityA, this.destroyedEntities);\n        }\n      }",
-      "isNew": false,
-      "lines": 11,
-      "secondFile": {
-        "end": 64,
-        "endLoc": {
-          "column": 7,
-          "line": 64,
-          "position": 3317
-        },
-        "name": "shared/combat/systems/CombatSystem.ts",
-        "start": 54,
-        "startLoc": {
-          "column": 10,
-          "line": 54,
-          "position": 2705
-        }
-      },
-      "tokens": 86
     },
     {
       "firstFile": {
@@ -6703,14 +6407,14 @@
         "endLoc": {
           "column": 12,
           "line": 108,
-          "position": 5125
+          "position": 5093
         },
         "name": "space-invaders/EntityPool.ts",
         "start": 96,
         "startLoc": {
           "column": 4,
           "line": 96,
-          "position": 4667
+          "position": 4635
         }
       },
       "format": "typescript",
@@ -6722,14 +6426,14 @@
         "endLoc": {
           "column": 12,
           "line": 129,
-          "position": 5797
+          "position": 5765
         },
         "name": "space-invaders/EntityPool.ts",
         "start": 118,
         "startLoc": {
           "column": 4,
           "line": 118,
-          "position": 5500
+          "position": 5468
         }
       },
       "tokens": 71
@@ -6740,14 +6444,14 @@
         "endLoc": {
           "column": 29,
           "line": 239,
-          "position": 11026
+          "position": 11007
         },
         "name": "space-invaders/SpaceInvadersGame.ts",
         "start": 234,
         "startLoc": {
           "column": 44,
           "line": 234,
-          "position": 10736
+          "position": 10717
         }
       },
       "format": "typescript",
@@ -6759,14 +6463,14 @@
         "endLoc": {
           "column": 29,
           "line": 272,
-          "position": 12574
+          "position": 12555
         },
         "name": "space-invaders/SpaceInvadersGame.ts",
         "start": 267,
         "startLoc": {
           "column": 43,
           "line": 267,
-          "position": 12284
+          "position": 12265
         }
       },
       "tokens": 69
@@ -7147,14 +6851,14 @@
         "endLoc": {
           "column": 8,
           "line": 50,
-          "position": 2378
+          "position": 2345
         },
         "name": "space-invaders/systems/BossSystem.ts",
         "start": 41,
         "startLoc": {
           "column": 2,
           "line": 41,
-          "position": 1879
+          "position": 1846
         }
       },
       "format": "typescript",
@@ -7184,14 +6888,14 @@
         "endLoc": {
           "column": 128,
           "line": 51,
-          "position": 2550
+          "position": 2517
         },
         "name": "space-invaders/systems/BossSystem.ts",
         "start": 44,
         "startLoc": {
           "column": 2,
           "line": 44,
-          "position": 2065
+          "position": 2032
         }
       },
       "format": "typescript",
@@ -7221,14 +6925,14 @@
         "endLoc": {
           "column": 51,
           "line": 50,
-          "position": 2421
+          "position": 2388
         },
         "name": "space-invaders/systems/BossSystem.ts",
         "start": 44,
         "startLoc": {
           "column": 71,
           "line": 44,
-          "position": 2134
+          "position": 2101
         }
       },
       "format": "typescript",
@@ -7240,14 +6944,14 @@
         "endLoc": {
           "column": 51,
           "line": 220,
-          "position": 8414
+          "position": 8395
         },
         "name": "space-invaders/systems/SpaceInvadersCollisionSystem.ts",
         "start": 214,
         "startLoc": {
           "column": 81,
           "line": 214,
-          "position": 8127
+          "position": 8108
         }
       },
       "tokens": 64
@@ -7258,14 +6962,14 @@
         "endLoc": {
           "column": 6,
           "line": 233,
-          "position": 9105
+          "position": 9086
         },
         "name": "space-invaders/systems/SpaceInvadersCollisionSystem.ts",
         "start": 225,
         "startLoc": {
           "column": 34,
           "line": 225,
-          "position": 8818
+          "position": 8799
         }
       },
       "format": "typescript",
@@ -7277,14 +6981,14 @@
         "endLoc": {
           "column": 6,
           "line": 280,
-          "position": 10914
+          "position": 10895
         },
         "name": "space-invaders/systems/SpaceInvadersCollisionSystem.ts",
         "start": 272,
         "startLoc": {
           "column": 70,
           "line": 272,
-          "position": 10627
+          "position": 10608
         }
       },
       "tokens": 52
@@ -7328,32 +7032,32 @@
     }
   ],
   "statistics": {
-    "detectionDate": "2026-09-06T12:02:08.351Z",
+    "detectionDate": "2026-09-06T16:53:07.081Z",
     "formats": {
       "typescript": {
-        "clones": 195,
-        "duplicatedLines": 2079,
-        "duplicatedTokens": 15840,
-        "lines": 52324,
+        "clones": 190,
+        "duplicatedLines": 2024,
+        "duplicatedTokens": 15405,
+        "lines": 50686,
         "newClones": 0,
         "newDuplicatedLines": 0,
-        "percentage": 3.9733200825624952,
-        "percentageTokens": 5.754036725575313,
-        "sources": 334,
-        "tokens": 275285
+        "percentage": 3.9932131160478237,
+        "percentageTokens": 5.7914187002109045,
+        "sources": 315,
+        "tokens": 265997
       }
     },
     "total": {
-      "clones": 195,
-      "duplicatedLines": 2079,
-      "duplicatedTokens": 15840,
-      "lines": 52324,
+      "clones": 190,
+      "duplicatedLines": 2024,
+      "duplicatedTokens": 15405,
+      "lines": 50686,
       "newClones": 0,
       "newDuplicatedLines": 0,
-      "percentage": 3.9733200825624952,
-      "percentageTokens": 5.754036725575313,
-      "sources": 334,
-      "tokens": 275285
+      "percentage": 3.9932131160478237,
+      "percentageTokens": 5.7914187002109045,
+      "sources": 315,
+      "tokens": 265997
     }
   }
 }

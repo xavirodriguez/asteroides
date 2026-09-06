@@ -1,4 +1,3 @@
-export * from "@tiny-aster/core";
 export * from "./systems/LootSystem";
 export * from "./systems/PowerUpSystem";
 export * from "./powerups/PowerUpEffectRegistry";

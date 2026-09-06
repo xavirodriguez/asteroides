@@ -1,5 +1,20 @@
 import { System, World, ComponentRegistry, EventBus } from "@tiny-aster/core";
-import { PersistenceService } from "../../../../services/PersistenceService";
+
+export interface StorageAdapter {
+  getItem(key: string): Promise<string | null>;
+  setItem(key: string, value: string): Promise<void>;
+}
+
+const memoryStorage = new Map<string, string>();
+
+export class InMemoryStorageAdapter implements StorageAdapter {
+  async getItem(key: string): Promise<string | null> {
+    return memoryStorage.get(key) ?? null;
+  }
+  async setItem(key: string, value: string): Promise<void> {
+    memoryStorage.set(key, value);
+  }
+}
 
 /**
  * Interface representing a player achievement.
@@ -17,6 +32,7 @@ export interface Achievement {
  * @public
  */
 export class AchievementSystem<TComponents extends ComponentRegistry = ComponentRegistry> extends System<TComponents> {
+  private storage: StorageAdapter;
   private achievements: Achievement[] = [
     { id: "combo_king", name: "Rey del Combo", description: "Alcanza un combo x10", unlocked: false },
     { id: "invader_slayer", name: "Aniquilador", description: "Destruye 50 invasores", unlocked: false },
@@ -30,19 +46,25 @@ export class AchievementSystem<TComponents extends ComponentRegistry = Component
   private pipesPassed = 0;
   private collectedFragments: string[] = [];
 
+  constructor(storage?: StorageAdapter) {
+    super();
+    this.storage = storage ?? new InMemoryStorageAdapter();
+  }
+
   public override onRegister(world: World<TComponents>): void {
     const eventBus = world.getEventBus() as EventBus;
     if (eventBus) {
       // Load saved achievements from persistence
-      PersistenceService.load<Record<string, boolean>>("unlocked_achievements", {}).then((stored) => {
-        if (stored) {
+      this.storage.getItem("unlocked_achievements").then((raw) => {
+        if (raw) {
+          const stored = JSON.parse(raw) as Record<string, boolean>;
           for (const achievement of this.achievements) {
             if (stored[achievement.id]) {
               achievement.unlocked = true;
             }
           }
         }
-      }).catch(err => {
+      }).catch((err: unknown) => {
         console.error("AchievementSystem: Failed to load achievements", err);
       });
 
@@ -127,7 +149,7 @@ export class AchievementSystem<TComponents extends ComponentRegistry = Component
           unlockedMap[a.id] = true;
         }
       }
-      PersistenceService.save("unlocked_achievements", unlockedMap).catch((e) => {
+      this.storage.setItem("unlocked_achievements", JSON.stringify(unlockedMap)).catch((e: unknown) => {
         console.error("AchievementSystem: Failed to persist unlocked achievement", e);
       });
 

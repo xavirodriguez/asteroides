@@ -48,7 +48,7 @@ import { EchoRunnerInput, EchoRunnerGameState, ECHO_CONFIG } from "./types/EchoR
 import { EchoRunnerConfigSchema, EchoRunnerConfig as EchoRunnerConfigType, DEFAULT_ECHO_RUNNER_CONFIG } from "./types/EchoRunnerConfigSchema";
 import { PlatformerInputSystem } from "../platformer/systems/PlatformerInputSystem";
 import { resolveAndApplyMutators } from "../../config/MutatorConfig";
-import { ArcadeEntityBuilder, registerPlatformerEnemyBlueprints, mutatePlatformerInputState } from "../shared/arcade";
+import { ArcadeEntityBuilder, registerPlatformerEnemyBlueprints, mutatePlatformerInputState } from "@tiny-aster/gameplay-kit";
 import defaultLevelData from "./levels/level-01.json";
 
 export interface EchoRunnerConfig {

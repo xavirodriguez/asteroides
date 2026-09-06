@@ -1,5 +1,5 @@
 import { World, CoreComponentRegistry } from "@tiny-aster/core";
-import { PowerUpEffectRegistry, COMMON_POWERUP_EFFECTS, IPowerUpEffect } from "../powerups/PowerUpEffectRegistry";
+import { PowerUpEffectRegistry, IPowerUpEffect } from "../powerups/PowerUpEffectRegistry";
 import { PowerUpSystem } from "../systems/PowerUpSystem";
 import { PowerUpComponent } from "../types/ArcadeTypes";
 

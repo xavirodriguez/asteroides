@@ -38,7 +38,7 @@ export const COMMON_POWERUP_EFFECTS: Record<string, IPowerUpEffect> = {
     }
   },
   extra_life: {
-    apply(w: World<CoreComponentRegistry>, player: number) {
+    apply(w: World<CoreComponentRegistry>, _player: number) {
       if (w.getSingleton("GameState" as any)) {
         w.mutateSingleton("GameState" as any, (state: any) => {
           if (typeof state.lives === "number") {
@@ -49,7 +49,7 @@ export const COMMON_POWERUP_EFFECTS: Record<string, IPowerUpEffect> = {
     }
   },
   score_multiplier: {
-    apply(w: World<CoreComponentRegistry>, player: number) {
+    apply(w: World<CoreComponentRegistry>, _player: number) {
       if (w.getSingleton("GameState" as any)) {
         w.mutateSingleton("GameState" as any, (state: any) => {
           if (typeof state.score === "number") {
@@ -70,8 +70,8 @@ export const COMMON_POWERUP_EFFECTS: Record<string, IPowerUpEffect> = {
     }
   },
   dash_unlock: {
-    apply(world: World<CoreComponentRegistry>, player: number) {
-      world.getCommandBuffer().addComponent(player, {
+    apply(world: World<CoreComponentRegistry>, _player: number) {
+      world.getCommandBuffer().addComponent(_player, {
         type: "DashUnlocked",
         unlocked: true,
         dashSpeed: 500,

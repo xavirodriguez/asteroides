@@ -8,12 +8,12 @@ import {
   HealthComponent,
   spawnBlueprintEntity
 } from "@tiny-aster/core";
-import { CollisionLayers } from "../../shared/types/CollisionLayers";
+import { CollisionLayers } from "@tiny-aster/gameplay-kit";
 import { GeometryWarsComponentRegistry, GeometryWarsEventRegistry, WeaponComponent } from "../types/GeometryWarsRegistry";
 import { colors } from "../../../theme/colors";
 import { GeometryWarsConfig } from "../config/GeometryWarsConfig";
-import { FactionComponent, DamageComponent } from "../../shared/combat/components/CombatComponents";
-import { SpawnDirectorComponent } from "../../shared/spawn/components/SpawnComponents";
+import { FactionComponent, DamageComponent } from "@tiny-aster/gameplay-kit";
+import { SpawnDirectorComponent } from "@tiny-aster/gameplay-kit";
 
 interface BasicEnemyParams {
   x: number;

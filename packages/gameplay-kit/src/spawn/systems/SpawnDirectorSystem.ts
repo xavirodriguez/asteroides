@@ -1,5 +1,5 @@
-import { System, World, Entity, ComponentRegistry, EventBus } from "@tiny-aster/core";
-import { SpawnDirectorComponent, WaveDefinition, SpawnRequest, WaveMemberComponent } from "../components/SpawnComponents";
+import { System, World, ComponentRegistry, EventBus } from "@tiny-aster/core";
+import { SpawnDirectorComponent, WaveDefinition, SpawnRequest } from "../components/SpawnComponents";
 
 /**
  * SpawnDirectorSystem orchestrates the sequential spawning of wave definitions,
@@ -66,8 +66,6 @@ export class SpawnDirectorSystem<
       waveElapsedTime += deltaTime;
 
       const remainingSpawns: SpawnRequest[] = [];
-      const blueprints = world.getResource<any>("BlueprintRegistry");
-
       for (const spawn of pendingSpawns) {
         const spawnTime = spawn.spawnTime ?? 0;
         if (waveElapsedTime >= spawnTime) {

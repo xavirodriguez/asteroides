@@ -15,7 +15,7 @@ import {
 } from "@tiny-aster/core";
 import { BENEFICIAL_MUTATORS } from "../../../utils/MutatorRegistry";
 import { ComboSystem } from "@tiny-aster/core";
-import { LootSystem, PowerUpSystem, DifficultyDirectorSystem, AchievementSystem } from "../../shared/arcade";
+import { LootSystem, PowerUpSystem, DifficultyDirectorSystem, AchievementSystem } from "@tiny-aster/gameplay-kit";
 import { SpaceInvadersComponentRegistry } from "../types/SpaceInvadersTypes";
 import { SpaceInvadersInputSystem } from "../systems/SpaceInvadersInputSystem";
 import { SpaceInvadersFormationSystem } from "../systems/SpaceInvadersFormationSystem";
@@ -23,9 +23,9 @@ import { SpaceInvadersCollisionSystem } from "../systems/SpaceInvadersCollisionS
 import { SpaceInvadersGameStateSystem } from "../systems/SpaceInvadersGameStateSystem";
 import { SpaceInvadersRenderSystem } from "../systems/SpaceInvadersRenderSystem";
 import { InvulnerabilitySystem } from "../systems/InvulnerabilitySystem";
-import { CombatSystem } from "../../shared/combat/systems/CombatSystem";
+import { CombatSystem } from "@tiny-aster/gameplay-kit";
 import { WaveTransitionSystem } from "../systems/WaveTransitionSystem";
-import { SpawnDirectorSystem } from "../../shared/spawn/systems/SpawnDirectorSystem";
+import { SpawnDirectorSystem } from "@tiny-aster/gameplay-kit";
 import { KamikazeSystem } from "../systems/KamikazeSystem";
 import { BossSystem } from "../systems/BossSystem";
 import { PlayerBulletPool, EnemyBulletPool, ParticlePool } from "../EntityPool";

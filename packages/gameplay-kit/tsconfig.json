@@ -10,17 +10,17 @@
         "strict": true,
         "declaration": true,
         "sourceMap": true,
-        "outDir": "./dist", // STOP CONTAMINATION: Output directory configured to "./dist" for compiled artifacts
+        "outDir": "./dist",
         "esModuleInterop": true,
         "resolveJsonModule": true,
         "forceConsistentCasingInFileNames": true,
         "skipLibCheck": true,
         "baseUrl": ".",
         "paths": {
-            "@tiny-aster/core": ["./src/index.ts"],
-            "@tiny-aster/core/*": ["./src/*"],
-            "@tiny-aster/gameplay-kit": ["../gameplay-kit/src/index.ts"],
-            "@tiny-aster/gameplay-kit/*": ["../gameplay-kit/src/*"]
+            "@tiny-aster/gameplay-kit": ["./src/index.ts"],
+            "@tiny-aster/gameplay-kit/*": ["./src/*"],
+            "@tiny-aster/core": ["../core/src/index.ts"],
+            "@tiny-aster/core/*": ["../core/src/*"]
         }
     },
     "include": [

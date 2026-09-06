@@ -13,11 +13,11 @@ import {
   createDeferredEntity,
   spawnBlueprintEntity
 } from "@tiny-aster/core";
-import { CollisionLayers } from "../shared/types/CollisionLayers";
+import { CollisionLayers } from "@tiny-aster/gameplay-kit";
 import { AsteroidsComponentRegistry, AsteroidsEventRegistry } from "./types/AsteroidRegistry";
 import { AsteroidConfig } from "./types/AsteroidConfigSchema";
-import { DamageComponent, FactionComponent } from "../shared/combat/components/CombatComponents";
-import { PowerUpComponent } from "../shared/arcade/types/ArcadeTypes";
+import { DamageComponent, FactionComponent } from "@tiny-aster/gameplay-kit";
+import { PowerUpComponent } from "@tiny-aster/gameplay-kit";
 
 function getPowerUpColor(lootType: string): string {
   if (lootType === "shield") return "#00f0ff";

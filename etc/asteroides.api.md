@@ -447,7 +447,7 @@ export class BinaryCompression {
     // (undocumented)
     static pack(packet: unknown): Uint8Array;
     // (undocumented)
-    static unpack<T = unknown>(packet: Uint8Array | ArrayBuffer | Buffer): T;
+    static unpack<T = any>(packet: Uint8Array | ArrayBuffer | Buffer): T;
 }
 
 // @public
@@ -4660,7 +4660,7 @@ export class StoryRuntime {
     setFlag(key: string, value?: boolean): void;
     setObjective(objective: StoryObjective): void;
     setState(state: StoryState): void;
-    setVariable(key: string, value: number | string | boolean): void;
+    setVariable(key: string, value: number | string | boolean | undefined): void;
 }
 
 // @public
@@ -4918,7 +4918,11 @@ export interface TransitionOptions {
     lineThickness?: number;
     lineWidth?: number;
     maxPixelSize?: number;
-    offscreenCanvas?: CanvasImageSource | HTMLCanvasElement;
+    offscreenCanvas?: CanvasImageSource | HTMLCanvasElement | {
+        width?: number;
+        height?: number;
+        [key: string]: unknown;
+    };
     sliceHeight?: number;
     timeout?: number;
 }

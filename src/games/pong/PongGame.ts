@@ -23,7 +23,7 @@ import {
 import { PongCollisionSystem } from "./systems/PongCollisionSystem";
 import { PongGameStateSystem } from "./systems/PongGameStateSystem";
 import { ComboSystem } from "@tiny-aster/core";
-import { AchievementSystem } from "../shared/arcade";
+import { AchievementSystem } from "@tiny-aster/gameplay-kit";
 import { BENEFICIAL_MUTATORS, registerMutatorHook } from "../../utils/MutatorRegistry";
 import { resolveAndApplyMutators } from "../../config/MutatorConfig";
 import { PongVelocityGuardrailSystem } from "./systems/PongVelocityGuardrailSystem";
@@ -45,7 +45,7 @@ import { PongEntityFactory } from "./EntityFactory";
 import { NetworkController } from "./input/NetworkController";
 import { type PongState, type PongInput, type PongComponentRegistry } from "./types";
 import { PongConfigSchema, PongConfig, DEFAULT_PONG_CONFIG } from "./types/PongConfigSchema";
-import { CollisionLayers } from "../shared/types/CollisionLayers";
+import { CollisionLayers } from "@tiny-aster/gameplay-kit";
 import * as SharedVFX from "../shared/rendering/SharedVFX";
 import { createThemeFromGameAccents } from "../../theme/gameAccents";
 import pongConfigRaw from "./config/pong.json";

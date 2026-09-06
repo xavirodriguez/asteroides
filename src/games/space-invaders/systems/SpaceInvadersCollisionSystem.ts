@@ -3,7 +3,7 @@ import { System } from "@tiny-aster/core";
 import { Entity } from "@tiny-aster/core";
 import { EventBus } from "@tiny-aster/core";
 import { TransformComponent, HealthComponent, RenderComponent, TTLComponent } from "@tiny-aster/core";
-import { spawnScorePopup } from "../../shared/arcade/helpers/spawnScorePopup";
+import { spawnScorePopup } from "@tiny-aster/gameplay-kit";
 import {
   GameStateComponent,
   InvaderComponent,

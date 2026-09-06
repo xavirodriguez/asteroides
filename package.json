@@ -33,6 +33,7 @@
     "typecheck:core": "pnpm --filter=@tiny-aster/core typecheck",
     "typecheck:app": "pnpm exec tsc -p tsconfig.json --noEmit",
     "check:core-boundaries": "bash ./scripts/check-core-boundaries.sh",
+    "check:gameplay-kit-boundaries": "bash ./scripts/check-gameplay-kit-boundaries.sh",
     "check:ratchet": "pnpm exec tsx scripts/typecast-ratchet.ts",
     "ratchet:update": "pnpm exec tsx scripts/typecast-ratchet.ts --update",
     "check:duplication": "pnpm exec tsx scripts/duplication-ratchet.ts",
@@ -40,7 +41,7 @@
     "detect:duplicates": "pnpm exec tsx scripts/detect-duplicates.ts",
     "story:lint": "pnpm exec tsx scripts/story-lint.ts",
     "validate:story": "pnpm run story:lint",
-    "ci": "pnpm run build:core && pnpm run check:core-boundaries && pnpm run check:ratchet && pnpm run check:duplication && pnpm run story:lint && pnpm run docs:check && pnpm run typecheck:app",
+    "ci": "pnpm run build:core && pnpm --filter=@tiny-aster/gameplay-kit build && pnpm run check:core-boundaries && pnpm run check:gameplay-kit-boundaries && pnpm run check:ratchet && pnpm run check:duplication && pnpm run story:lint && pnpm run docs:check && pnpm run typecheck:app",
     "test:ci": "NODE_OPTIONS=\"--max-old-space-size=4096\" pnpm exec jest --runInBand"
   },
   "dependencies": {

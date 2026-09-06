@@ -1,4 +1,4 @@
-import { SharedParticlePool } from "../shared/arcade/ParticlePool";
+import { SharedParticlePool } from "@tiny-aster/gameplay-kit";
 
 /**
  * Empty/Dummy pool for bullets if not actively pooled.

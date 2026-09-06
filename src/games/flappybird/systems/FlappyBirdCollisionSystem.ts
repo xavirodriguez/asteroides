@@ -151,20 +151,6 @@ export class FlappyBirdCollisionSystem extends System<FlappyBirdComponentRegistr
              const maxSpeed = Math.round(80 + 80 * closeness);
 
              Juice.shake(world, 2, 100);
-             createEmitter(world, {
-                type: "near_miss",
-                x: birdPos.x,
-                y: birdPos.y,
-                rate: 0,
-                burst: true,
-                count: particleCount,
-                color: ["#FF3300", "#FF9900"],
-                size: [2, 4],
-                speed: [minSpeed, maxSpeed],
-                angle: [0, 360],
-                lifetime: [0.3, 0.5],
-                loop: false
-             });
            }
         }
       }

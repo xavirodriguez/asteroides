@@ -1,5 +1,4 @@
 import {
-  EntityBuilder,
   HealthComponent,
   CoreComponentRegistry,
   BlueprintRegistry,

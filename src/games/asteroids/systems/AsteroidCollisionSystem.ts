@@ -15,8 +15,15 @@ import { getLogsForLevel } from "../story/StoryBeats";
  * @public
  */
 export class AsteroidCollisionSystem extends System<AsteroidsComponentRegistry, AsteroidsEventRegistry> {
+  private static readonly ASTEROID_EXPLOSION_COLORS = ["#ff66cc", "#ff9ee0", "#ffd6f0", "#ffffff"] as const;
+  private static readonly SHIP_EXPLOSION_COLORS = ["#00f0ff", "#5cf2ff", "#ff5d00", "#ffffff"] as const;
+
   private processedDeaths = new Set<number>();
   private destroyedEntities = new Set<number>();
+
+  // Rollback-safe per-tick player session cache
+  private playerCache = new Map<string, number>();
+  private playerCacheTick = -1;
 
   constructor() {
     super();
@@ -29,6 +36,48 @@ export class AsteroidCollisionSystem extends System<AsteroidsComponentRegistry, 
         this.onCombatDeath(world, event);
       });
     }
+  }
+
+  private hasEntity(world: World<AsteroidsComponentRegistry, AsteroidsEventRegistry>, entity: number): boolean {
+    if (typeof (world as unknown as { hasEntity?: (entity: number) => boolean }).hasEntity === "function") {
+      return (world as unknown as { hasEntity: (entity: number) => boolean }).hasEntity(entity);
+    }
+    return world.hasComponent(entity, "Transform");
+  }
+
+  private findPlayerByOwnerId(
+    world: World<AsteroidsComponentRegistry, AsteroidsEventRegistry>,
+    ownerId: string
+  ): number | undefined {
+    // Rebuild cache if world tick has changed (e.g., new frame or rollback resimulation)
+    if (this.playerCacheTick !== world.tick) {
+      this.playerCache.clear();
+      this.playerCacheTick = world.tick;
+
+      const ships = world.query("Ship");
+      for (let i = 0; i < ships.length; i++) {
+        const ent = ships[i];
+        const remote = world.getComponent(ent, "RemotePlayer");
+        if (remote && remote.sessionId) {
+          this.playerCache.set(remote.sessionId, ent);
+        }
+        const ship = world.getComponent(ent, "Ship");
+        if (ship && ship.sessionId) {
+          this.playerCache.set(ship.sessionId, ent);
+        }
+      }
+
+      const remotes = world.query("RemotePlayer");
+      for (let i = 0; i < remotes.length; i++) {
+        const ent = remotes[i];
+        const remote = world.getComponent(ent, "RemotePlayer");
+        if (remote && remote.sessionId && !this.playerCache.has(remote.sessionId)) {
+          this.playerCache.set(remote.sessionId, ent);
+        }
+      }
+    }
+
+    return this.playerCache.get(ownerId);
   }
 
   private onCombatDeath(world: World<AsteroidsComponentRegistry, AsteroidsEventRegistry>, event: any): void {
@@ -80,31 +129,7 @@ export class AsteroidCollisionSystem extends System<AsteroidsComponentRegistry, 
       const bulletComp = world.getComponent(bullet, "Bullet");
       const ownerId = bulletComp?.ownerId;
       if (ownerId) {
-          let playerEntity: number | undefined;
-          // Safe for determinism/rollback. Sequential query iteration replaces array spreading [...world.query("RemotePlayer"), ...], avoiding array allocations while searching for matching player entity.
-          const findMatchingCandidate = (queryType: "RemotePlayer" | "LocalPlayer" | "Ship"): number | undefined => {
-            const list = world.query(queryType);
-            for (let i = 0; i < list.length; i++) {
-              const ent = list[i];
-              let sid: string | undefined;
-              const remote = world.getComponent(ent, "RemotePlayer");
-              if (remote && remote.sessionId) {
-                sid = remote.sessionId;
-              }
-              if (!sid) {
-                const ship = world.getComponent(ent, "Ship");
-                if (ship && ship.sessionId) {
-                  sid = ship.sessionId;
-                }
-              }
-              if (sid === ownerId) {
-                return ent;
-              }
-            }
-            return undefined;
-          };
-
-          playerEntity = findMatchingCandidate("RemotePlayer") ?? findMatchingCandidate("LocalPlayer") ?? findMatchingCandidate("Ship");
+          const playerEntity = this.findPlayerByOwnerId(world, ownerId);
 
           if (playerEntity !== undefined) {
               if (!world.hasComponent(playerEntity, "PlayerScore")) {
@@ -146,6 +171,7 @@ export class AsteroidCollisionSystem extends System<AsteroidsComponentRegistry, 
       const ay = asteroidTransform.y;
       const particleCount = size === "large" ? 24 : (size === "medium" ? 16 : 10);
       const rng = world.gameplayRandom;
+      const colors = AsteroidCollisionSystem.ASTEROID_EXPLOSION_COLORS;
       for (let i = 0; i < particleCount; i++) {
         const angle = rng.next() * Math.PI * 2;
         const speed = rng.nextRange(40, 150);
@@ -153,7 +179,6 @@ export class AsteroidCollisionSystem extends System<AsteroidsComponentRegistry, 
         const py = ay + (rng.next() - 0.5) * 8;
         const vx = Math.cos(angle) * speed;
         const vy = Math.sin(angle) * speed;
-        const colors = ["#ff66cc", "#ff9ee0", "#ffd6f0", "#ffffff"];
         const color = colors[rng.nextInt(0, colors.length)];
         const pSize = rng.nextRange(1.5, 4.5);
         const ttl = rng.nextRange(0.4, 0.9);
@@ -201,14 +226,7 @@ export class AsteroidCollisionSystem extends System<AsteroidsComponentRegistry, 
         }
 
         // Doble Seguridad B: Antes de procesar la colisión, verifica que las entidades sigan existiendo
-        const hasEntity = (entity: number): boolean => {
-          if (typeof (world as unknown as { hasEntity?: (entity: number) => boolean }).hasEntity === "function") {
-            return (world as unknown as { hasEntity: (entity: number) => boolean }).hasEntity(entity);
-          }
-          return world.hasComponent(entity, "Transform");
-        };
-
-        if (!hasEntity(entityA) || !hasEntity(entityB)) {
+        if (!this.hasEntity(world, entityA) || !this.hasEntity(world, entityB)) {
           continue;
         }
 
@@ -295,12 +313,12 @@ export class AsteroidCollisionSystem extends System<AsteroidsComponentRegistry, 
             const sx = shipTransform.x;
             const sy = shipTransform.y;
             const rng = world.gameplayRandom;
+            const colors = AsteroidCollisionSystem.SHIP_EXPLOSION_COLORS;
             for (let i = 0; i < 24; i++) {
               const angle = rng.next() * Math.PI * 2;
               const speed = rng.nextRange(60, 200);
               const vx = Math.cos(angle) * speed;
               const vy = Math.sin(angle) * speed;
-              const colors = ["#00f0ff", "#5cf2ff", "#ff5d00", "#ffffff"];
               const color = colors[rng.nextInt(0, colors.length)];
               const pSize = rng.nextRange(2.0, 5.5);
               const ttl = rng.nextRange(0.5, 1.2);

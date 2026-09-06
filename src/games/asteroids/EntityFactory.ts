@@ -18,6 +18,7 @@ import { AsteroidsComponentRegistry, AsteroidsEventRegistry } from "./types/Aste
 import { AsteroidConfig } from "./types/AsteroidConfigSchema";
 import { DamageComponent, FactionComponent } from "@tiny-aster/gameplay-kit";
 import { PowerUpComponent } from "@tiny-aster/gameplay-kit";
+import { BulletPool } from "./EntityPool";
 
 function getPowerUpColor(lootType: string): string {
   if (lootType === "shield") return "#00f0ff";
@@ -365,15 +366,26 @@ export function createBullet(
     life = worldOrConfig.ttl ?? bulletTtl;
   }
 
-  return spawnBlueprintEntity(world, "bullet", {
+  const bulletParams = {
     x: posX,
     y: posY,
+    dx: vxVal,
+    dy: vyVal,
     vx: vxVal,
     vy: vyVal,
+    size: 2,
+    color: "",
     rotation: rotVal,
     ownerId: owner,
     ttl: life
-  });
+  };
+
+  const pool = world.getResource<BulletPool>("BulletPool");
+  if (pool) {
+    return pool.acquire(world, bulletParams);
+  }
+
+  return spawnBlueprintEntity(world, "bullet", bulletParams);
 }
 
 /** @public */

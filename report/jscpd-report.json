@@ -76,6 +76,43 @@
     },
     {
       "firstFile": {
+        "end": 154,
+        "endLoc": {
+          "column": 12,
+          "line": 154,
+          "position": 5518
+        },
+        "name": "physics/collision/BroadPhase.ts",
+        "start": 143,
+        "startLoc": {
+          "column": 41,
+          "line": 143,
+          "position": 5246
+        }
+      },
+      "format": "typescript",
+      "fragment": "    let shape: ColliderComponent[\"shape\"];\n    if (c2.shape.type === \"circle\") {\n      shape = { type: ShapeType.Circle, radius: c2.shape.radius };\n    } else {\n      shape = {\n        type: ShapeType.Box,\n        width: c2.shape.halfWidth * 2,\n        height: c2.shape.halfHeight * 2\n      };\n    }\n\n    return {",
+      "isNew": false,
+      "lines": 12,
+      "secondFile": {
+        "end": 316,
+        "endLoc": {
+          "column": 14,
+          "line": 316,
+          "position": 11597
+        },
+        "name": "physics/collision/CollisionSystems.ts",
+        "start": 305,
+        "startLoc": {
+          "column": 49,
+          "line": 305,
+          "position": 11262
+        }
+      },
+      "tokens": 66
+    },
+    {
+      "firstFile": {
         "end": 46,
         "endLoc": {
           "column": 11,
@@ -761,36 +798,36 @@
       "isNew": false,
       "lines": 13,
       "secondFile": {
-        "end": 691,
+        "end": 695,
         "endLoc": {
           "column": 26,
-          "line": 691,
-          "position": 28541
+          "line": 695,
+          "position": 28891
         },
         "name": "space-invaders/SpaceInvadersGame.ts",
-        "start": 679,
+        "start": 683,
         "startLoc": {
           "column": 26,
-          "line": 679,
-          "position": 28198
+          "line": 683,
+          "position": 28548
         }
       },
       "tokens": 52
     },
     {
       "firstFile": {
-        "end": 111,
+        "end": 112,
         "endLoc": {
           "column": 115,
-          "line": 111,
-          "position": 4071
+          "line": 112,
+          "position": 4114
         },
         "name": "asteroids/EntityFactory.ts",
-        "start": 106,
+        "start": 107,
         "startLoc": {
           "column": 45,
-          "line": 106,
-          "position": 3907
+          "line": 107,
+          "position": 3950
         }
       },
       "format": "typescript",
@@ -816,18 +853,18 @@
     },
     {
       "firstFile": {
-        "end": 229,
+        "end": 230,
         "endLoc": {
           "column": 13,
-          "line": 229,
-          "position": 8128
+          "line": 230,
+          "position": 8171
         },
         "name": "asteroids/EntityFactory.ts",
-        "start": 216,
+        "start": 217,
         "startLoc": {
           "column": 28,
-          "line": 216,
-          "position": 7650
+          "line": 217,
+          "position": 7693
         }
       },
       "format": "typescript",
@@ -850,6 +887,154 @@
         }
       },
       "tokens": 57
+    },
+    {
+      "firstFile": {
+        "end": 52,
+        "endLoc": {
+          "column": 14,
+          "line": 52,
+          "position": 1246
+        },
+        "name": "asteroids/EntityPool.ts",
+        "start": 32,
+        "startLoc": {
+          "column": 41,
+          "line": 32,
+          "position": 766
+        }
+      },
+      "format": "typescript",
+      "fragment": "function createAsteroidsBulletPoolConfig() {\n  return {\n    factory: () => ({\n      position: {\n        type: \"Transform\",\n        x: 0,\n        y: 0,\n        rotation: 0,\n        scaleX: 1,\n        scaleY: 1,\n        worldX: 0,\n        worldY: 0,\n        worldRotation: 0,\n        worldScaleX: 1,\n        worldScaleY: 1,\n        dirty: false\n      } as TransformComponent,\n      velocity: { type: \"Velocity\", vx: 0, vy: 0, angularVelocity: 0 } as VelocityComponent,\n      render: {\n        type: \"Render\",\n        shape: \"bullet\",",
+      "isNew": false,
+      "lines": 21,
+      "secondFile": {
+        "end": 25,
+        "endLoc": {
+          "column": 38,
+          "line": 25,
+          "position": 1358
+        },
+        "name": "space-invaders/EntityPool.ts",
+        "start": 19,
+        "startLoc": {
+          "column": 56,
+          "line": 19,
+          "position": 844
+        }
+      },
+      "tokens": 96
+    },
+    {
+      "firstFile": {
+        "end": 52,
+        "endLoc": {
+          "column": 14,
+          "line": 52,
+          "position": 1246
+        },
+        "name": "asteroids/EntityPool.ts",
+        "start": 33,
+        "startLoc": {
+          "column": 9,
+          "line": 33,
+          "position": 779
+        }
+      },
+      "format": "typescript",
+      "fragment": "  return {\n    factory: () => ({\n      position: {\n        type: \"Transform\",\n        x: 0,\n        y: 0,\n        rotation: 0,\n        scaleX: 1,\n        scaleY: 1,\n        worldX: 0,\n        worldY: 0,\n        worldRotation: 0,\n        worldScaleX: 1,\n        worldScaleY: 1,\n        dirty: false\n      } as TransformComponent,\n      velocity: { type: \"Velocity\", vx: 0, vy: 0, angularVelocity: 0 } as VelocityComponent,\n      render: {\n        type: \"Render\",\n        shape: \"bullet\",",
+      "isNew": false,
+      "lines": 20,
+      "secondFile": {
+        "end": 52,
+        "endLoc": {
+          "column": 16,
+          "line": 52,
+          "position": 1463
+        },
+        "name": "geometrywars/EntityPool.ts",
+        "start": 28,
+        "startLoc": {
+          "column": 10,
+          "line": 28,
+          "position": 910
+        }
+      },
+      "tokens": 93
+    },
+    {
+      "firstFile": {
+        "end": 69,
+        "endLoc": {
+          "column": 18,
+          "line": 69,
+          "position": 1708
+        },
+        "name": "asteroids/EntityPool.ts",
+        "start": 54,
+        "startLoc": {
+          "column": 17,
+          "line": 54,
+          "position": 1291
+        }
+      },
+      "format": "typescript",
+      "fragment": "        color: \"\",\n        rotation: 0,\n        visible: true,\n        opacity: 1,\n        order: 2,\n        hitFlashFrames: 0,\n        angularVelocity: 0\n      } as RenderComponent,\n      collider: {\n        type: \"Collider\",\n        shape: { type: ShapeType.Circle, radius: 2 } as CircleShape,\n        layer: CollisionLayers.PROJECTILE,\n        mask: CollisionLayers.ENEMY,\n        offsetX: 0,\n        offsetY: 0,\n        isTrigger: false,",
+      "isNew": false,
+      "lines": 16,
+      "secondFile": {
+        "end": 69,
+        "endLoc": {
+          "column": 20,
+          "line": 69,
+          "position": 1971
+        },
+        "name": "geometrywars/EntityPool.ts",
+        "start": 54,
+        "startLoc": {
+          "column": 28,
+          "line": 54,
+          "position": 1524
+        }
+      },
+      "tokens": 73
+    },
+    {
+      "firstFile": {
+        "end": 85,
+        "endLoc": {
+          "column": 16,
+          "line": 85,
+          "position": 2494
+        },
+        "name": "asteroids/EntityPool.ts",
+        "start": 74,
+        "startLoc": {
+          "column": 74,
+          "line": 74,
+          "position": 2031
+        }
+      },
+      "format": "typescript",
+      "fragment": "      bullet: { type: \"Bullet\", ownerId: undefined as string | undefined },\n      collisionEvents: {\n        type: \"CollisionEvents\",\n        collisions: [],\n        activeTriggers: [],\n        triggersEntered: [],\n        triggersExited: []\n      } as CollisionEventsComponent,\n      damage: { type: \"Damage\", amount: 1, category: \"player_bullet\", friendlyFire: false, consumption: \"destroy-entity\" } as DamageComponent,\n      faction: { type: \"Faction\", faction: \"player\", value: \"player\" } as FactionComponent\n    }),\n    reset: (data: any) => {",
+      "isNew": false,
+      "lines": 12,
+      "secondFile": {
+        "end": 102,
+        "endLoc": {
+          "column": 18,
+          "line": 102,
+          "position": 2866
+        },
+        "name": "geometrywars/EntityPool.ts",
+        "start": 81,
+        "startLoc": {
+          "column": 33,
+          "line": 81,
+          "position": 2285
+        }
+      },
+      "tokens": 81
     },
     {
       "firstFile": {
@@ -964,18 +1149,18 @@
     },
     {
       "firstFile": {
-        "end": 64,
+        "end": 113,
         "endLoc": {
           "column": 26,
-          "line": 64,
-          "position": 2481
+          "line": 113,
+          "position": 4430
         },
         "name": "asteroids/systems/AsteroidCollisionSystem.ts",
-        "start": 56,
+        "start": 105,
         "startLoc": {
           "column": 4,
-          "line": 56,
-          "position": 2202
+          "line": 105,
+          "position": 4151
         }
       },
       "format": "typescript",
@@ -983,835 +1168,21 @@
       "isNew": false,
       "lines": 9,
       "secondFile": {
-        "end": 175,
+        "end": 193,
         "endLoc": {
           "column": 30,
-          "line": 175,
-          "position": 6829
+          "line": 193,
+          "position": 7462
         },
         "name": "space-invaders/systems/SpaceInvadersCollisionSystem.ts",
-        "start": 167,
+        "start": 185,
         "startLoc": {
           "column": 8,
-          "line": 167,
-          "position": 6522
+          "line": 185,
+          "position": 7155
         }
       },
       "tokens": 57
-    },
-    {
-      "firstFile": {
-        "end": 151,
-        "endLoc": {
-          "column": 18,
-          "line": 151,
-          "position": 5100
-        },
-        "name": "echorunner/EchoRunnerGame.ts",
-        "start": 125,
-        "startLoc": {
-          "column": 4,
-          "line": 125,
-          "position": 4146
-        }
-      },
-      "format": "typescript",
-      "fragment": "    const players = world.query(\"PlatformerInput\", \"Health\", \"Transform\");\n    const enemies = world.query(\"Enemy\", \"Transform\");\n\n    for (let p = 0; p < players.length; p++) {\n      const player = players[p];\n      const pHealth = world.getComponent(player, \"Health\")!;\n      const pTrans = world.getComponent(player, \"Transform\")!;\n\n      // Handle invulnerability blink timers\n      let invRemaining = pHealth.invulnerableRemaining ?? 0;\n      if (invRemaining > 0) {\n        invRemaining -= deltaTime;\n        if (invRemaining < 0) invRemaining = 0;\n        world.mutateComponent(player, \"Health\", (h) => {\n          h.invulnerableRemaining = invRemaining;\n        });\n      }\n\n      if (invRemaining > 0) continue;\n\n      // Contact check with all active enemies\n      let hit = false;\n      for (let e = 0; e < enemies.length; e++) {\n        const enemy = enemies[e];\n        const eTrans = world.getComponent(enemy, \"Transform\")!;\n\n        const dx = player !== undefined ? pTrans.x - eTrans.x : 0;",
-      "isNew": false,
-      "lines": 27,
-      "secondFile": {
-        "end": 31,
-        "endLoc": {
-          "column": 18,
-          "line": 31,
-          "position": 1310
-        },
-        "name": "platformer/systems/PlatformerDamageSystem.ts",
-        "start": 8,
-        "startLoc": {
-          "column": 4,
-          "line": 8,
-          "position": 449
-        }
-      },
-      "tokens": 184
-    },
-    {
-      "firstFile": {
-        "end": 239,
-        "endLoc": {
-          "column": 54,
-          "line": 239,
-          "position": 8299
-        },
-        "name": "echorunner/EchoRunnerGame.ts",
-        "start": 211,
-        "startLoc": {
-          "column": 28,
-          "line": 211,
-          "position": 6931
-        }
-      },
-      "format": "typescript",
-      "fragment": "      EchoRunnerConfigSchema,\n      config.gameOptions?.rawConfig ?? {}\n    );\n    this.config = this.baseConfig;\n    // TODO(refactor): código duplicado detectado (bloque) con platformer/PlatformerGame.ts:107-114. Considerar extraer a función compartida. Ref: d29aace1\n    this.customLevelData = config.levelData ?? (config.gameOptions?.levelData as { templates: SegmentTemplate[]; grammar: string[] } | undefined);\n  }\n\n  // TODO(refactor): código duplicado detectado (método) con platformer/PlatformerGame.ts:227-251. Considerar extraer a función compartida. Ref: d39ade6b\n  protected override async onRegisterSystems(): Promise<void> {\n    this.config = resolveAndApplyMutators(this.baseConfig, this._config.gameOptions);\n\n    this.world.setResource(\"GameConfig\", this.config);\n    // TODO(refactor): código duplicado detectado (bloque) con platformer/PlatformerGame.ts:114-127. Considerar extraer a función compartida. Ref: 44f1ee7d\n    this.setupCommonArcadeResources();\n    this.world.setResource(\"DeathPlaneY\", 650);\n\n    // Initializing high-fidelity RunState resource\n    const runState: RunState = {\n      attempt: 1,\n      lives: 3,\n      activeCheckpoint: null,\n      elapsedTime: 0,\n      deaths: 0,\n      collectedPermanentIds: [],\n      collectedTemporalIds: []\n    };\n    this.world.setResource(\"RunState\", runState);\n    this.world.setResource(\"AudioPlayer\", this.audio);",
-      "isNew": false,
-      "lines": 29,
-      "secondFile": {
-        "end": 131,
-        "endLoc": {
-          "column": 54,
-          "line": 131,
-          "position": 4868
-        },
-        "name": "platformer/PlatformerGame.ts",
-        "start": 104,
-        "startLoc": {
-          "column": 28,
-          "line": 104,
-          "position": 3552
-        }
-      },
-      "tokens": 172
-    },
-    {
-      "firstFile": {
-        "end": 226,
-        "endLoc": {
-          "column": 9,
-          "line": 226,
-          "position": 7896
-        },
-        "name": "echorunner/EchoRunnerGame.ts",
-        "start": 216,
-        "startLoc": {
-          "column": 145,
-          "line": 216,
-          "position": 7320
-        }
-      },
-      "format": "typescript",
-      "fragment": "    this.customLevelData = config.levelData ?? (config.gameOptions?.levelData as { templates: SegmentTemplate[]; grammar: string[] } | undefined);\n  }\n\n  // TODO(refactor): código duplicado detectado (método) con platformer/PlatformerGame.ts:227-251. Considerar extraer a función compartida. Ref: d39ade6b\n  protected override async onRegisterSystems(): Promise<void> {\n    this.config = resolveAndApplyMutators(this.baseConfig, this._config.gameOptions);\n\n    this.world.setResource(\"GameConfig\", this.config);\n    // TODO(refactor): código duplicado detectado (bloque) con platformer/PlatformerGame.ts:114-127. Considerar extraer a función compartida. Ref: 44f1ee7d\n    this.setupCommonArcadeResources();\n    this.world.setResource(\"DeathPlaneY\", 650);",
-      "isNew": false,
-      "lines": 11,
-      "secondFile": {
-        "end": 78,
-        "endLoc": {
-          "column": 9,
-          "line": 78,
-          "position": 4676
-        },
-        "name": "flappybird/FlappyBirdGame.ts",
-        "start": 70,
-        "startLoc": {
-          "column": 47,
-          "line": 70,
-          "position": 4270
-        }
-      },
-      "tokens": 52
-    },
-    {
-      "firstFile": {
-        "end": 233,
-        "endLoc": {
-          "column": 21,
-          "line": 233,
-          "position": 8106
-        },
-        "name": "echorunner/EchoRunnerGame.ts",
-        "start": 216,
-        "startLoc": {
-          "column": 144,
-          "line": 216,
-          "position": 7319
-        }
-      },
-      "format": "typescript",
-      "fragment": "    this.customLevelData = config.levelData ?? (config.gameOptions?.levelData as { templates: SegmentTemplate[]; grammar: string[] } | undefined);\n  }\n\n  // TODO(refactor): código duplicado detectado (método) con platformer/PlatformerGame.ts:227-251. Considerar extraer a función compartida. Ref: d39ade6b\n  protected override async onRegisterSystems(): Promise<void> {\n    this.config = resolveAndApplyMutators(this.baseConfig, this._config.gameOptions);\n\n    this.world.setResource(\"GameConfig\", this.config);\n    // TODO(refactor): código duplicado detectado (bloque) con platformer/PlatformerGame.ts:114-127. Considerar extraer a función compartida. Ref: 44f1ee7d\n    this.setupCommonArcadeResources();\n    this.world.setResource(\"DeathPlaneY\", 650);\n\n    // Initializing high-fidelity RunState resource\n    const runState: RunState = {\n      attempt: 1,\n      lives: 3,\n      activeCheckpoint: null,\n      elapsedTime: 0,",
-      "isNew": false,
-      "lines": 18,
-      "secondFile": {
-        "end": 117,
-        "endLoc": {
-          "column": 29,
-          "line": 117,
-          "position": 5024
-        },
-        "name": "pong/PongGame.ts",
-        "start": 103,
-        "startLoc": {
-          "column": 52,
-          "line": 103,
-          "position": 4443
-        }
-      },
-      "tokens": 84
-    },
-    {
-      "firstFile": {
-        "end": 226,
-        "endLoc": {
-          "column": 27,
-          "line": 226,
-          "position": 7914
-        },
-        "name": "echorunner/EchoRunnerGame.ts",
-        "start": 217,
-        "startLoc": {
-          "column": 2,
-          "line": 217,
-          "position": 7324
-        }
-      },
-      "format": "typescript",
-      "fragment": "  }\n\n  // TODO(refactor): código duplicado detectado (método) con platformer/PlatformerGame.ts:227-251. Considerar extraer a función compartida. Ref: d39ade6b\n  protected override async onRegisterSystems(): Promise<void> {\n    this.config = resolveAndApplyMutators(this.baseConfig, this._config.gameOptions);\n\n    this.world.setResource(\"GameConfig\", this.config);\n    // TODO(refactor): código duplicado detectado (bloque) con platformer/PlatformerGame.ts:114-127. Considerar extraer a función compartida. Ref: 44f1ee7d\n    this.setupCommonArcadeResources();\n    this.world.setResource(\"DeathPlaneY\", 650);",
-      "isNew": false,
-      "lines": 10,
-      "secondFile": {
-        "end": 117,
-        "endLoc": {
-          "column": 27,
-          "line": 117,
-          "position": 6352
-        },
-        "name": "space-invaders/SpaceInvadersGame.ts",
-        "start": 109,
-        "startLoc": {
-          "column": 2,
-          "line": 109,
-          "position": 5922
-        }
-      },
-      "tokens": 55
-    },
-    {
-      "firstFile": {
-        "end": 242,
-        "endLoc": {
-          "column": 8,
-          "line": 242,
-          "position": 8336
-        },
-        "name": "echorunner/EchoRunnerGame.ts",
-        "start": 220,
-        "startLoc": {
-          "column": 12,
-          "line": 220,
-          "position": 7496
-        }
-      },
-      "format": "typescript",
-      "fragment": "  protected override async onRegisterSystems(): Promise<void> {\n    this.config = resolveAndApplyMutators(this.baseConfig, this._config.gameOptions);\n\n    this.world.setResource(\"GameConfig\", this.config);\n    // TODO(refactor): código duplicado detectado (bloque) con platformer/PlatformerGame.ts:114-127. Considerar extraer a función compartida. Ref: 44f1ee7d\n    this.setupCommonArcadeResources();\n    this.world.setResource(\"DeathPlaneY\", 650);\n\n    // Initializing high-fidelity RunState resource\n    const runState: RunState = {\n      attempt: 1,\n      lives: 3,\n      activeCheckpoint: null,\n      elapsedTime: 0,\n      deaths: 0,\n      collectedPermanentIds: [],\n      collectedTemporalIds: []\n    };\n    this.world.setResource(\"RunState\", runState);\n    this.world.setResource(\"AudioPlayer\", this.audio);\n\n    // Register blueprints\n    this.blueprints.register(\"pulse_hitbox\", {",
-      "isNew": false,
-      "lines": 23,
-      "secondFile": {
-        "end": 134,
-        "endLoc": {
-          "column": 9,
-          "line": 134,
-          "position": 4911
-        },
-        "name": "platformer/PlatformerGame.ts",
-        "start": 113,
-        "startLoc": {
-          "column": 12,
-          "line": 113,
-          "position": 4117
-        }
-      },
-      "tokens": 119
-    },
-    {
-      "firstFile": {
-        "end": 273,
-        "endLoc": {
-          "column": 65,
-          "line": 273,
-          "position": 9539
-        },
-        "name": "echorunner/EchoRunnerGame.ts",
-        "start": 268,
-        "startLoc": {
-          "column": 69,
-          "line": 268,
-          "position": 9368
-        }
-      },
-      "format": "typescript",
-      "fragment": "        world.addComponent(entity, { type: \"Hitbox\", hitEntities: [] } as { type: string; [key: string]: unknown });\n      }\n    });\n\n    this.blueprints.register(\"player\", {\n      spawn: (world, entity, args: { x: number; y: number }) => {",
-      "isNew": false,
-      "lines": 6,
-      "secondFile": {
-        "end": 302,
-        "endLoc": {
-          "column": 65,
-          "line": 302,
-          "position": 10735
-        },
-        "name": "platformer/PlatformerGame.ts",
-        "start": 297,
-        "startLoc": {
-          "column": 71,
-          "line": 297,
-          "position": 10564
-        }
-      },
-      "tokens": 51
-    },
-    {
-      "firstFile": {
-        "end": 305,
-        "endLoc": {
-          "column": 30,
-          "line": 305,
-          "position": 10933
-        },
-        "name": "echorunner/EchoRunnerGame.ts",
-        "start": 290,
-        "startLoc": {
-          "column": 106,
-          "line": 290,
-          "position": 10378
-        }
-      },
-      "format": "typescript",
-      "fragment": "        const config = world.getResource<EchoRunnerConfigType>(\"GameConfig\") || DEFAULT_ECHO_RUNNER_CONFIG;\n\n        world.addComponent(entity, {\n          type: \"PlatformerMovementConfig\",\n          acceleration: config.PLAYER_ACCEL,\n          maxSpeed: config.PLAYER_SPEED,\n          deceleration: config.PLAYER_DECEL,\n          airAcceleration: config.PLAYER_AIR_ACCEL,\n          airDeceleration: config.PLAYER_AIR_DECEL\n        } as { type: string; [key: string]: unknown });\n        world.addComponent(entity, {\n          type: \"PlatformerInput\",\n          moveDir: 0,\n          jumpPressed: false,\n          jumpHeld: false,\n          jumpReleased: false,",
-      "isNew": false,
-      "lines": 16,
-      "secondFile": {
-        "end": 332,
-        "endLoc": {
-          "column": 30,
-          "line": 332,
-          "position": 12335
-        },
-        "name": "platformer/PlatformerGame.ts",
-        "start": 317,
-        "startLoc": {
-          "column": 105,
-          "line": 317,
-          "position": 11780
-        }
-      },
-      "tokens": 85
-    },
-    {
-      "firstFile": {
-        "end": 314,
-        "endLoc": {
-          "column": 53,
-          "line": 314,
-          "position": 11317
-        },
-        "name": "echorunner/EchoRunnerGame.ts",
-        "start": 308,
-        "startLoc": {
-          "column": 8,
-          "line": 308,
-          "position": 11000
-        }
-      },
-      "format": "typescript",
-      "fragment": "        } as { type: string; [key: string]: unknown });\n        world.addComponent(entity, {\n          type: \"PlatformerGravityConfig\",\n          riseGravity: config.RISE_GRAVITY,\n          fallGravity: config.FALL_GRAVITY,\n          jumpVelocity: config.PLAYER_JUMP_VEL,\n          minJumpVelocity: config.PLAYER_MIN_JUMP_VEL,",
-      "isNew": false,
-      "lines": 7,
-      "secondFile": {
-        "end": 349,
-        "endLoc": {
-          "column": 53,
-          "line": 349,
-          "position": 13068
-        },
-        "name": "platformer/PlatformerGame.ts",
-        "start": 343,
-        "startLoc": {
-          "column": 78,
-          "line": 343,
-          "position": 12751
-        }
-      },
-      "tokens": 51
-    },
-    {
-      "firstFile": {
-        "end": 332,
-        "endLoc": {
-          "column": 41,
-          "line": 332,
-          "position": 12269
-        },
-        "name": "echorunner/EchoRunnerGame.ts",
-        "start": 326,
-        "startLoc": {
-          "column": 106,
-          "line": 326,
-          "position": 12037
-        }
-      },
-      "format": "typescript",
-      "fragment": "        world.addComponent(entity, { type: \"PlatformerGroundState\", isGrounded: false, iceMultiplier: 1.0 } as { type: string; [key: string]: unknown });\n      }\n    });\n\n    this.blueprints.register(\"tilemap\", {\n      spawn: (world, entity, args: { data: number[][]; tileDefinitions: any }) => {\n        const config = world.getResource<EchoRunnerConfigType>(\"GameConfig\") || DEFAULT_ECHO_RUNNER_CONFIG;",
-      "isNew": false,
-      "lines": 7,
-      "secondFile": {
-        "end": 379,
-        "endLoc": {
-          "column": 41,
-          "line": 379,
-          "position": 14324
-        },
-        "name": "platformer/PlatformerGame.ts",
-        "start": 373,
-        "startLoc": {
-          "column": 8,
-          "line": 373,
-          "position": 14092
-        }
-      },
-      "tokens": 62
-    },
-    {
-      "firstFile": {
-        "end": 345,
-        "endLoc": {
-          "column": 9,
-          "line": 345,
-          "position": 12686
-        },
-        "name": "echorunner/EchoRunnerGame.ts",
-        "start": 332,
-        "startLoc": {
-          "column": 106,
-          "line": 332,
-          "position": 12334
-        }
-      },
-      "format": "typescript",
-      "fragment": "        const config = world.getResource<EchoRunnerConfigType>(\"GameConfig\") || DEFAULT_ECHO_RUNNER_CONFIG;\n        EntityBuilder.fromEntity(world, entity)\n          .withTransform({ x: 0, y: 0 });\n\n        world.addComponent(entity, {\n          type: \"Tilemap\",\n          data: args.data,\n          tileSize: config.TILE_SIZE,\n          tileDefinitions: args.tileDefinitions\n        } as { type: string; [key: string]: unknown });\n      }\n    });\n\n    this.blueprints.register(\"collectible_fragment\", {",
-      "isNew": false,
-      "lines": 14,
-      "secondFile": {
-        "end": 393,
-        "endLoc": {
-          "column": 9,
-          "line": 393,
-          "position": 14759
-        },
-        "name": "platformer/PlatformerGame.ts",
-        "start": 379,
-        "startLoc": {
-          "column": 105,
-          "line": 379,
-          "position": 14388
-        }
-      },
-      "tokens": 74
-    },
-    {
-      "firstFile": {
-        "end": 350,
-        "endLoc": {
-          "column": 30,
-          "line": 350,
-          "position": 13101
-        },
-        "name": "echorunner/EchoRunnerGame.ts",
-        "start": 345,
-        "startLoc": {
-          "column": 51,
-          "line": 345,
-          "position": 12728
-        }
-      },
-      "format": "typescript",
-      "fragment": "    this.blueprints.register(\"collectible_fragment\", {\n      spawn: (world, entity, args: { x: number; y: number; id: string }) => {\n        // TODO(refactor): código duplicado detectado (bloque) con platformer/PlatformerGame.ts:189-208. Considerar extraer a función compartida. Ref: fbd854ae\n        EntityBuilder.fromEntity(world, entity)\n          .withTransform({ x: args.x, y: args.y })\n          .withRender({ shape: \"fragment\", size: 16, order: 1 });",
-      "isNew": false,
-      "lines": 6,
-      "secondFile": {
-        "end": 367,
-        "endLoc": {
-          "column": 30,
-          "line": 367,
-          "position": 13667
-        },
-        "name": "echorunner/EchoRunnerGame.ts",
-        "start": 363,
-        "startLoc": {
-          "column": 47,
-          "line": 363,
-          "position": 13456
-        }
-      },
-      "tokens": 58
-    },
-    {
-      "firstFile": {
-        "end": 350,
-        "endLoc": {
-          "column": 30,
-          "line": 350,
-          "position": 13101
-        },
-        "name": "echorunner/EchoRunnerGame.ts",
-        "start": 345,
-        "startLoc": {
-          "column": 51,
-          "line": 345,
-          "position": 12728
-        }
-      },
-      "format": "typescript",
-      "fragment": "    this.blueprints.register(\"collectible_fragment\", {\n      spawn: (world, entity, args: { x: number; y: number; id: string }) => {\n        // TODO(refactor): código duplicado detectado (bloque) con platformer/PlatformerGame.ts:189-208. Considerar extraer a función compartida. Ref: fbd854ae\n        EntityBuilder.fromEntity(world, entity)\n          .withTransform({ x: args.x, y: args.y })\n          .withRender({ shape: \"fragment\", size: 16, order: 1 });",
-      "isNew": false,
-      "lines": 6,
-      "secondFile": {
-        "end": 384,
-        "endLoc": {
-          "column": 30,
-          "line": 384,
-          "position": 14223
-        },
-        "name": "echorunner/EchoRunnerGame.ts",
-        "start": 380,
-        "startLoc": {
-          "column": 46,
-          "line": 380,
-          "position": 14012
-        }
-      },
-      "tokens": 58
-    },
-    {
-      "firstFile": {
-        "end": 363,
-        "endLoc": {
-          "column": 29,
-          "line": 363,
-          "position": 13438
-        },
-        "name": "echorunner/EchoRunnerGame.ts",
-        "start": 348,
-        "startLoc": {
-          "column": 21,
-          "line": 348,
-          "position": 12993
-        }
-      },
-      "format": "typescript",
-      "fragment": "        EntityBuilder.fromEntity(world, entity)\n          .withTransform({ x: args.x, y: args.y })\n          .withRender({ shape: \"fragment\", size: 16, order: 1 });\n\n        world.addComponent(entity, {\n          type: \"Collectible\",\n          kind: \"fragment\",\n          value: 10,\n          persistent: false,\n          collectOnce: false,\n          id: args.id\n        } as { type: string; [key: string]: unknown });\n      }\n    });\n\n    this.blueprints.register(\"collectible_core\", {",
-      "isNew": false,
-      "lines": 16,
-      "secondFile": {
-        "end": 214,
-        "endLoc": {
-          "column": 29,
-          "line": 214,
-          "position": 7478
-        },
-        "name": "platformer/PlatformerGame.ts",
-        "start": 194,
-        "startLoc": {
-          "column": 27,
-          "line": 194,
-          "position": 6829
-        }
-      },
-      "tokens": 101
-    },
-    {
-      "firstFile": {
-        "end": 397,
-        "endLoc": {
-          "column": 29,
-          "line": 397,
-          "position": 14563
-        },
-        "name": "echorunner/EchoRunnerGame.ts",
-        "start": 374,
-        "startLoc": {
-          "column": 27,
-          "line": 374,
-          "position": 13869
-        }
-      },
-      "format": "typescript",
-      "fragment": "          collectOnce: true,\n          id: args.id\n        } as { type: string; [key: string]: unknown });\n      }\n    });\n\n    this.blueprints.register(\"checkpoint_node\", {\n      spawn: (world, entity, args: { x: number; y: number; id: string }) => {\n        EntityBuilder.fromEntity(world, entity)\n          .withTransform({ x: args.x, y: args.y })\n          .withRender({ shape: \"node\", size: 32, order: 1 });\n\n        world.addComponent(entity, {\n          type: \"RespawnPoint\",\n          x: args.x,\n          y: args.y - 10,\n          checkpointId: args.id\n        } as { type: string; [key: string]: unknown });\n      }\n    });\n\n    registerPlatformerEnemyBlueprints(this.blueprints);\n\n    this.blueprints.register(\"moving_platform\", {",
-      "isNew": false,
-      "lines": 24,
-      "secondFile": {
-        "end": 253,
-        "endLoc": {
-          "column": 29,
-          "line": 253,
-          "position": 8818
-        },
-        "name": "platformer/PlatformerGame.ts",
-        "start": 229,
-        "startLoc": {
-          "column": 28,
-          "line": 229,
-          "position": 7966
-        }
-      },
-      "tokens": 168
-    },
-    {
-      "firstFile": {
-        "end": 432,
-        "endLoc": {
-          "column": 28,
-          "line": 432,
-          "position": 16127
-        },
-        "name": "echorunner/EchoRunnerGame.ts",
-        "start": 427,
-        "startLoc": {
-          "column": 82,
-          "line": 427,
-          "position": 15818
-        }
-      },
-      "format": "typescript",
-      "fragment": "    this.world.addSystem(new EchoRunnerAttackSystem(), { phase: SystemPhase.Input });\n\n    this.world.addSystem(new PlatformerMovementSystem(), { phase: SystemPhase.Simulation });\n    this.world.addSystem(new PlatformerGravitySystem(), { phase: SystemPhase.Simulation });\n    this.world.addSystem(new PlatformerCoyoteSystem(), { phase: SystemPhase.Simulation });\n    this.world.addSystem(new MovingPlatformSystem(), { phase: SystemPhase.Simulation });",
-      "isNew": false,
-      "lines": 6,
-      "secondFile": {
-        "end": 400,
-        "endLoc": {
-          "column": 28,
-          "line": 400,
-          "position": 15474
-        },
-        "name": "platformer/PlatformerGame.ts",
-        "start": 396,
-        "startLoc": {
-          "column": 89,
-          "line": 396,
-          "position": 15166
-        }
-      },
-      "tokens": 70
-    },
-    {
-      "firstFile": {
-        "end": 441,
-        "endLoc": {
-          "column": 28,
-          "line": 441,
-          "position": 17040
-        },
-        "name": "echorunner/EchoRunnerGame.ts",
-        "start": 434,
-        "startLoc": {
-          "column": 48,
-          "line": 434,
-          "position": 16394
-        }
-      },
-      "format": "typescript",
-      "fragment": "    this.world.addSystem(new PlatformCarrySystem(), { phase: SystemPhase.Simulation });\n    this.world.addSystem(new EnemySensorSystem(), { phase: SystemPhase.Simulation });\n    this.world.addSystem(new StateMachineSystem(), { phase: SystemPhase.Simulation });\n    this.world.addSystem(new CheckpointSystem(), { phase: SystemPhase.Simulation });\n    this.world.addSystem(new DeathSystem(), { phase: SystemPhase.Simulation });\n    this.world.addSystem(new RespawnSystem(), { phase: SystemPhase.Simulation });\n    // TODO(refactor): código duplicado detectado (bloque) con platformer/PlatformerGame.ts:393-397. Considerar extraer a función compartida. Ref: 14b9d33b\n    this.world.addSystem(new EchoRunnerDamageSystem(), { phase: SystemPhase.Simulation });",
-      "isNew": false,
-      "lines": 8,
-      "secondFile": {
-        "end": 405,
-        "endLoc": {
-          "column": 28,
-          "line": 405,
-          "position": 15894
-        },
-        "name": "platformer/PlatformerGame.ts",
-        "start": 399,
-        "startLoc": {
-          "column": 51,
-          "line": 399,
-          "position": 15406
-        }
-      },
-      "tokens": 119
-    },
-    {
-      "firstFile": {
-        "end": 448,
-        "endLoc": {
-          "column": 28,
-          "line": 448,
-          "position": 17569
-        },
-        "name": "echorunner/EchoRunnerGame.ts",
-        "start": 441,
-        "startLoc": {
-          "column": 51,
-          "line": 441,
-          "position": 17063
-        }
-      },
-      "format": "typescript",
-      "fragment": "    this.world.addSystem(new EchoRunnerDamageSystem(), { phase: SystemPhase.Simulation });\n\n    this.world.addSystem(new PhysicsIntegrateSystem(), { phase: SystemPhase.Simulation, priority: -10 });\n\n    this.world.addSystem(new TileCollisionSystem(), { phase: SystemPhase.Collision });\n    this.world.addSystem(new CollectibleSystem(), { phase: SystemPhase.Collision });\n    // TODO(refactor): código duplicado detectado (bloque) con platformer/PlatformerGame.ts:399-402. Considerar extraer a función compartida. Ref: d0f615e5\n    this.world.addSystem(new HitDetectionSystem(), { phase: SystemPhase.Collision });",
-      "isNew": false,
-      "lines": 8,
-      "secondFile": {
-        "end": 411,
-        "endLoc": {
-          "column": 28,
-          "line": 411,
-          "position": 16499
-        },
-        "name": "platformer/PlatformerGame.ts",
-        "start": 407,
-        "startLoc": {
-          "column": 38,
-          "line": 407,
-          "position": 16153
-        }
-      },
-      "tokens": 84
-    },
-    {
-      "firstFile": {
-        "end": 454,
-        "endLoc": {
-          "column": 28,
-          "line": 454,
-          "position": 18005
-        },
-        "name": "echorunner/EchoRunnerGame.ts",
-        "start": 448,
-        "startLoc": {
-          "column": 82,
-          "line": 448,
-          "position": 17623
-        }
-      },
-      "format": "typescript",
-      "fragment": "    this.world.addSystem(new HitDetectionSystem(), { phase: SystemPhase.Collision });\n\n    // Presentation Systems\n    this.world.addSystem(new Camera2DSystem(), { phase: SystemPhase.Presentation });\n    // TODO(refactor): código duplicado detectado (bloque) con pong/PongGame.ts:261-267. Considerar extraer a función compartida. Ref: 6ae02dab\n    this.world.addSystem(new TilemapRenderSystem(), { phase: SystemPhase.Presentation });\n    this.world.addSystem(new JuiceSystem(), { phase: SystemPhase.Presentation });",
-      "isNew": false,
-      "lines": 7,
-      "secondFile": {
-        "end": 417,
-        "endLoc": {
-          "column": 28,
-          "line": 417,
-          "position": 17095
-        },
-        "name": "platformer/PlatformerGame.ts",
-        "start": 414,
-        "startLoc": {
-          "column": 85,
-          "line": 414,
-          "position": 16888
-        }
-      },
-      "tokens": 50
-    },
-    {
-      "firstFile": {
-        "end": 458,
-        "endLoc": {
-          "column": 9,
-          "line": 458,
-          "position": 18246
-        },
-        "name": "echorunner/EchoRunnerGame.ts",
-        "start": 453,
-        "startLoc": {
-          "column": 86,
-          "line": 453,
-          "position": 17973
-        }
-      },
-      "format": "typescript",
-      "fragment": "    this.world.addSystem(new TilemapRenderSystem(), { phase: SystemPhase.Presentation });\n    this.world.addSystem(new JuiceSystem(), { phase: SystemPhase.Presentation });\n    this.world.addSystem(new ScreenShakeSystem(), { phase: SystemPhase.Presentation });\n    this.world.addSystem(new RenderUpdateSystem(), { phase: SystemPhase.Presentation });\n\n    await this.onPreloadAssets();",
-      "isNew": false,
-      "lines": 6,
-      "secondFile": {
-        "end": 269,
-        "endLoc": {
-          "column": 3,
-          "line": 269,
-          "position": 11544
-        },
-        "name": "pong/PongGame.ts",
-        "start": 263,
-        "startLoc": {
-          "column": 92,
-          "line": 263,
-          "position": 11248
-        }
-      },
-      "tokens": 63
-    },
-    {
-      "firstFile": {
-        "end": 530,
-        "endLoc": {
-          "column": 82,
-          "line": 530,
-          "position": 21021
-        },
-        "name": "echorunner/EchoRunnerGame.ts",
-        "start": 519,
-        "startLoc": {
-          "column": 63,
-          "line": 519,
-          "position": 20523
-        }
-      },
-      "format": "typescript",
-      "fragment": "        3: { solid: true, kind: \"bounce\" as const, bounce: 1.5 },\n        4: { solid: true, kind: \"spike\" as const },\n        5: { solid: true, oneWay: true, kind: \"normal\" as const }\n      };\n\n    const levelData = this.customLevelData ?? defaultLevelData;\n    const templates = levelData.templates as SegmentTemplate[];\n    const grammar = levelData.grammar as string[];\n\n    // Generate deterministic Plan using SegmentGenerator\n    const levelSeed = this.getSeed() || 41873;\n    this.levelPlan = SegmentGenerator.generatePlan(templates, grammar, levelSeed);",
-      "isNew": false,
-      "lines": 12,
-      "secondFile": {
-        "end": 446,
-        "endLoc": {
-          "column": 82,
-          "line": 446,
-          "position": 18500
-        },
-        "name": "platformer/PlatformerGame.ts",
-        "start": 437,
-        "startLoc": {
-          "column": 61,
-          "line": 437,
-          "position": 18067
-        }
-      },
-      "tokens": 92
-    },
-    {
-      "firstFile": {
-        "end": 564,
-        "endLoc": {
-          "column": 7,
-          "line": 564,
-          "position": 22236
-        },
-        "name": "echorunner/EchoRunnerGame.ts",
-        "start": 550,
-        "startLoc": {
-          "column": 4,
-          "line": 550,
-          "position": 21887
-        }
-      },
-      "format": "typescript",
-      "fragment": "    const cameraEntity = this.world.createEntity();\n    this.world.addComponent(cameraEntity, {\n      type: \"Camera2D\",\n      zoom: 1.0,\n      x: 0,\n      y: 0,\n      targetX: 0,\n      targetY: 0,\n      isMain: true,\n      followEntity: playerEntity,\n      lookAheadX: 80,\n      smoothingX: 6.0,\n      smoothingY: 6.0,\n      verticalDeadzone: 45\n    });",
-      "isNew": false,
-      "lines": 15,
-      "secondFile": {
-        "end": 473,
-        "endLoc": {
-          "column": 7,
-          "line": 473,
-          "position": 19515
-        },
-        "name": "platformer/PlatformerGame.ts",
-        "start": 459,
-        "startLoc": {
-          "column": 4,
-          "line": 459,
-          "position": 19166
-        }
-      },
-      "tokens": 70
     },
     {
       "firstFile": {
@@ -2999,6 +2370,80 @@
     },
     {
       "firstFile": {
+        "end": 83,
+        "endLoc": {
+          "column": 29,
+          "line": 83,
+          "position": 4839
+        },
+        "name": "flappybird/FlappyBirdGame.ts",
+        "start": 70,
+        "startLoc": {
+          "column": 47,
+          "line": 70,
+          "position": 4270
+        }
+      },
+      "format": "typescript",
+      "fragment": "    this.isMultiplayer = !!config.isMultiplayer;\n  }\n\n  protected override async onRegisterSystems(): Promise<void> {\n    this.config = resolveAndApplyMutators(this.baseConfig, this._config.gameOptions);\n    // TODO(refactor): código duplicado detectado (bloque) con pong/PongGame.ts:109-118. Considerar extraer a función compartida. Ref: 75010e56\n    this.world.setResource(\"GameConfig\", this.config);\n    this.setupCommonArcadeResources();\n    this._config.gameOptions = { ...this._config.gameOptions, ...this.config };\n\n    await this.onPreloadAssets();\n\n    // Register blueprints\n    this.blueprints.register(\"bird\", {",
+      "isNew": false,
+      "lines": 14,
+      "secondFile": {
+        "end": 117,
+        "endLoc": {
+          "column": 29,
+          "line": 117,
+          "position": 5024
+        },
+        "name": "pong/PongGame.ts",
+        "start": 103,
+        "startLoc": {
+          "column": 53,
+          "line": 103,
+          "position": 4444
+        }
+      },
+      "tokens": 83
+    },
+    {
+      "firstFile": {
+        "end": 78,
+        "endLoc": {
+          "column": 9,
+          "line": 78,
+          "position": 4676
+        },
+        "name": "flappybird/FlappyBirdGame.ts",
+        "start": 71,
+        "startLoc": {
+          "column": 2,
+          "line": 71,
+          "position": 4274
+        }
+      },
+      "format": "typescript",
+      "fragment": "  }\n\n  protected override async onRegisterSystems(): Promise<void> {\n    this.config = resolveAndApplyMutators(this.baseConfig, this._config.gameOptions);\n    // TODO(refactor): código duplicado detectado (bloque) con pong/PongGame.ts:109-118. Considerar extraer a función compartida. Ref: 75010e56\n    this.world.setResource(\"GameConfig\", this.config);\n    this.setupCommonArcadeResources();\n    this._config.gameOptions = { ...this._config.gameOptions, ...this.config };",
+      "isNew": false,
+      "lines": 8,
+      "secondFile": {
+        "end": 117,
+        "endLoc": {
+          "column": 9,
+          "line": 117,
+          "position": 6334
+        },
+        "name": "space-invaders/SpaceInvadersGame.ts",
+        "start": 109,
+        "startLoc": {
+          "column": 2,
+          "line": 109,
+          "position": 5922
+        }
+      },
+      "tokens": 51
+    },
+    {
+      "firstFile": {
         "end": 375,
         "endLoc": {
           "column": 93,
@@ -3055,18 +2500,18 @@
       "isNew": false,
       "lines": 7,
       "secondFile": {
-        "end": 784,
+        "end": 788,
         "endLoc": {
           "column": 55,
-          "line": 784,
-          "position": 31963
+          "line": 788,
+          "position": 32313
         },
         "name": "space-invaders/SpaceInvadersGame.ts",
-        "start": 778,
+        "start": 782,
         "startLoc": {
           "column": 113,
-          "line": 778,
-          "position": 31674
+          "line": 782,
+          "position": 32024
         }
       },
       "tokens": 60
@@ -3129,18 +2574,18 @@
       "isNew": false,
       "lines": 12,
       "secondFile": {
-        "end": 776,
+        "end": 780,
         "endLoc": {
           "column": 21,
-          "line": 776,
-          "position": 31360
+          "line": 780,
+          "position": 31710
         },
         "name": "space-invaders/SpaceInvadersGame.ts",
-        "start": 764,
+        "start": 768,
         "startLoc": {
           "column": 4,
-          "line": 764,
-          "position": 31047
+          "line": 768,
+          "position": 31397
         }
       },
       "tokens": 59
@@ -3240,36 +2685,110 @@
       "isNew": false,
       "lines": 16,
       "secondFile": {
-        "end": 871,
+        "end": 875,
         "endLoc": {
           "column": 8,
-          "line": 871,
-          "position": 36448
+          "line": 875,
+          "position": 36798
         },
         "name": "space-invaders/SpaceInvadersGame.ts",
-        "start": 848,
+        "start": 852,
         "startLoc": {
           "column": 83,
-          "line": 848,
-          "position": 35356
+          "line": 852,
+          "position": 35706
         }
       },
       "tokens": 67
     },
     {
       "firstFile": {
-        "end": 119,
+        "end": 45,
         "endLoc": {
-          "column": 1,
-          "line": 119,
-          "position": 3526
+          "column": 27,
+          "line": 45,
+          "position": 1250
+        },
+        "name": "flappybird/rendering/FlappyBirdBackgroundData.ts",
+        "start": 39,
+        "startLoc": {
+          "column": 48,
+          "line": 39,
+          "position": 1036
+        }
+      },
+      "format": "typescript",
+      "fragment": "  const megaIndex = Math.floor(tick / cycle) % 4;\n\n  if (megaProgress < 0.6) {\n    const megaX = width - (megaProgress / 0.6) * (width + 250);\n    const megaY = height * 0.35;\n    const beaconAlpha = 0.2 + 0.3 * Math.sin(tick * 0.05);\n    return { visible: true, megaIndex, megaX, megaY, beaconAlpha };",
+      "isNew": false,
+      "lines": 7,
+      "secondFile": {
+        "end": 90,
+        "endLoc": {
+          "column": 27,
+          "line": 90,
+          "position": 2626
+        },
+        "name": "shared/rendering/geometry.ts",
+        "start": 85,
+        "startLoc": {
+          "column": 45,
+          "line": 85,
+          "position": 2413
+        }
+      },
+      "tokens": 54
+    },
+    {
+      "firstFile": {
+        "end": 16,
+        "endLoc": {
+          "column": 36,
+          "line": 16,
+          "position": 579
         },
         "name": "flappybird/rendering/FlappyBirdCanvasVisuals.ts",
-        "start": 32,
+        "start": 1,
         "startLoc": {
           "column": 0,
-          "line": 32,
-          "position": 1460
+          "line": 1,
+          "position": 0
+        }
+      },
+      "format": "typescript",
+      "fragment": "import { ShapeDrawer, EffectDrawer, TransformComponent } from \"@tiny-aster/core\";\nimport { FLAPPY_CONFIG, FlappyBirdComponentRegistry } from \"../types/FlappyBirdTypes\";\nimport { computeFlappyThrusterFlame } from \"../../shared/rendering/ProceduralShapeUtils\";\nimport {\n  StarfieldStar,\n  generateStarfield,\n  calculateSquashAndStretch,\n  calculateFlappyPipeGeometry\n} from \"../../shared/rendering/geometry\";\nimport {\n  calculateWarpFactor,\n  calculateMegastructureData,\n  calculateGroundHazardFlicker,\n  BACKGROUND_NEBULAE,\n  MegastructureData\n} from \"./FlappyBirdBackgroundData\";",
+      "isNew": false,
+      "lines": 16,
+      "secondFile": {
+        "end": 16,
+        "endLoc": {
+          "column": 36,
+          "line": 16,
+          "position": 579
+        },
+        "name": "flappybird/rendering/FlappyBirdSkiaVisuals.ts",
+        "start": 1,
+        "startLoc": {
+          "column": 0,
+          "line": 1,
+          "position": 0
+        }
+      },
+      "tokens": 55
+    },
+    {
+      "firstFile": {
+        "end": 125,
+        "endLoc": {
+          "column": 1,
+          "line": 125,
+          "position": 3665
+        },
+        "name": "flappybird/rendering/FlappyBirdCanvasVisuals.ts",
+        "start": 38,
+        "startLoc": {
+          "column": 0,
+          "line": 38,
+          "position": 1599
         }
       },
       "format": "typescript",
@@ -3277,36 +2796,36 @@
       "isNew": false,
       "lines": 88,
       "secondFile": {
-        "end": 123,
+        "end": 129,
         "endLoc": {
           "column": 1,
-          "line": 123,
-          "position": 3287
+          "line": 129,
+          "position": 3426
         },
         "name": "flappybird/rendering/FlappyBirdSkiaVisuals.ts",
-        "start": 38,
+        "start": 44,
         "startLoc": {
           "column": 0,
-          "line": 38,
-          "position": 1563
+          "line": 44,
+          "position": 1702
         }
       },
       "tokens": 438
     },
     {
       "firstFile": {
-        "end": 89,
+        "end": 95,
         "endLoc": {
           "column": 8,
-          "line": 89,
-          "position": 2710
+          "line": 95,
+          "position": 2849
         },
         "name": "flappybird/rendering/FlappyBirdCanvasVisuals.ts",
-        "start": 80,
+        "start": 86,
         "startLoc": {
           "column": 19,
-          "line": 80,
-          "position": 2541
+          "line": 86,
+          "position": 2680
         }
       },
       "format": "typescript",
@@ -3332,18 +2851,18 @@
     },
     {
       "firstFile": {
-        "end": 109,
+        "end": 115,
         "endLoc": {
           "column": 8,
-          "line": 109,
-          "position": 3307
+          "line": 115,
+          "position": 3446
         },
         "name": "flappybird/rendering/FlappyBirdCanvasVisuals.ts",
-        "start": 98,
+        "start": 104,
         "startLoc": {
           "column": 2,
-          "line": 98,
-          "position": 2878
+          "line": 104,
+          "position": 3017
         }
       },
       "format": "typescript",
@@ -3369,18 +2888,55 @@
     },
     {
       "firstFile": {
-        "end": 207,
+        "end": 115,
         "endLoc": {
-          "column": 56,
-          "line": 207,
-          "position": 6346
+          "column": 8,
+          "line": 115,
+          "position": 3446
         },
         "name": "flappybird/rendering/FlappyBirdCanvasVisuals.ts",
-        "start": 198,
+        "start": 106,
+        "startLoc": {
+          "column": 27,
+          "line": 106,
+          "position": 3268
+        }
+      },
+      "format": "typescript",
+      "fragment": "    const p = PARTICLE_POOL[i];\n    if (p.active) {\n      p.life -= dt;\n      if (p.life <= 0) {\n        p.active = false;\n        continue;\n      }\n      p.x += p.vx * dt;\n      p.y += p.vy * dt;\n      p.angle += p.angularVelocity * dt;",
+      "isNew": false,
+      "lines": 10,
+      "secondFile": {
+        "end": 91,
+        "endLoc": {
+          "column": 8,
+          "line": 91,
+          "position": 2679
+        },
+        "name": "space-invaders/systems/ComboHUDRenderSystem.ts",
+        "start": 82,
+        "startLoc": {
+          "column": 33,
+          "line": 82,
+          "position": 2501
+        }
+      },
+      "tokens": 57
+    },
+    {
+      "firstFile": {
+        "end": 213,
+        "endLoc": {
+          "column": 56,
+          "line": 213,
+          "position": 6485
+        },
+        "name": "flappybird/rendering/FlappyBirdCanvasVisuals.ts",
+        "start": 204,
         "startLoc": {
           "column": 4,
-          "line": 198,
-          "position": 5818
+          "line": 204,
+          "position": 5957
         }
       },
       "format": "typescript",
@@ -3388,73 +2944,147 @@
       "isNew": false,
       "lines": 10,
       "secondFile": {
-        "end": 241,
+        "end": 247,
         "endLoc": {
           "column": 56,
-          "line": 241,
-          "position": 7219
+          "line": 247,
+          "position": 7358
         },
         "name": "flappybird/rendering/FlappyBirdSkiaVisuals.ts",
-        "start": 233,
+        "start": 239,
         "startLoc": {
           "column": 4,
-          "line": 233,
-          "position": 6866
+          "line": 239,
+          "position": 7005
         }
       },
       "tokens": 76
     },
     {
       "firstFile": {
-        "end": 226,
+        "end": 232,
         "endLoc": {
           "column": 11,
-          "line": 226,
-          "position": 6920
+          "line": 232,
+          "position": 7079
         },
         "name": "flappybird/rendering/FlappyBirdCanvasVisuals.ts",
-        "start": 207,
+        "start": 213,
         "startLoc": {
           "column": 55,
-          "line": 207,
-          "position": 6345
+          "line": 213,
+          "position": 6484
         }
       },
       "format": "typescript",
-      "fragment": "    const health = world.getComponent(entity, \"Health\");\n\n    let state = shipStates.get(entity);\n    if (!state) {\n      state = {\n        lastVy: 0,\n        lastIsAlive: birdComp.isAlive,\n        lastNearMissTimer: birdComp.nearMissTimer,\n      };\n      shipStates.set(entity, state);\n    }\n\n    const vy = birdComp.velocityY;\n    const isAlive = birdComp.isAlive;\n\n    // --- TRIGGER SPARKS ON BOOST THRUST ---\n    const flapStrength = FLAPPY_CONFIG.FLAP_STRENGTH;\n    const hasFlapped = (vy < -150 && state.lastVy >= -150) || (vy === flapStrength && state.lastVy !== flapStrength);\n    if (hasFlapped && isAlive) {\n      const transformPos = world.getComponent(entity, \"Transform\") as TransformComponent;",
+      "fragment": "    const health = world.getComponent(entity, \"Health\");\n\n    let state = shipStates.get(entity);\n    if (!state) {\n      state = {\n        lastVy: 0,\n        lastIsAlive: birdComp.isAlive,\n        lastNearMissTimer: birdComp.nearMissTimer,\n      };\n      shipStates.set(entity, state);\n    }\n\n    const vy = birdComp.velocityY;\n    const isAlive = birdComp.isAlive;\n\n    // --- TRIGGER NEAR-MISS CYAN SPARKS ---\n    const hasNearMissTriggered = birdComp.nearMissTimer > 0 && state.lastNearMissTimer <= 0;\n    if (hasNearMissTriggered && isAlive) {\n      const transformPos = world.getComponent(entity, \"Transform\") as TransformComponent;\n      const x = transformPos.worldX ?? transformPos.x;",
       "isNew": false,
       "lines": 20,
       "secondFile": {
-        "end": 264,
+        "end": 269,
         "endLoc": {
           "column": 11,
-          "line": 264,
-          "position": 8243
+          "line": 269,
+          "position": 8223
         },
         "name": "flappybird/rendering/FlappyBirdSkiaVisuals.ts",
-        "start": 244,
+        "start": 250,
         "startLoc": {
           "column": 45,
-          "line": 244,
-          "position": 7489
+          "line": 250,
+          "position": 7628
         }
       },
-      "tokens": 106
+      "tokens": 99
     },
     {
       "firstFile": {
-        "end": 246,
+        "end": 242,
         "endLoc": {
-          "column": 11,
-          "line": 246,
-          "position": 8093
+          "column": 36,
+          "line": 242,
+          "position": 7680
         },
         "name": "flappybird/rendering/FlappyBirdCanvasVisuals.ts",
-        "start": 230,
+        "start": 233,
+        "startLoc": {
+          "column": 52,
+          "line": 233,
+          "position": 7175
+        }
+      },
+      "format": "typescript",
+      "fragment": "      const y = transformPos.worldY ?? transformPos.y;\n      const nmSparkCount = world.renderRandom.nextInt(5, 9);\n      for (let i = 0; i < nmSparkCount; i++) {\n        const angleVal = world.renderRandom.next() * Math.PI * 2;\n        const speedVal = world.renderRandom.nextRange(60, 120);\n        const pVx = Math.cos(angleVal) * speedVal;\n        const pVy = Math.sin(angleVal) * speedVal;\n        const lifeVal = world.renderRandom.nextRange(0.25, 0.45);\n        const sizeVal = world.renderRandom.nextRange(2, 4);\n        spawnVisualParticle(\"spark\", x, y, pVx, pVy, lifeVal, sizeVal, \"#00F3FF\", angleVal);",
+      "isNew": false,
+      "lines": 10,
+      "secondFile": {
+        "end": 279,
+        "endLoc": {
+          "column": 36,
+          "line": 279,
+          "position": 8836
+        },
+        "name": "flappybird/rendering/FlappyBirdSkiaVisuals.ts",
+        "start": 270,
+        "startLoc": {
+          "column": 58,
+          "line": 270,
+          "position": 8331
+        }
+      },
+      "tokens": 118
+    },
+    {
+      "firstFile": {
+        "end": 250,
+        "endLoc": {
+          "column": 11,
+          "line": 250,
+          "position": 8014
+        },
+        "name": "flappybird/rendering/FlappyBirdCanvasVisuals.ts",
+        "start": 242,
+        "startLoc": {
+          "column": 41,
+          "line": 242,
+          "position": 7685
+        }
+      },
+      "format": "typescript",
+      "fragment": "        spawnVisualParticle(\"spark\", x, y, pVx, pVy, lifeVal, sizeVal, \"#00F3FF\", angleVal);\n      }\n    }\n\n    // --- TRIGGER SPARKS ON BOOST THRUST ---\n    const flapStrength = FLAPPY_CONFIG.FLAP_STRENGTH;\n    const hasFlapped = (vy < -150 && state.lastVy >= -150) || (vy === flapStrength && state.lastVy !== flapStrength);\n    if (hasFlapped && isAlive) {\n      const transformPos = world.getComponent(entity, \"Transform\") as TransformComponent;",
+      "isNew": false,
+      "lines": 9,
+      "secondFile": {
+        "end": 288,
+        "endLoc": {
+          "column": 11,
+          "line": 288,
+          "position": 9351
+        },
+        "name": "flappybird/rendering/FlappyBirdSkiaVisuals.ts",
+        "start": 279,
+        "startLoc": {
+          "column": 43,
+          "line": 279,
+          "position": 8843
+        }
+      },
+      "tokens": 60
+    },
+    {
+      "firstFile": {
+        "end": 270,
+        "endLoc": {
+          "column": 11,
+          "line": 270,
+          "position": 9187
+        },
+        "name": "flappybird/rendering/FlappyBirdCanvasVisuals.ts",
+        "start": 254,
         "startLoc": {
           "column": 6,
-          "line": 230,
-          "position": 7292
+          "line": 254,
+          "position": 8386
         }
       },
       "format": "typescript",
@@ -3462,36 +3092,36 @@
       "isNew": false,
       "lines": 17,
       "secondFile": {
-        "end": 281,
+        "end": 305,
         "endLoc": {
           "column": 11,
-          "line": 281,
-          "position": 9218
+          "line": 305,
+          "position": 10326
         },
         "name": "flappybird/rendering/FlappyBirdSkiaVisuals.ts",
-        "start": 264,
+        "start": 288,
         "startLoc": {
           "column": 6,
-          "line": 264,
-          "position": 8238
+          "line": 288,
+          "position": 9346
         }
       },
       "tokens": 179
     },
     {
       "firstFile": {
-        "end": 277,
+        "end": 301,
         "endLoc": {
           "column": 10,
-          "line": 277,
-          "position": 9767
+          "line": 301,
+          "position": 10861
         },
         "name": "flappybird/rendering/FlappyBirdCanvasVisuals.ts",
-        "start": 250,
+        "start": 274,
         "startLoc": {
           "column": 6,
-          "line": 250,
-          "position": 8465
+          "line": 274,
+          "position": 9559
         }
       },
       "format": "typescript",
@@ -3499,36 +3129,36 @@
       "isNew": false,
       "lines": 28,
       "secondFile": {
-        "end": 308,
+        "end": 332,
         "endLoc": {
           "column": 10,
-          "line": 308,
-          "position": 10515
+          "line": 332,
+          "position": 11623
         },
         "name": "flappybird/rendering/FlappyBirdSkiaVisuals.ts",
-        "start": 281,
+        "start": 305,
         "startLoc": {
           "column": 6,
-          "line": 281,
-          "position": 9213
+          "line": 305,
+          "position": 10321
         }
       },
       "tokens": 309
     },
     {
       "firstFile": {
-        "end": 464,
+        "end": 488,
         "endLoc": {
           "column": 9,
-          "line": 464,
-          "position": 16451
+          "line": 488,
+          "position": 17545
         },
         "name": "flappybird/rendering/FlappyBirdCanvasVisuals.ts",
-        "start": 445,
+        "start": 469,
         "startLoc": {
           "column": 4,
-          "line": 445,
-          "position": 15896
+          "line": 469,
+          "position": 16990
         }
       },
       "format": "typescript",
@@ -3536,73 +3166,184 @@
       "isNew": false,
       "lines": 20,
       "secondFile": {
-        "end": 446,
+        "end": 470,
         "endLoc": {
           "column": 9,
-          "line": 446,
-          "position": 15488
+          "line": 470,
+          "position": 16596
         },
         "name": "flappybird/rendering/FlappyBirdSkiaVisuals.ts",
-        "start": 428,
+        "start": 452,
         "startLoc": {
           "column": 4,
-          "line": 428,
-          "position": 14979
+          "line": 452,
+          "position": 16087
         }
       },
       "tokens": 107
     },
     {
       "firstFile": {
-        "end": 664,
+        "end": 774,
         "endLoc": {
-          "column": 5,
-          "line": 664,
-          "position": 23520
+          "column": 11,
+          "line": 774,
+          "position": 27767
         },
         "name": "flappybird/rendering/FlappyBirdCanvasVisuals.ts",
-        "start": 654,
+        "start": 767,
         "startLoc": {
           "column": 36,
-          "line": 654,
-          "position": 23172
+          "line": 767,
+          "position": 27437
         }
       },
       "format": "typescript",
-      "fragment": "    ctx.fillRect(0, 0, width, height);\n\n    // Hypervelocity combo factor calculation\n    let warpFactor = 1.0;\n    const comboEntities = world.query(\"Combo\");\n    if (comboEntities.length > 0) {\n      const combo = world.getComponent(comboEntities[0], \"Combo\") as any;\n      if (combo && combo.multiplier > 1) {\n        warpFactor = 1.0 + (combo.multiplier - 1) * 0.35;\n      }\n    }",
+      "fragment": "    ctx.fillRect(0, 0, width, height);\n\n    // --- ANIMATED LOW-OPACITY RADIAL NEBULAE CLOUDS ---\n    for (let n = 0; n < BACKGROUND_NEBULAE.length; n++) {\n      const neb = BACKGROUND_NEBULAE[n];\n      const nx = width * neb.xRatio + Math.sin(world.tick * 0.01 + n) * 15;\n      const ny = height * neb.yRatio + Math.cos(world.tick * 0.008 + n * 2) * 10;\n      const nebGrad = getCachedCanvasGradient(ctx, `neb_${n}_${width}_${height}`, () => {",
       "isNew": false,
-      "lines": 11,
+      "lines": 8,
       "secondFile": {
-        "end": 610,
+        "end": 730,
         "endLoc": {
-          "column": 5,
-          "line": 610,
-          "position": 21661
+          "column": 11,
+          "line": 730,
+          "position": 26253
         },
         "name": "flappybird/rendering/FlappyBirdSkiaVisuals.ts",
-        "start": 600,
+        "start": 723,
         "startLoc": {
           "column": 61,
-          "line": 600,
-          "position": 21313
+          "line": 723,
+          "position": 25923
         }
       },
-      "tokens": 70
+      "tokens": 78
     },
     {
       "firstFile": {
-        "end": 474,
+        "end": 808,
         "endLoc": {
-          "column": 35,
-          "line": 474,
-          "position": 16524
+          "column": 5,
+          "line": 808,
+          "position": 29288
+        },
+        "name": "flappybird/rendering/FlappyBirdCanvasVisuals.ts",
+        "start": 786,
+        "startLoc": {
+          "column": 4,
+          "line": 786,
+          "position": 28226
+        }
+      },
+      "format": "typescript",
+      "fragment": "    }\n\n    // --- SPORADIC DISTANT BACKGROUND DEBRIS / SPARKS ---\n    // Deterministically spawn faint distant sparks/shards approx every 4-8 seconds (240-480 ticks)\n    if (world.tick % 300 === 0 && world.renderRandom.next() > 0.3) {\n      const dx = world.renderRandom.nextRange(20, width - 20);\n      const dy = world.renderRandom.nextRange(40, height * 0.7);\n      const angle = world.renderRandom.next() * Math.PI * 2;\n      const speed = world.renderRandom.nextRange(15, 35);\n      const vx = Math.cos(angle) * speed;\n      const vy = Math.sin(angle) * speed;\n      spawnVisualParticle(\"star\", dx, dy, vx, vy, world.renderRandom.nextRange(1.0, 2.0), world.renderRandom.nextRange(1.5, 3.0), \"#5A6173\", angle);\n    }\n\n    // Hypervelocity combo factor calculation\n    let warpFactor = 1.0;\n    const comboEntities = world.query(\"Combo\");\n    if (comboEntities.length > 0) {\n      const combo = world.getComponent(comboEntities[0], \"Combo\") as any;\n      if (combo && combo.multiplier > 1) {\n        warpFactor = 1.0 + (combo.multiplier - 1) * 0.35;\n      }\n    }",
+      "isNew": false,
+      "lines": 23,
+      "secondFile": {
+        "end": 770,
+        "endLoc": {
+          "column": 5,
+          "line": 770,
+          "position": 27930
         },
         "name": "flappybird/rendering/FlappyBirdSkiaVisuals.ts",
-        "start": 468,
+        "start": 748,
+        "startLoc": {
+          "column": 4,
+          "line": 748,
+          "position": 26868
+        }
+      },
+      "tokens": 217
+    },
+    {
+      "firstFile": {
+        "end": 850,
+        "endLoc": {
+          "column": 64,
+          "line": 850,
+          "position": 30959
+        },
+        "name": "flappybird/rendering/FlappyBirdCanvasVisuals.ts",
+        "start": 839,
+        "startLoc": {
+          "column": 4,
+          "line": 839,
+          "position": 30375
+        }
+      },
+      "format": "typescript",
+      "fragment": "    }\n\n    // --- AD-HOC RADIAL WARP SPEED LINES (WARPFACTOR > 1.5) ---\n    // Opting for an ad-hoc local implementation instead of registering global SharedVFX\n    // to preserve zero side-effects on shared VFX state across other minigames (e.g. Geometry Wars)\n    // while pinning radial speed lines strictly to Flappy Bird's viewport center and combo factor.\n    if (warpFactor > 1.5) {\n      const cx = width / 2;\n      const cy = height / 2;\n      const lineCount = 20;\n      const maxR = Math.sqrt(cx * cx + cy * cy);\n      const intensity = Math.min((warpFactor - 1.5) / 1.5, 1.0);",
+      "isNew": false,
+      "lines": 12,
+      "secondFile": {
+        "end": 809,
+        "endLoc": {
+          "column": 64,
+          "line": 809,
+          "position": 29547
+        },
+        "name": "flappybird/rendering/FlappyBirdSkiaVisuals.ts",
+        "start": 798,
+        "startLoc": {
+          "column": 4,
+          "line": 798,
+          "position": 28963
+        }
+      },
+      "tokens": 61
+    },
+    {
+      "firstFile": {
+        "end": 859,
+        "endLoc": {
+          "column": 48,
+          "line": 859,
+          "position": 31316
+        },
+        "name": "flappybird/rendering/FlappyBirdCanvasVisuals.ts",
+        "start": 854,
+        "startLoc": {
+          "column": 25,
+          "line": 854,
+          "position": 31088
+        }
+      },
+      "format": "typescript",
+      "fragment": "      ctx.lineWidth = 1.2;\n\n      for (let l = 0; l < lineCount; l++) {\n        const angle = (l / lineCount) * Math.PI * 2 + (tick * 0.02);\n        const innerR = 40 + (l * 17 + tick * 8) % (maxR * 0.5);\n        const outerR = innerR + 40 * warpFactor;",
+      "isNew": false,
+      "lines": 6,
+      "secondFile": {
+        "end": 821,
+        "endLoc": {
+          "column": 48,
+          "line": 821,
+          "position": 29982
+        },
+        "name": "flappybird/rendering/FlappyBirdSkiaVisuals.ts",
+        "start": 816,
+        "startLoc": {
+          "column": 31,
+          "line": 816,
+          "position": 29754
+        }
+      },
+      "tokens": 67
+    },
+    {
+      "firstFile": {
+        "end": 498,
+        "endLoc": {
+          "column": 35,
+          "line": 498,
+          "position": 17632
+        },
+        "name": "flappybird/rendering/FlappyBirdSkiaVisuals.ts",
+        "start": 492,
         "startLoc": {
           "column": 70,
-          "line": 468,
-          "position": 16340
+          "line": 492,
+          "position": 17448
         }
       },
       "format": "typescript",
@@ -3610,36 +3351,36 @@
       "isNew": false,
       "lines": 7,
       "secondFile": {
-        "end": 507,
+        "end": 531,
         "endLoc": {
           "column": 35,
-          "line": 507,
-          "position": 17737
+          "line": 531,
+          "position": 18845
         },
         "name": "flappybird/rendering/FlappyBirdSkiaVisuals.ts",
-        "start": 501,
+        "start": 525,
         "startLoc": {
           "column": 80,
-          "line": 501,
-          "position": 17553
+          "line": 525,
+          "position": 18661
         }
       },
       "tokens": 50
     },
     {
       "firstFile": {
-        "end": 244,
+        "end": 230,
         "endLoc": {
           "column": 83,
-          "line": 244,
-          "position": 9257
+          "line": 230,
+          "position": 8796
         },
         "name": "flappybird/systems/FlappyBirdCollisionSystem.ts",
-        "start": 238,
+        "start": 224,
         "startLoc": {
           "column": 44,
-          "line": 238,
-          "position": 9057
+          "line": 224,
+          "position": 8596
         }
       },
       "format": "typescript",
@@ -3647,58 +3388,21 @@
       "isNew": false,
       "lines": 7,
       "secondFile": {
-        "end": 461,
+        "end": 485,
         "endLoc": {
           "column": 83,
-          "line": 461,
-          "position": 17588
+          "line": 485,
+          "position": 18450
         },
         "name": "space-invaders/systems/SpaceInvadersCollisionSystem.ts",
-        "start": 454,
+        "start": 478,
         "startLoc": {
           "column": 47,
-          "line": 454,
-          "position": 17213
+          "line": 478,
+          "position": 18075
         }
       },
       "tokens": 51
-    },
-    {
-      "firstFile": {
-        "end": 52,
-        "endLoc": {
-          "column": 16,
-          "line": 52,
-          "position": 1463
-        },
-        "name": "geometrywars/EntityPool.ts",
-        "start": 28,
-        "startLoc": {
-          "column": 10,
-          "line": 28,
-          "position": 910
-        }
-      },
-      "format": "typescript",
-      "fragment": "    super({\n      factory: () => ({\n        position: {\n          type: \"Transform\",\n          x: 0,\n          y: 0,\n          rotation: 0,\n          scaleX: 1,\n          scaleY: 1,\n          worldX: 0,\n          worldY: 0,\n          worldRotation: 0,\n          worldScaleX: 1,\n          worldScaleY: 1,\n          dirty: false\n        } as TransformComponent,\n        velocity: {\n          type: \"Velocity\",\n          vx: 0,\n          vy: 0,\n          angularVelocity: 0\n        } as VelocityComponent,\n        render: {\n          type: \"Render\",\n          shape: \"gw_bullet\",",
-      "isNew": false,
-      "lines": 25,
-      "secondFile": {
-        "end": 25,
-        "endLoc": {
-          "column": 38,
-          "line": 25,
-          "position": 1358
-        },
-        "name": "space-invaders/EntityPool.ts",
-        "start": 21,
-        "startLoc": {
-          "column": 9,
-          "line": 21,
-          "position": 1009
-        }
-      },
-      "tokens": 93
     },
     {
       "firstFile": {
@@ -3721,18 +3425,18 @@
       "isNew": false,
       "lines": 9,
       "secondFile": {
-        "end": 70,
+        "end": 71,
         "endLoc": {
           "column": 18,
-          "line": 70,
-          "position": 3808
+          "line": 71,
+          "position": 3966
         },
         "name": "space-invaders/EntityPool.ts",
-        "start": 64,
+        "start": 65,
         "startLoc": {
           "column": 32,
-          "line": 64,
-          "position": 3624
+          "line": 65,
+          "position": 3782
         }
       },
       "tokens": 53
@@ -3832,18 +3536,18 @@
       "isNew": false,
       "lines": 7,
       "secondFile": {
-        "end": 837,
+        "end": 841,
         "endLoc": {
           "column": 55,
-          "line": 837,
-          "position": 34593
+          "line": 841,
+          "position": 34943
         },
         "name": "space-invaders/SpaceInvadersGame.ts",
-        "start": 831,
+        "start": 835,
         "startLoc": {
           "column": 94,
-          "line": 831,
-          "position": 34318
+          "line": 835,
+          "position": 34668
         }
       },
       "tokens": 60
@@ -5145,80 +4849,6 @@
     },
     {
       "firstFile": {
-        "end": 204,
-        "endLoc": {
-          "column": 15,
-          "line": 204,
-          "position": 7103
-        },
-        "name": "platformer/PlatformerGame.ts",
-        "start": 191,
-        "startLoc": {
-          "column": 51,
-          "line": 191,
-          "position": 6558
-        }
-      },
-      "format": "typescript",
-      "fragment": "    this.blueprints.register(\"collectible_fragment\", {\n      spawn: (world, entity, args: { x: number; y: number; id: string }) => {\n        // TODO(refactor): código duplicado detectado (bloque) con echorunner/EchoRunnerGame.ts:324-339. Considerar extraer a función compartida. Ref: fbd854ae\n        ArcadeEntityBuilder.fromEntity(world, entity)\n          .withTransform({ x: args.x, y: args.y })\n          .withRender({\n            shape: \"fragment\",\n            size: 16,\n            order: 1\n          });\n\n        world.addComponent(entity, {\n          type: \"Collectible\",\n          kind: \"fragment\",",
-      "isNew": false,
-      "lines": 14,
-      "secondFile": {
-        "end": 226,
-        "endLoc": {
-          "column": 15,
-          "line": 226,
-          "position": 7879
-        },
-        "name": "platformer/PlatformerGame.ts",
-        "start": 214,
-        "startLoc": {
-          "column": 47,
-          "line": 214,
-          "position": 7496
-        }
-      },
-      "tokens": 83
-    },
-    {
-      "firstFile": {
-        "end": 262,
-        "endLoc": {
-          "column": 23,
-          "line": 262,
-          "position": 9207
-        },
-        "name": "platformer/PlatformerGame.ts",
-        "start": 253,
-        "startLoc": {
-          "column": 50,
-          "line": 253,
-          "position": 8839
-        }
-      },
-      "format": "typescript",
-      "fragment": "    this.blueprints.register(\"powerup_double_jump\", {\n      spawn: (world, entity, args: { x: number; y: number }) => {\n        ArcadeEntityBuilder.fromEntity(world, entity)\n          .withTransform({ x: args.x, y: args.y })\n          .withCollider2D({\n            shape: { type: \"aabb\", halfWidth: 12, halfHeight: 12 },\n            isTrigger: true\n          })\n          .withCollisionEvents()\n          .withPowerUp(\"double_jump\")",
-      "isNew": false,
-      "lines": 10,
-      "secondFile": {
-        "end": 281,
-        "endLoc": {
-          "column": 23,
-          "line": 281,
-          "position": 9920
-        },
-        "name": "platformer/PlatformerGame.ts",
-        "start": 272,
-        "startLoc": {
-          "column": 43,
-          "line": 272,
-          "position": 9552
-        }
-      },
-      "tokens": 80
-    },
-    {
-      "firstFile": {
         "end": 33,
         "endLoc": {
           "column": 55,
@@ -6403,18 +6033,18 @@
     },
     {
       "firstFile": {
-        "end": 108,
+        "end": 109,
         "endLoc": {
           "column": 12,
-          "line": 108,
-          "position": 5093
+          "line": 109,
+          "position": 5251
         },
         "name": "space-invaders/EntityPool.ts",
-        "start": 96,
+        "start": 97,
         "startLoc": {
           "column": 4,
-          "line": 96,
-          "position": 4635
+          "line": 97,
+          "position": 4793
         }
       },
       "format": "typescript",
@@ -6422,18 +6052,18 @@
       "isNew": false,
       "lines": 13,
       "secondFile": {
-        "end": 129,
+        "end": 130,
         "endLoc": {
           "column": 12,
-          "line": 129,
-          "position": 5765
+          "line": 130,
+          "position": 5923
         },
         "name": "space-invaders/EntityPool.ts",
-        "start": 118,
+        "start": 119,
         "startLoc": {
           "column": 4,
-          "line": 118,
-          "position": 5468
+          "line": 119,
+          "position": 5626
         }
       },
       "tokens": 71
@@ -6477,18 +6107,55 @@
     },
     {
       "firstFile": {
-        "end": 140,
+        "end": 88,
         "endLoc": {
-          "column": 47,
-          "line": 140,
-          "position": 4970
+          "column": 23,
+          "line": 88,
+          "position": 2688
         },
         "name": "space-invaders/rendering/SpaceInvadersCanvasVisuals.ts",
-        "start": 133,
+        "start": 83,
+        "startLoc": {
+          "column": 28,
+          "line": 83,
+          "position": 2479
+        }
+      },
+      "format": "typescript",
+      "fragment": "  let i = 0; i < debrisCount; i++) {\n    for (let j = 0; j < EXPLOSION_PARTICLE_POOL.length; j++) {\n      const p = EXPLOSION_PARTICLE_POOL[j];\n      if (!p.active) {\n        const angle = nextRnd() * Math.PI * 2;\n        const speed = (60 + nextRnd() * 180) * intensityMultiplier;",
+      "isNew": false,
+      "lines": 6,
+      "secondFile": {
+        "end": 111,
+        "endLoc": {
+          "column": 23,
+          "line": 111,
+          "position": 3507
+        },
+        "name": "space-invaders/rendering/SpaceInvadersCanvasVisuals.ts",
+        "start": 106,
+        "startLoc": {
+          "column": 32,
+          "line": 106,
+          "position": 3298
+        }
+      },
+      "tokens": 55
+    },
+    {
+      "firstFile": {
+        "end": 337,
+        "endLoc": {
+          "column": 47,
+          "line": 337,
+          "position": 10636
+        },
+        "name": "space-invaders/rendering/SpaceInvadersCanvasVisuals.ts",
+        "start": 330,
         "startLoc": {
           "column": 7,
-          "line": 133,
-          "position": 4541
+          "line": 330,
+          "position": 10207
         }
       },
       "format": "typescript",
@@ -6514,18 +6181,18 @@
     },
     {
       "firstFile": {
-        "end": 199,
+        "end": 396,
         "endLoc": {
           "column": 49,
-          "line": 199,
-          "position": 6823
+          "line": 396,
+          "position": 12489
         },
         "name": "space-invaders/rendering/SpaceInvadersCanvasVisuals.ts",
-        "start": 184,
+        "start": 381,
         "startLoc": {
           "column": 32,
-          "line": 184,
-          "position": 6309
+          "line": 381,
+          "position": 11975
         }
       },
       "format": "typescript",
@@ -6551,18 +6218,18 @@
     },
     {
       "firstFile": {
-        "end": 288,
+        "end": 486,
         "endLoc": {
           "column": 5,
-          "line": 288,
-          "position": 9749
+          "line": 486,
+          "position": 15597
         },
         "name": "space-invaders/rendering/SpaceInvadersCanvasVisuals.ts",
-        "start": 262,
+        "start": 460,
         "startLoc": {
           "column": 31,
-          "line": 262,
-          "position": 8841
+          "line": 460,
+          "position": 14689
         }
       },
       "format": "typescript",
@@ -6570,36 +6237,36 @@
       "isNew": false,
       "lines": 27,
       "secondFile": {
-        "end": 293,
+        "end": 294,
         "endLoc": {
           "column": 5,
-          "line": 293,
-          "position": 11915
+          "line": 294,
+          "position": 12099
         },
         "name": "space-invaders/rendering/SpaceInvadersSkiaVisuals.ts",
-        "start": 270,
+        "start": 271,
         "startLoc": {
           "column": 33,
-          "line": 270,
-          "position": 11159
+          "line": 271,
+          "position": 11343
         }
       },
       "tokens": 160
     },
     {
       "firstFile": {
-        "end": 347,
+        "end": 545,
         "endLoc": {
           "column": 49,
-          "line": 347,
-          "position": 12312
+          "line": 545,
+          "position": 18160
         },
         "name": "space-invaders/rendering/SpaceInvadersCanvasVisuals.ts",
-        "start": 336,
+        "start": 534,
         "startLoc": {
           "column": 32,
-          "line": 336,
-          "position": 11873
+          "line": 534,
+          "position": 17721
         }
       },
       "format": "typescript",
@@ -6607,36 +6274,36 @@
       "isNew": false,
       "lines": 12,
       "secondFile": {
-        "end": 349,
+        "end": 350,
         "endLoc": {
           "column": 49,
-          "line": 349,
-          "position": 14193
+          "line": 350,
+          "position": 14377
         },
         "name": "space-invaders/rendering/SpaceInvadersSkiaVisuals.ts",
-        "start": 339,
+        "start": 340,
         "startLoc": {
           "column": 34,
-          "line": 339,
-          "position": 13755
+          "line": 340,
+          "position": 13939
         }
       },
       "tokens": 95
     },
     {
       "firstFile": {
-        "end": 514,
+        "end": 712,
         "endLoc": {
           "column": 23,
-          "line": 514,
-          "position": 17655
+          "line": 712,
+          "position": 23503
         },
         "name": "space-invaders/rendering/SpaceInvadersCanvasVisuals.ts",
-        "start": 503,
+        "start": 701,
         "startLoc": {
           "column": 48,
-          "line": 503,
-          "position": 17320
+          "line": 701,
+          "position": 23168
         }
       },
       "format": "typescript",
@@ -6644,36 +6311,36 @@
       "isNew": false,
       "lines": 12,
       "secondFile": {
-        "end": 511,
+        "end": 512,
         "endLoc": {
           "column": 23,
-          "line": 511,
-          "position": 19728
+          "line": 512,
+          "position": 19912
         },
         "name": "space-invaders/rendering/SpaceInvadersSkiaVisuals.ts",
-        "start": 500,
+        "start": 501,
         "startLoc": {
           "column": 49,
-          "line": 500,
-          "position": 19393
+          "line": 501,
+          "position": 19577
         }
       },
       "tokens": 68
     },
     {
       "firstFile": {
-        "end": 529,
+        "end": 727,
         "endLoc": {
           "column": 63,
-          "line": 529,
-          "position": 18333
+          "line": 727,
+          "position": 24181
         },
         "name": "space-invaders/rendering/SpaceInvadersCanvasVisuals.ts",
-        "start": 516,
+        "start": 714,
         "startLoc": {
           "column": 25,
-          "line": 516,
-          "position": 17870
+          "line": 714,
+          "position": 23718
         }
       },
       "format": "typescript",
@@ -6681,18 +6348,18 @@
       "isNew": false,
       "lines": 14,
       "secondFile": {
-        "end": 525,
+        "end": 526,
         "endLoc": {
           "column": 63,
-          "line": 525,
-          "position": 20392
+          "line": 526,
+          "position": 20576
         },
         "name": "space-invaders/rendering/SpaceInvadersSkiaVisuals.ts",
-        "start": 513,
+        "start": 514,
         "startLoc": {
           "column": 57,
-          "line": 513,
-          "position": 19980
+          "line": 514,
+          "position": 20164
         }
       },
       "tokens": 74
@@ -6755,11 +6422,11 @@
       "isNew": false,
       "lines": 7,
       "secondFile": {
-        "end": 270,
+        "end": 271,
         "endLoc": {
           "column": 31,
-          "line": 270,
-          "position": 11157
+          "line": 271,
+          "position": 11341
         },
         "name": "space-invaders/rendering/SpaceInvadersSkiaVisuals.ts",
         "start": 264,
@@ -6792,18 +6459,18 @@
       "isNew": false,
       "lines": 7,
       "secondFile": {
-        "end": 339,
+        "end": 340,
         "endLoc": {
           "column": 31,
-          "line": 339,
-          "position": 13752
+          "line": 340,
+          "position": 13936
         },
         "name": "space-invaders/rendering/SpaceInvadersSkiaVisuals.ts",
-        "start": 332,
+        "start": 333,
         "startLoc": {
           "column": 38,
-          "line": 332,
-          "position": 13313
+          "line": 333,
+          "position": 13497
         }
       },
       "tokens": 55
@@ -6829,18 +6496,18 @@
       "isNew": false,
       "lines": 8,
       "secondFile": {
-        "end": 427,
+        "end": 428,
         "endLoc": {
           "column": 9,
-          "line": 427,
-          "position": 16613
+          "line": 428,
+          "position": 16797
         },
         "name": "space-invaders/rendering/SpaceInvadersSkiaVisuals.ts",
-        "start": 420,
+        "start": 421,
         "startLoc": {
           "column": 40,
-          "line": 420,
-          "position": 16344
+          "line": 421,
+          "position": 16528
         }
       },
       "tokens": 58
@@ -6866,36 +6533,36 @@
       "isNew": false,
       "lines": 7,
       "secondFile": {
-        "end": 498,
+        "end": 499,
         "endLoc": {
           "column": 31,
-          "line": 498,
-          "position": 19156
+          "line": 499,
+          "position": 19340
         },
         "name": "space-invaders/rendering/SpaceInvadersSkiaVisuals.ts",
-        "start": 492,
+        "start": 493,
         "startLoc": {
           "column": 42,
-          "line": 492,
-          "position": 18901
+          "line": 493,
+          "position": 19085
         }
       },
       "tokens": 55
     },
     {
       "firstFile": {
-        "end": 50,
+        "end": 51,
         "endLoc": {
           "column": 8,
-          "line": 50,
-          "position": 2362
+          "line": 51,
+          "position": 2443
         },
         "name": "space-invaders/systems/BossSystem.ts",
-        "start": 41,
+        "start": 42,
         "startLoc": {
           "column": 2,
-          "line": 41,
-          "position": 1863
+          "line": 42,
+          "position": 1944
         }
       },
       "format": "typescript",
@@ -6921,18 +6588,18 @@
     },
     {
       "firstFile": {
-        "end": 51,
+        "end": 52,
         "endLoc": {
           "column": 128,
-          "line": 51,
-          "position": 2534
+          "line": 52,
+          "position": 2615
         },
         "name": "space-invaders/systems/BossSystem.ts",
-        "start": 44,
+        "start": 45,
         "startLoc": {
           "column": 2,
-          "line": 44,
-          "position": 2049
+          "line": 45,
+          "position": 2130
         }
       },
       "format": "typescript",
@@ -6958,18 +6625,18 @@
     },
     {
       "firstFile": {
-        "end": 50,
+        "end": 51,
         "endLoc": {
           "column": 51,
-          "line": 50,
-          "position": 2405
+          "line": 51,
+          "position": 2486
         },
         "name": "space-invaders/systems/BossSystem.ts",
-        "start": 44,
+        "start": 45,
         "startLoc": {
           "column": 71,
-          "line": 44,
-          "position": 2118
+          "line": 45,
+          "position": 2199
         }
       },
       "format": "typescript",
@@ -6977,36 +6644,36 @@
       "isNew": false,
       "lines": 7,
       "secondFile": {
-        "end": 243,
+        "end": 261,
         "endLoc": {
           "column": 51,
-          "line": 243,
-          "position": 9618
+          "line": 261,
+          "position": 10251
         },
         "name": "space-invaders/systems/SpaceInvadersCollisionSystem.ts",
-        "start": 237,
+        "start": 255,
         "startLoc": {
           "column": 81,
-          "line": 237,
-          "position": 9331
+          "line": 255,
+          "position": 9964
         }
       },
       "tokens": 64
     },
     {
       "firstFile": {
-        "end": 256,
+        "end": 274,
         "endLoc": {
           "column": 6,
-          "line": 256,
-          "position": 10309
+          "line": 274,
+          "position": 10942
         },
         "name": "space-invaders/systems/SpaceInvadersCollisionSystem.ts",
-        "start": 248,
+        "start": 266,
         "startLoc": {
           "column": 34,
-          "line": 248,
-          "position": 10022
+          "line": 266,
+          "position": 10655
         }
       },
       "format": "typescript",
@@ -7014,18 +6681,18 @@
       "isNew": false,
       "lines": 9,
       "secondFile": {
-        "end": 303,
+        "end": 321,
         "endLoc": {
           "column": 6,
-          "line": 303,
-          "position": 12118
+          "line": 321,
+          "position": 12751
         },
         "name": "space-invaders/systems/SpaceInvadersCollisionSystem.ts",
-        "start": 295,
+        "start": 313,
         "startLoc": {
           "column": 70,
-          "line": 295,
-          "position": 11831
+          "line": 313,
+          "position": 12464
         }
       },
       "tokens": 52
@@ -7055,46 +6722,46 @@
         "endLoc": {
           "column": 32,
           "line": 43,
-          "position": 1676
+          "position": 1691
         },
         "name": "space-invaders/systems/SpaceInvadersInputSystem.ts",
         "start": 33,
         "startLoc": {
           "column": 31,
           "line": 33,
-          "position": 1329
+          "position": 1344
         }
       },
       "tokens": 73
     }
   ],
   "statistics": {
-    "detectionDate": "2026-09-06T19:28:10.905Z",
+    "detectionDate": "2026-09-06T21:52:32.224Z",
     "formats": {
       "typescript": {
-        "clones": 191,
-        "duplicatedLines": 2050,
-        "duplicatedTokens": 15565,
-        "lines": 50782,
+        "clones": 182,
+        "duplicatedLines": 1927,
+        "duplicatedTokens": 14675,
+        "lines": 50812,
         "newClones": 0,
         "newDuplicatedLines": 0,
-        "percentage": 4.036863455555118,
-        "percentageTokens": 5.833498862533308,
-        "sources": 315,
-        "tokens": 266821
+        "percentage": 3.79241124143903,
+        "percentageTokens": 5.503159394746217,
+        "sources": 316,
+        "tokens": 266665
       }
     },
     "total": {
-      "clones": 191,
-      "duplicatedLines": 2050,
-      "duplicatedTokens": 15565,
-      "lines": 50782,
+      "clones": 182,
+      "duplicatedLines": 1927,
+      "duplicatedTokens": 14675,
+      "lines": 50812,
       "newClones": 0,
       "newDuplicatedLines": 0,
-      "percentage": 4.036863455555118,
-      "percentageTokens": 5.833498862533308,
-      "sources": 315,
-      "tokens": 266821
+      "percentage": 3.79241124143903,
+      "percentageTokens": 5.503159394746217,
+      "sources": 316,
+      "tokens": 266665
     }
   }
 }

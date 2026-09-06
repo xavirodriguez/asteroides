@@ -12,11 +12,11 @@ import { SpatialCullingSystem } from "../../systems/SpatialCullingSystem";
 /**
  * Signature for a callback invoked when a physical collision occurs between two entities.
  *
- * @template TRegistry - The component registry type extending ComponentRegistry.
  * @param world - The ECS world instance containing both entities.
  * @param entityA - The first entity involved in the collision.
  * @param entityB - The second entity involved in the collision.
  * @param manifold - Detailed collision data including contact points, normals, and penetration depth.
+ * @public
  */
 export type CollisionCallback<
   TRegistry extends ComponentRegistry = CoreComponentRegistry
@@ -30,10 +30,10 @@ export type CollisionCallback<
 /**
  * Signature for a callback invoked when a trigger boundary is entered or exited.
  *
- * @template TRegistry - The component registry type extending ComponentRegistry.
  * @param world - The ECS world instance containing both entities.
  * @param entityA - The entity that owns or entered the trigger volume.
  * @param entityB - The other entity involved in the trigger interaction.
+ * @public
  */
 export type TriggerCallback<
   TRegistry extends ComponentRegistry = CoreComponentRegistry
@@ -45,7 +45,6 @@ export type TriggerCallback<
  * Supports both `Collider` and `Collider2D` components (arcade platformer uses Collider2D).
  * Populates `CollisionEvents` on entities that carry that component.
  *
- * @template TRegistry - Component registry constrained to CoreComponentRegistry.
  * @public
  */
 export class CollisionSystem2D<
@@ -433,7 +432,6 @@ export class CollisionSystem2D<
  * Performs raycast-style swept tests between the previous and current positions
  * of entities that carry Velocity + Collider, against static colliders.
  *
- * @template TRegistry - Component registry constrained to CoreComponentRegistry.
  * @public
  */
 export class CCDSystem<

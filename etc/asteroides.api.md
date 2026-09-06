@@ -875,6 +875,7 @@ export class ComponentSetPool<T extends Record<string, Component>> {
         entity: Entity;
         components: T;
     };
+    clear(): void;
     release(context: ComponentSetReleaseContext<T>): void;
     get size(): number;
 }
@@ -3399,6 +3400,7 @@ export interface PrefabConfig<T extends Record<string, Component>, I> {
 export class PrefabPool<T extends Record<string, Component>, I> {
     constructor(config: PrefabConfig<T, I>);
     acquire(world: World, params: I): Entity;
+    clear(): void;
     release(context: ReleaseContext): void;
     get size(): number;
 }

@@ -27,7 +27,17 @@ describe("AchievementSystem and BossSystem Reactivity", () => {
       INVADER_SPEED: 50
     });
 
-    achievementSystem = new AchievementSystem();
+    const storageAdapter = {
+      getItem: async (key: string) => {
+        const val = await PersistenceService.load(key, {});
+        return val && Object.keys(val).length > 0 ? JSON.stringify(val) : null;
+      },
+      setItem: async (key: string, value: string) => {
+        await PersistenceService.save(key, JSON.parse(value));
+      }
+    };
+
+    achievementSystem = new AchievementSystem(storageAdapter);
     bossSystem = new BossSystem();
 
     world.addSystem(achievementSystem, { phase: SystemPhase.Simulation });
@@ -41,7 +51,16 @@ describe("AchievementSystem and BossSystem Reactivity", () => {
 
       const testWorld = new World<any>();
       testWorld.setResource("EventBus", eventBus);
-      const testSystem = new AchievementSystem();
+      const storageAdapter = {
+        getItem: async (key: string) => {
+          const val = await PersistenceService.load(key, {});
+          return val && Object.keys(val).length > 0 ? JSON.stringify(val) : null;
+        },
+        setItem: async (key: string, value: string) => {
+          await PersistenceService.save(key, JSON.parse(value));
+        }
+      };
+      const testSystem = new AchievementSystem(storageAdapter);
       testWorld.addSystem(testSystem, { phase: SystemPhase.Simulation });
 
       // Allow microtask queue to flush the promise

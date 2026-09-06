@@ -1,5 +1,6 @@
 import { World, BaseGame, BaseGameStateSystem } from "@tiny-aster/core";
-import { GameStateComponent, SpaceInvadersComponentRegistry, SpaceInvadersEventRegistry } from "../types/SpaceInvadersTypes";
+import { GameStateComponent, SpaceInvadersComponentRegistry, SpaceInvadersEventRegistry, GAME_CONFIG } from "../types/SpaceInvadersTypes";
+import { SpaceInvadersConfig } from "../types/SpaceInvadersConfigSchema";
 import { spawnInvaderWave } from "../EntityFactory";
 import { ISpaceInvadersGame } from "../types/GameInterfaces";
 import { BENEFICIAL_MUTATORS, NEGATIVE_MUTATORS } from "../../../utils/MutatorRegistry";
@@ -159,6 +160,22 @@ export class SpaceInvadersGameStateSystem extends BaseGameStateSystem<GameStateC
           if (gs.level < nextLevel) {
             const oldLevel = gs.level;
             gs.level = nextLevel;
+
+            // Sync totalInvaders on Formation entity
+            const waveDefs = world.getResource<any[]>("WaveDefinitions");
+            const waveDef = waveDefs ? (waveDefs[nextLevel - 1] || waveDefs.find((w: any) => w.id === `level_${nextLevel}`)) : undefined;
+            const config = world.getResource<SpaceInvadersConfig>("GameConfig") || GAME_CONFIG;
+            const newTotalInvaders = waveDef?.totalInvaders && waveDef.totalInvaders > 0
+              ? waveDef.totalInvaders
+              : config.INVADER_ROWS * config.INVADER_COLS;
+
+            const formationEntities = world.query("Formation");
+            if (formationEntities.length > 0) {
+              world.mutateComponent(formationEntities[0], "Formation", (f) => {
+                f.totalInvaders = newTotalInvaders;
+              });
+            }
+
             const eventBus = world.getEventBus();
             if (eventBus) {
               eventBus.emitDeferred("level:completed", { level: oldLevel, nextLevel: gs.level });

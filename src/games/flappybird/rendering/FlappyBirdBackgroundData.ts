@@ -18,7 +18,7 @@ export interface MegastructureData {
 export function calculateWarpFactor(world: World<any>): number {
   const comboEntities = world.query("Combo");
   if (comboEntities.length > 0) {
-    const combo = world.getComponent(comboEntities[0], "Combo") as any;
+    const combo = world.getComponent(comboEntities[0], "Combo");
     if (combo && combo.multiplier > 1) {
       return 1.0 + (combo.multiplier - 1) * 0.35;
     }

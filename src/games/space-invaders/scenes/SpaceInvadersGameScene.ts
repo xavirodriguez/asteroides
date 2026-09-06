@@ -40,6 +40,7 @@ import {
 import { SpaceInvadersConfig } from "../types/SpaceInvadersConfigSchema";
 import { GAME_CONFIG } from "../types/SpaceInvadersTypes";
 import { ISpaceInvadersGame } from "../types/GameInterfaces";
+import { getFormationSize } from "../utils/SpaceInvadersFormationUtils";
 
 /**
  * Main gameplay scene for Space Invaders.
@@ -81,8 +82,6 @@ export class SpaceInvadersGameScene extends Scene<SpaceInvadersComponentRegistry
     const startY = config.INVADER_START_Y;
     const spacingX = config.INVADER_SPACING_X;
     const spacingY = config.INVADER_SPACING_Y;
-    const rows = config.INVADER_ROWS;
-    const cols = config.INVADER_COLS;
 
     for (let lvl = 1; lvl <= maxLevels; lvl++) {
       const isBoss = lvl % 5 === 0;
@@ -91,18 +90,22 @@ export class SpaceInvadersGameScene extends Scene<SpaceInvadersComponentRegistry
           id: `level_${lvl}`,
           cooldown: 2.0,
           isBossWave: true,
+          totalInvaders: 0,
           spawns: [
             { blueprintId: "boss", args: { level: lvl }, delay: 0.0 }
           ]
         });
       } else {
+        const { rows, cols } = getFormationSize(lvl, config);
+        const totalInvaders = rows * cols;
+        const offsetX = ((config.INVADER_COLS - cols) * spacingX) / 2;
         const spawns: any[] = [];
         for (let row = 0; row < rows; row++) {
           for (let col = 0; col < cols; col++) {
             spawns.push({
               blueprintId: "invader",
               args: {
-                x: startX + col * spacingX,
+                x: startX + offsetX + col * spacingX,
                 y: startY + row * spacingY,
                 row,
                 col
@@ -114,6 +117,7 @@ export class SpaceInvadersGameScene extends Scene<SpaceInvadersComponentRegistry
         waveDefs.push({
           id: `level_${lvl}`,
           cooldown: 2.0,
+          totalInvaders,
           spawns
         });
       }

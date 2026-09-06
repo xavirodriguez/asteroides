@@ -147,6 +147,7 @@ export interface FormationComponent extends Component {
   leftBound: number;
   rightBound: number;
   fireCooldownRemaining: number;
+  totalInvaders: number;
 }
 
 /**

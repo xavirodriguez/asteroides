@@ -158,10 +158,14 @@ All numeric constants in the arcade engine must be grounded in actual code confi
 | `ENEMY_BULLET_SPEED` | `250` px/s | `100` | `600` | Downward bullet velocity. `GAME_CONFIG.ENEMY_BULLET_SPEED` |
 | `ENEMY_FIRE_INTERVAL_MIN`| `1000` ms | `500` | `2000` | Minimum delay between invader shots. `GAME_CONFIG.ENEMY_FIRE_INTERVAL_MIN` |
 | `ENEMY_FIRE_INTERVAL_MAX`| `3000` ms | `1500` | `5000` | Maximum delay between invader shots. `GAME_CONFIG.ENEMY_FIRE_INTERVAL_MAX` |
+| `INVADER_MIN_ROWS` | `3` | `1` | `5` | Initial formation row count at level 1. `GAME_CONFIG.INVADER_MIN_ROWS` |
+| `INVADER_MIN_COLS` | `8` | `4` | `11` | Initial formation column count at level 1. `GAME_CONFIG.INVADER_MIN_COLS` |
+| `INVADER_FULL_FORMATION_LEVEL` | `12` | `1` | `50` | Level milestone where formation reaches max size (5x11). `GAME_CONFIG.INVADER_FULL_FORMATION_LEVEL` |
 | `INVADER_SPEED_BASE` | `50` px/s | `20` | `150` | Initial movement speed of the wave. `GAME_CONFIG.INVADER_SPEED_BASE` |
 | `INVADER_SPEED_MAX` | `400` px/s | `200` | `800` | Formation speed when 1 invader remains. `GAME_CONFIG.INVADER_SPEED_MAX` |
 | `INVADER_DESCENT_STEP` | `20` px | `5` | `50` | Downward descent distance on edge wall hit. `GAME_CONFIG.INVADER_DESCENT_STEP` |
 | `LEVEL_SPEED_MULTIPLIER` | `1.1` | `1.0` | `1.5` | Formation speed scaling factor per level cleared. `GAME_CONFIG.LEVEL_SPEED_MULTIPLIER` |
+| `LEVEL_FIRE_RATE_MULTIPLIER` | `0.97` | `0.80` | `1.0` | Enemy fire interval scaling factor per level cleared. `GAME_CONFIG.LEVEL_FIRE_RATE_MULTIPLIER` |
 | `SHIELD_SEGMENT_HP` | `3` | `1` | `10` | Durability of individual shield blocks. `GAME_CONFIG.SHIELD_SEGMENT_HP` |
 | `COMBO_TIMEOUT` | `2000` ms | `1000` | `5000` | Grace period in ms before combo resets. `GAME_CONFIG.COMBO_TIMEOUT` |
 | `MAX_MULTIPLIER` | `10` | `3` | `20` | Score multiplier cap = `1 + floor(combo / 5)`. `GAME_CONFIG.MAX_MULTIPLIER` |

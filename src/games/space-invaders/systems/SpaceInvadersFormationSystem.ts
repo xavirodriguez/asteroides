@@ -40,10 +40,19 @@ export class SpaceInvadersFormationSystem extends System<SpaceInvadersComponentR
     const invaders = world.query("Invader", "Transform");
     if (invaders.length === 0) return;
 
-    // 1. Calculate current speed based on remaining invaders
-    const totalInvaders = this.config.INVADER_ROWS * this.config.INVADER_COLS;
+    // 1. Calculate current speed based on remaining invaders and level progression
+    const totalInvaders = formation.totalInvaders > 0
+      ? formation.totalInvaders
+      : (this.config.INVADER_ROWS * this.config.INVADER_COLS);
     const ratio = 1 - (invaders.length / totalInvaders);
-    const newSpeed = this.config.INVADER_SPEED_BASE + ratio * (this.config.INVADER_SPEED_MAX - this.config.INVADER_SPEED_BASE);
+
+    const level = gameState?.level || 1;
+    const levelSpeedMult = Math.pow(this.config.LEVEL_SPEED_MULTIPLIER ?? 1.1, level - 1);
+    const levelFireRateMult = Math.pow(this.config.LEVEL_FIRE_RATE_MULTIPLIER ?? 0.97, level - 1);
+
+    const baseSpeed = this.config.INVADER_SPEED_BASE * levelSpeedMult;
+    const maxSpeed = this.config.INVADER_SPEED_MAX * levelSpeedMult;
+    const newSpeed = baseSpeed + ratio * (maxSpeed - baseSpeed);
 
     if (formation.speed !== newSpeed) {
       world.mutateComponent(formationEntity, "Formation", f => {
@@ -125,6 +134,8 @@ export class SpaceInvadersFormationSystem extends System<SpaceInvadersComponentR
     // 3. Enemy firing logic
     let shouldFire = false;
     let nextCooldownRemaining: number;
+    const minFireInterval = this.config.ENEMY_FIRE_INTERVAL_MIN * levelFireRateMult;
+    const maxFireInterval = this.config.ENEMY_FIRE_INTERVAL_MAX * levelFireRateMult;
 
     if (isMs) {
       // In millisecond-based unit tests
@@ -133,8 +144,8 @@ export class SpaceInvadersFormationSystem extends System<SpaceInvadersComponentR
         shouldFire = true;
         const rng = world.gameplayRandom;
         nextCooldownRemaining = rng.nextRange(
-          this.config.ENEMY_FIRE_INTERVAL_MIN,
-          this.config.ENEMY_FIRE_INTERVAL_MAX
+          minFireInterval,
+          maxFireInterval
         ) / (1 + ratio);
       }
     } else {
@@ -148,8 +159,8 @@ export class SpaceInvadersFormationSystem extends System<SpaceInvadersComponentR
         shouldFire = true;
         const rng = world.gameplayRandom;
         const nextCooldown = (rng.nextRange(
-          this.config.ENEMY_FIRE_INTERVAL_MIN,
-          this.config.ENEMY_FIRE_INTERVAL_MAX
+          minFireInterval,
+          maxFireInterval
         ) / 1000) / (1 + ratio);
         nextCooldownRemaining = nextCooldown;
       }

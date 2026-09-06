@@ -380,6 +380,10 @@ export class SpaceInvadersGame
     this.blueprints.register("formation", {
       spawn: (world, entity, _args: {}) => {
         const config = world.getResource<SpaceInvadersConfig>("GameConfig") || GAME_CONFIG;
+        const waveDefs = world.getResource<any[]>("WaveDefinitions");
+        const initialTotal = (waveDefs && waveDefs[0] && waveDefs[0].totalInvaders > 0)
+          ? waveDefs[0].totalInvaders
+          : (config.INVADER_MIN_ROWS * config.INVADER_MIN_COLS);
         world.addComponent(entity, {
           type: "Formation",
           direction: 1,
@@ -389,6 +393,7 @@ export class SpaceInvadersGame
           leftBound: 0,
           rightBound: 0,
           fireCooldownRemaining: config.ENEMY_FIRE_INTERVAL_MIN,
+          totalInvaders: initialTotal,
         } as any);
       }
     });

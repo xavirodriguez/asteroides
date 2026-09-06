@@ -45,7 +45,7 @@ import {
 } from "@tiny-aster/core";
 import { drawEchoBackground, drawEchoPlayer, drawMemoryFragment, drawMemoryCore, drawCheckpointNode, drawPulseAttack, drawSentinel, drawHopper, drawWatcher, drawCharger } from "./rendering/EchoRunnerCanvasVisuals";
 import { EchoRunnerInput, EchoRunnerGameState, ECHO_CONFIG } from "./types/EchoRunnerTypes";
-import { EchoRunnerConfigSchema, EchoRunnerConfig as EchoRunnerConfigType } from "./types/EchoRunnerConfigSchema";
+import { EchoRunnerConfigSchema, EchoRunnerConfig as EchoRunnerConfigType, DEFAULT_ECHO_RUNNER_CONFIG } from "./types/EchoRunnerConfigSchema";
 import { PlatformerInputSystem } from "../platformer/systems/PlatformerInputSystem";
 import { resolveAndApplyMutators } from "../../config/MutatorConfig";
 import { ArcadeEntityBuilder, registerPlatformerEnemyBlueprints, mutatePlatformerInputState } from "../shared/arcade";
@@ -287,13 +287,15 @@ export class EchoRunnerGame extends BaseGame<EchoRunnerGameState, EchoRunnerInpu
         world.addComponent(entity, { type: "Health", current: 3, max: 3 } as HealthComponent);
         world.addComponent(entity, { type: "Tag", tags: ["TileCollider", "Player"] } as any);
         world.addComponent(entity, { type: "Hurtbox" } as { type: string; [key: string]: unknown });
+        const config = world.getResource<EchoRunnerConfigType>("GameConfig") || DEFAULT_ECHO_RUNNER_CONFIG;
+
         world.addComponent(entity, {
           type: "PlatformerMovementConfig",
-          acceleration: ECHO_CONFIG.PLAYER_ACCEL,
-          maxSpeed: ECHO_CONFIG.PLAYER_SPEED,
-          deceleration: ECHO_CONFIG.PLAYER_DECEL,
-          airAcceleration: ECHO_CONFIG.PLAYER_AIR_ACCEL,
-          airDeceleration: ECHO_CONFIG.PLAYER_AIR_DECEL
+          acceleration: config.PLAYER_ACCEL,
+          maxSpeed: config.PLAYER_SPEED,
+          deceleration: config.PLAYER_DECEL,
+          airAcceleration: config.PLAYER_AIR_ACCEL,
+          airDeceleration: config.PLAYER_AIR_DECEL
         } as { type: string; [key: string]: unknown });
         world.addComponent(entity, {
           type: "PlatformerInput",
@@ -306,19 +308,19 @@ export class EchoRunnerGame extends BaseGame<EchoRunnerGameState, EchoRunnerInpu
         } as { type: string; [key: string]: unknown });
         world.addComponent(entity, {
           type: "PlatformerGravityConfig",
-          riseGravity: ECHO_CONFIG.RISE_GRAVITY,
-          fallGravity: ECHO_CONFIG.FALL_GRAVITY,
-          jumpVelocity: ECHO_CONFIG.PLAYER_JUMP_VEL,
-          minJumpVelocity: ECHO_CONFIG.PLAYER_MIN_JUMP_VEL,
-          apexThreshold: ECHO_CONFIG.APEX_THRESHOLD,
-          apexGravityMultiplier: ECHO_CONFIG.APEX_GRAVITY_MULTIPLIER
+          riseGravity: config.RISE_GRAVITY,
+          fallGravity: config.FALL_GRAVITY,
+          jumpVelocity: config.PLAYER_JUMP_VEL,
+          minJumpVelocity: config.PLAYER_MIN_JUMP_VEL,
+          apexThreshold: config.APEX_THRESHOLD,
+          apexGravityMultiplier: config.APEX_GRAVITY_MULTIPLIER
         } as { type: string; [key: string]: unknown });
         world.addComponent(entity, {
           type: "PlatformerJumper",
           coyoteTimer: 0,
           jumpBufferTimer: 0,
-          coyoteTimeMax: ECHO_CONFIG.COYOTE_TIME_MAX,
-          jumpBufferMax: ECHO_CONFIG.JUMP_BUFFER_MAX
+          coyoteTimeMax: config.COYOTE_TIME_MAX,
+          jumpBufferMax: config.JUMP_BUFFER_MAX
         } as { type: string; [key: string]: unknown });
         // TODO(refactor): código duplicado detectado (bloque) con platformer/PlatformerGame.ts:362-374. Considerar extraer a función compartida. Ref: b8cff4cf
         world.addComponent(entity, { type: "PlatformerGroundState", isGrounded: false, iceMultiplier: 1.0 } as { type: string; [key: string]: unknown });
@@ -327,13 +329,14 @@ export class EchoRunnerGame extends BaseGame<EchoRunnerGameState, EchoRunnerInpu
 
     this.blueprints.register("tilemap", {
       spawn: (world, entity, args: { data: number[][]; tileDefinitions: any }) => {
+        const config = world.getResource<EchoRunnerConfigType>("GameConfig") || DEFAULT_ECHO_RUNNER_CONFIG;
         EntityBuilder.fromEntity(world, entity)
           .withTransform({ x: 0, y: 0 });
 
         world.addComponent(entity, {
           type: "Tilemap",
           data: args.data,
-          tileSize: ECHO_CONFIG.TILE_SIZE,
+          tileSize: config.TILE_SIZE,
           tileDefinitions: args.tileDefinitions
         } as { type: string; [key: string]: unknown });
       }
@@ -530,7 +533,8 @@ export class EchoRunnerGame extends BaseGame<EchoRunnerGameState, EchoRunnerInpu
     this.world.setResource("PlayerStartPoint", { x: 100, y: 350 });
 
     // Instantiate Plan
-    SegmentGenerator.instantiatePlan(this.world, this.levelPlan, ECHO_CONFIG.TILE_SIZE, tileDefinitions);
+    const config = this.world.getResource<EchoRunnerConfigType>("GameConfig") || DEFAULT_ECHO_RUNNER_CONFIG;
+    SegmentGenerator.instantiatePlan(this.world, this.levelPlan, config.TILE_SIZE, tileDefinitions);
 
     // Spawn Player
     const playerEntity = this.world.createEntity();

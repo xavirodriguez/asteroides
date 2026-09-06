@@ -165,8 +165,8 @@ export class SpaceInvadersGame
         } as FactionComponent);
         world.addComponent(entity, {
           type: "Boundary",
-          width: GAME_CONFIG.SCREEN_WIDTH - config.PLAYER_RENDER_WIDTH,
-          height: GAME_CONFIG.SCREEN_HEIGHT,
+          width: config.SCREEN_WIDTH - config.PLAYER_RENDER_WIDTH,
+          height: config.SCREEN_HEIGHT,
           mode: "bounce"
         } as BoundaryComponent);
         world.addComponent(entity, {
@@ -256,8 +256,8 @@ export class SpaceInvadersGame
         world.addComponent(entity, { type: "Faction", faction: "player", value: "player" } as FactionComponent);
         world.addComponent(entity, {
           type: "Boundary",
-          width: GAME_CONFIG.SCREEN_WIDTH,
-          height: GAME_CONFIG.SCREEN_HEIGHT,
+          width: config.SCREEN_WIDTH,
+          height: config.SCREEN_HEIGHT,
           mode: "destroy"
         } as BoundaryComponent);
       }
@@ -289,8 +289,8 @@ export class SpaceInvadersGame
         world.addComponent(entity, { type: "Faction", faction: "enemy", value: "enemy" } as FactionComponent);
         world.addComponent(entity, {
           type: "Boundary",
-          width: GAME_CONFIG.SCREEN_WIDTH,
-          height: GAME_CONFIG.SCREEN_HEIGHT,
+          width: config.SCREEN_WIDTH,
+          height: config.SCREEN_HEIGHT,
           mode: "destroy"
         } as BoundaryComponent);
       }
@@ -357,11 +357,12 @@ export class SpaceInvadersGame
 
     this.blueprints.register("boss", {
       spawn: (world, entity, args: { level: number }) => {
+        const config = world.getResource<SpaceInvadersConfig>("GameConfig") || GAME_CONFIG;
         const hp = 50 + (args.level / 5) * 50;
         const tint = resolveThemeColor(world, "boss", "accent");
 
         EntityBuilder.fromEntity(world, entity)
-          .withTransform({ x: GAME_CONFIG.SCREEN_WIDTH / 2, y: 100 })
+          .withTransform({ x: config.SCREEN_WIDTH / 2, y: 100 })
           .withRender({ shape: "boss", size: 80, color: tint, order: 0 })
           .withCollider({
             shape: { type: ShapeType.Circle, radius: 40 } as CircleShape,

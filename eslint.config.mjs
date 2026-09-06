@@ -225,6 +225,7 @@ export default tseslint.config(
   // Isolated overrides for legacy network, test suites, and React Native integrations where any is currently required or permitted as a fallback
   {
     files: [
+      "packages/gameplay-kit/src/**/*.ts",
       "packages/network-colyseus/src/**/*.ts",
       "packages/network/src/**/*.ts",
       "packages/react-native/src/**/*.{ts,tsx}",

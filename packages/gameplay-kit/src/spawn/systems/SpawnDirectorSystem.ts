@@ -1,5 +1,5 @@
-import { System, World, Entity, ComponentRegistry, EventBus } from "@tiny-aster/core";
-import { SpawnDirectorComponent, WaveDefinition, SpawnRequest, WaveMemberComponent } from "../components/SpawnComponents";
+import { System, World, ComponentRegistry, EventBus } from "@tiny-aster/core";
+import { SpawnDirectorComponent, WaveDefinition, SpawnRequest } from "../components/SpawnComponents";
 
 /**
  * SpawnDirectorSystem orchestrates the sequential spawning of wave definitions,

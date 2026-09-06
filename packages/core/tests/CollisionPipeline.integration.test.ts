@@ -1,5 +1,5 @@
 import { World } from "../src/ecs/World";
-import { CoreComponentRegistry, RunState } from "../src/ecs/CoreComponents";
+import { CoreComponentRegistry, RunState, HitboxComponent, HurtboxComponent, EnemyComponent } from "../src/ecs/CoreComponents";
 import { EventBus } from "../src/events/EventBus";
 import { SystemPhase } from "../src/ecs/System";
 import { CollisionSystem2D } from "../src/physics/collision/CollisionSystems";
@@ -137,7 +137,8 @@ describe("Collision pipeline — CollectibleSystem & HitDetectionSystem", () => 
       triggersEntered: [],
       triggersExited: []
     });
-    world.addComponent(pulse, { type: "Hitbox", hitEntities: [] } as any);
+    const hitboxComp: HitboxComponent = { type: "Hitbox", hitEntities: [] };
+    world.addComponent(pulse, hitboxComp);
 
     const enemy = world.createEntity();
     world.addComponent(enemy, {
@@ -161,8 +162,10 @@ describe("Collision pipeline — CollectibleSystem & HitDetectionSystem", () => 
       triggersEntered: [],
       triggersExited: []
     });
-    world.addComponent(enemy, { type: "Hurtbox" } as any);
-    world.addComponent(enemy, { type: "Enemy", kind: "patrol" } as any);
+    const hurtboxComp: HurtboxComponent = { type: "Hurtbox" };
+    const enemyComp: EnemyComponent = { type: "Enemy", kind: "patrol" };
+    world.addComponent(enemy, hurtboxComp);
+    world.addComponent(enemy, enemyComp);
     world.addComponent(enemy, { type: "Health", current: 1, max: 1 });
 
     let hitPayload: any = null;

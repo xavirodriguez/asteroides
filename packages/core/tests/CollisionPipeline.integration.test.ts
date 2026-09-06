@@ -1,7 +1,7 @@
 import { World } from "../src/ecs/World";
 import { CoreComponentRegistry, RunState } from "../src/ecs/CoreComponents";
 import { EventBus } from "../src/events/EventBus";
-import { SystemPhase } from "../src/ecs/SystemPhase";
+import { SystemPhase } from "../src/ecs/System";
 import { CollisionSystem2D } from "../src/physics/collision/CollisionSystems";
 import { CollectibleSystem } from "../src/systems/CollectibleSystem";
 import { HitDetectionSystem } from "../src/systems/HitDetectionSystem";

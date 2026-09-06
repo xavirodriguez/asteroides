@@ -1186,6 +1186,820 @@
     },
     {
       "firstFile": {
+        "end": 151,
+        "endLoc": {
+          "column": 18,
+          "line": 151,
+          "position": 5100
+        },
+        "name": "echorunner/EchoRunnerGame.ts",
+        "start": 125,
+        "startLoc": {
+          "column": 4,
+          "line": 125,
+          "position": 4146
+        }
+      },
+      "format": "typescript",
+      "fragment": "    const players = world.query(\"PlatformerInput\", \"Health\", \"Transform\");\n    const enemies = world.query(\"Enemy\", \"Transform\");\n\n    for (let p = 0; p < players.length; p++) {\n      const player = players[p];\n      const pHealth = world.getComponent(player, \"Health\")!;\n      const pTrans = world.getComponent(player, \"Transform\")!;\n\n      // Handle invulnerability blink timers\n      let invRemaining = pHealth.invulnerableRemaining ?? 0;\n      if (invRemaining > 0) {\n        invRemaining -= deltaTime;\n        if (invRemaining < 0) invRemaining = 0;\n        world.mutateComponent(player, \"Health\", (h) => {\n          h.invulnerableRemaining = invRemaining;\n        });\n      }\n\n      if (invRemaining > 0) continue;\n\n      // Contact check with all active enemies\n      let hit = false;\n      for (let e = 0; e < enemies.length; e++) {\n        const enemy = enemies[e];\n        const eTrans = world.getComponent(enemy, \"Transform\")!;\n\n        const dx = player !== undefined ? pTrans.x - eTrans.x : 0;",
+      "isNew": false,
+      "lines": 27,
+      "secondFile": {
+        "end": 31,
+        "endLoc": {
+          "column": 18,
+          "line": 31,
+          "position": 1310
+        },
+        "name": "platformer/systems/PlatformerDamageSystem.ts",
+        "start": 8,
+        "startLoc": {
+          "column": 4,
+          "line": 8,
+          "position": 449
+        }
+      },
+      "tokens": 184
+    },
+    {
+      "firstFile": {
+        "end": 239,
+        "endLoc": {
+          "column": 54,
+          "line": 239,
+          "position": 8299
+        },
+        "name": "echorunner/EchoRunnerGame.ts",
+        "start": 211,
+        "startLoc": {
+          "column": 28,
+          "line": 211,
+          "position": 6931
+        }
+      },
+      "format": "typescript",
+      "fragment": "      EchoRunnerConfigSchema,\n      config.gameOptions?.rawConfig ?? {}\n    );\n    this.config = this.baseConfig;\n    // TODO(refactor): código duplicado detectado (bloque) con platformer/PlatformerGame.ts:107-114. Considerar extraer a función compartida. Ref: d29aace1\n    this.customLevelData = config.levelData ?? (config.gameOptions?.levelData as { templates: SegmentTemplate[]; grammar: string[] } | undefined);\n  }\n\n  // TODO(refactor): código duplicado detectado (método) con platformer/PlatformerGame.ts:227-251. Considerar extraer a función compartida. Ref: d39ade6b\n  protected override async onRegisterSystems(): Promise<void> {\n    this.config = resolveAndApplyMutators(this.baseConfig, this._config.gameOptions);\n\n    this.world.setResource(\"GameConfig\", this.config);\n    // TODO(refactor): código duplicado detectado (bloque) con platformer/PlatformerGame.ts:114-127. Considerar extraer a función compartida. Ref: 44f1ee7d\n    this.setupCommonArcadeResources();\n    this.world.setResource(\"DeathPlaneY\", 650);\n\n    // Initializing high-fidelity RunState resource\n    const runState: RunState = {\n      attempt: 1,\n      lives: 3,\n      activeCheckpoint: null,\n      elapsedTime: 0,\n      deaths: 0,\n      collectedPermanentIds: [],\n      collectedTemporalIds: []\n    };\n    this.world.setResource(\"RunState\", runState);\n    this.world.setResource(\"AudioPlayer\", this.audio);",
+      "isNew": false,
+      "lines": 29,
+      "secondFile": {
+        "end": 131,
+        "endLoc": {
+          "column": 54,
+          "line": 131,
+          "position": 4868
+        },
+        "name": "platformer/PlatformerGame.ts",
+        "start": 104,
+        "startLoc": {
+          "column": 28,
+          "line": 104,
+          "position": 3552
+        }
+      },
+      "tokens": 172
+    },
+    {
+      "firstFile": {
+        "end": 226,
+        "endLoc": {
+          "column": 9,
+          "line": 226,
+          "position": 7896
+        },
+        "name": "echorunner/EchoRunnerGame.ts",
+        "start": 216,
+        "startLoc": {
+          "column": 145,
+          "line": 216,
+          "position": 7320
+        }
+      },
+      "format": "typescript",
+      "fragment": "    this.customLevelData = config.levelData ?? (config.gameOptions?.levelData as { templates: SegmentTemplate[]; grammar: string[] } | undefined);\n  }\n\n  // TODO(refactor): código duplicado detectado (método) con platformer/PlatformerGame.ts:227-251. Considerar extraer a función compartida. Ref: d39ade6b\n  protected override async onRegisterSystems(): Promise<void> {\n    this.config = resolveAndApplyMutators(this.baseConfig, this._config.gameOptions);\n\n    this.world.setResource(\"GameConfig\", this.config);\n    // TODO(refactor): código duplicado detectado (bloque) con platformer/PlatformerGame.ts:114-127. Considerar extraer a función compartida. Ref: 44f1ee7d\n    this.setupCommonArcadeResources();\n    this.world.setResource(\"DeathPlaneY\", 650);",
+      "isNew": false,
+      "lines": 11,
+      "secondFile": {
+        "end": 78,
+        "endLoc": {
+          "column": 9,
+          "line": 78,
+          "position": 4676
+        },
+        "name": "flappybird/FlappyBirdGame.ts",
+        "start": 70,
+        "startLoc": {
+          "column": 47,
+          "line": 70,
+          "position": 4270
+        }
+      },
+      "tokens": 52
+    },
+    {
+      "firstFile": {
+        "end": 233,
+        "endLoc": {
+          "column": 21,
+          "line": 233,
+          "position": 8106
+        },
+        "name": "echorunner/EchoRunnerGame.ts",
+        "start": 216,
+        "startLoc": {
+          "column": 144,
+          "line": 216,
+          "position": 7319
+        }
+      },
+      "format": "typescript",
+      "fragment": "    this.customLevelData = config.levelData ?? (config.gameOptions?.levelData as { templates: SegmentTemplate[]; grammar: string[] } | undefined);\n  }\n\n  // TODO(refactor): código duplicado detectado (método) con platformer/PlatformerGame.ts:227-251. Considerar extraer a función compartida. Ref: d39ade6b\n  protected override async onRegisterSystems(): Promise<void> {\n    this.config = resolveAndApplyMutators(this.baseConfig, this._config.gameOptions);\n\n    this.world.setResource(\"GameConfig\", this.config);\n    // TODO(refactor): código duplicado detectado (bloque) con platformer/PlatformerGame.ts:114-127. Considerar extraer a función compartida. Ref: 44f1ee7d\n    this.setupCommonArcadeResources();\n    this.world.setResource(\"DeathPlaneY\", 650);\n\n    // Initializing high-fidelity RunState resource\n    const runState: RunState = {\n      attempt: 1,\n      lives: 3,\n      activeCheckpoint: null,\n      elapsedTime: 0,",
+      "isNew": false,
+      "lines": 18,
+      "secondFile": {
+        "end": 117,
+        "endLoc": {
+          "column": 29,
+          "line": 117,
+          "position": 5024
+        },
+        "name": "pong/PongGame.ts",
+        "start": 103,
+        "startLoc": {
+          "column": 52,
+          "line": 103,
+          "position": 4443
+        }
+      },
+      "tokens": 84
+    },
+    {
+      "firstFile": {
+        "end": 226,
+        "endLoc": {
+          "column": 27,
+          "line": 226,
+          "position": 7914
+        },
+        "name": "echorunner/EchoRunnerGame.ts",
+        "start": 217,
+        "startLoc": {
+          "column": 2,
+          "line": 217,
+          "position": 7324
+        }
+      },
+      "format": "typescript",
+      "fragment": "  }\n\n  // TODO(refactor): código duplicado detectado (método) con platformer/PlatformerGame.ts:227-251. Considerar extraer a función compartida. Ref: d39ade6b\n  protected override async onRegisterSystems(): Promise<void> {\n    this.config = resolveAndApplyMutators(this.baseConfig, this._config.gameOptions);\n\n    this.world.setResource(\"GameConfig\", this.config);\n    // TODO(refactor): código duplicado detectado (bloque) con platformer/PlatformerGame.ts:114-127. Considerar extraer a función compartida. Ref: 44f1ee7d\n    this.setupCommonArcadeResources();\n    this.world.setResource(\"DeathPlaneY\", 650);",
+      "isNew": false,
+      "lines": 10,
+      "secondFile": {
+        "end": 117,
+        "endLoc": {
+          "column": 27,
+          "line": 117,
+          "position": 6352
+        },
+        "name": "space-invaders/SpaceInvadersGame.ts",
+        "start": 109,
+        "startLoc": {
+          "column": 2,
+          "line": 109,
+          "position": 5922
+        }
+      },
+      "tokens": 55
+    },
+    {
+      "firstFile": {
+        "end": 242,
+        "endLoc": {
+          "column": 8,
+          "line": 242,
+          "position": 8336
+        },
+        "name": "echorunner/EchoRunnerGame.ts",
+        "start": 220,
+        "startLoc": {
+          "column": 12,
+          "line": 220,
+          "position": 7496
+        }
+      },
+      "format": "typescript",
+      "fragment": "  protected override async onRegisterSystems(): Promise<void> {\n    this.config = resolveAndApplyMutators(this.baseConfig, this._config.gameOptions);\n\n    this.world.setResource(\"GameConfig\", this.config);\n    // TODO(refactor): código duplicado detectado (bloque) con platformer/PlatformerGame.ts:114-127. Considerar extraer a función compartida. Ref: 44f1ee7d\n    this.setupCommonArcadeResources();\n    this.world.setResource(\"DeathPlaneY\", 650);\n\n    // Initializing high-fidelity RunState resource\n    const runState: RunState = {\n      attempt: 1,\n      lives: 3,\n      activeCheckpoint: null,\n      elapsedTime: 0,\n      deaths: 0,\n      collectedPermanentIds: [],\n      collectedTemporalIds: []\n    };\n    this.world.setResource(\"RunState\", runState);\n    this.world.setResource(\"AudioPlayer\", this.audio);\n\n    // Register blueprints\n    this.blueprints.register(\"pulse_hitbox\", {",
+      "isNew": false,
+      "lines": 23,
+      "secondFile": {
+        "end": 134,
+        "endLoc": {
+          "column": 9,
+          "line": 134,
+          "position": 4911
+        },
+        "name": "platformer/PlatformerGame.ts",
+        "start": 113,
+        "startLoc": {
+          "column": 12,
+          "line": 113,
+          "position": 4117
+        }
+      },
+      "tokens": 119
+    },
+    {
+      "firstFile": {
+        "end": 273,
+        "endLoc": {
+          "column": 65,
+          "line": 273,
+          "position": 9539
+        },
+        "name": "echorunner/EchoRunnerGame.ts",
+        "start": 268,
+        "startLoc": {
+          "column": 69,
+          "line": 268,
+          "position": 9368
+        }
+      },
+      "format": "typescript",
+      "fragment": "        world.addComponent(entity, { type: \"Hitbox\", hitEntities: [] } as { type: string; [key: string]: unknown });\n      }\n    });\n\n    this.blueprints.register(\"player\", {\n      spawn: (world, entity, args: { x: number; y: number }) => {",
+      "isNew": false,
+      "lines": 6,
+      "secondFile": {
+        "end": 302,
+        "endLoc": {
+          "column": 65,
+          "line": 302,
+          "position": 10735
+        },
+        "name": "platformer/PlatformerGame.ts",
+        "start": 297,
+        "startLoc": {
+          "column": 71,
+          "line": 297,
+          "position": 10564
+        }
+      },
+      "tokens": 51
+    },
+    {
+      "firstFile": {
+        "end": 305,
+        "endLoc": {
+          "column": 30,
+          "line": 305,
+          "position": 10933
+        },
+        "name": "echorunner/EchoRunnerGame.ts",
+        "start": 290,
+        "startLoc": {
+          "column": 106,
+          "line": 290,
+          "position": 10378
+        }
+      },
+      "format": "typescript",
+      "fragment": "        const config = world.getResource<EchoRunnerConfigType>(\"GameConfig\") || DEFAULT_ECHO_RUNNER_CONFIG;\n\n        world.addComponent(entity, {\n          type: \"PlatformerMovementConfig\",\n          acceleration: config.PLAYER_ACCEL,\n          maxSpeed: config.PLAYER_SPEED,\n          deceleration: config.PLAYER_DECEL,\n          airAcceleration: config.PLAYER_AIR_ACCEL,\n          airDeceleration: config.PLAYER_AIR_DECEL\n        } as { type: string; [key: string]: unknown });\n        world.addComponent(entity, {\n          type: \"PlatformerInput\",\n          moveDir: 0,\n          jumpPressed: false,\n          jumpHeld: false,\n          jumpReleased: false,",
+      "isNew": false,
+      "lines": 16,
+      "secondFile": {
+        "end": 332,
+        "endLoc": {
+          "column": 30,
+          "line": 332,
+          "position": 12335
+        },
+        "name": "platformer/PlatformerGame.ts",
+        "start": 317,
+        "startLoc": {
+          "column": 105,
+          "line": 317,
+          "position": 11780
+        }
+      },
+      "tokens": 85
+    },
+    {
+      "firstFile": {
+        "end": 314,
+        "endLoc": {
+          "column": 53,
+          "line": 314,
+          "position": 11317
+        },
+        "name": "echorunner/EchoRunnerGame.ts",
+        "start": 308,
+        "startLoc": {
+          "column": 8,
+          "line": 308,
+          "position": 11000
+        }
+      },
+      "format": "typescript",
+      "fragment": "        } as { type: string; [key: string]: unknown });\n        world.addComponent(entity, {\n          type: \"PlatformerGravityConfig\",\n          riseGravity: config.RISE_GRAVITY,\n          fallGravity: config.FALL_GRAVITY,\n          jumpVelocity: config.PLAYER_JUMP_VEL,\n          minJumpVelocity: config.PLAYER_MIN_JUMP_VEL,",
+      "isNew": false,
+      "lines": 7,
+      "secondFile": {
+        "end": 349,
+        "endLoc": {
+          "column": 53,
+          "line": 349,
+          "position": 13068
+        },
+        "name": "platformer/PlatformerGame.ts",
+        "start": 343,
+        "startLoc": {
+          "column": 78,
+          "line": 343,
+          "position": 12751
+        }
+      },
+      "tokens": 51
+    },
+    {
+      "firstFile": {
+        "end": 332,
+        "endLoc": {
+          "column": 41,
+          "line": 332,
+          "position": 12269
+        },
+        "name": "echorunner/EchoRunnerGame.ts",
+        "start": 326,
+        "startLoc": {
+          "column": 106,
+          "line": 326,
+          "position": 12037
+        }
+      },
+      "format": "typescript",
+      "fragment": "        world.addComponent(entity, { type: \"PlatformerGroundState\", isGrounded: false, iceMultiplier: 1.0 } as { type: string; [key: string]: unknown });\n      }\n    });\n\n    this.blueprints.register(\"tilemap\", {\n      spawn: (world, entity, args: { data: number[][]; tileDefinitions: any }) => {\n        const config = world.getResource<EchoRunnerConfigType>(\"GameConfig\") || DEFAULT_ECHO_RUNNER_CONFIG;",
+      "isNew": false,
+      "lines": 7,
+      "secondFile": {
+        "end": 379,
+        "endLoc": {
+          "column": 41,
+          "line": 379,
+          "position": 14324
+        },
+        "name": "platformer/PlatformerGame.ts",
+        "start": 373,
+        "startLoc": {
+          "column": 8,
+          "line": 373,
+          "position": 14092
+        }
+      },
+      "tokens": 62
+    },
+    {
+      "firstFile": {
+        "end": 345,
+        "endLoc": {
+          "column": 9,
+          "line": 345,
+          "position": 12686
+        },
+        "name": "echorunner/EchoRunnerGame.ts",
+        "start": 332,
+        "startLoc": {
+          "column": 106,
+          "line": 332,
+          "position": 12334
+        }
+      },
+      "format": "typescript",
+      "fragment": "        const config = world.getResource<EchoRunnerConfigType>(\"GameConfig\") || DEFAULT_ECHO_RUNNER_CONFIG;\n        EntityBuilder.fromEntity(world, entity)\n          .withTransform({ x: 0, y: 0 });\n\n        world.addComponent(entity, {\n          type: \"Tilemap\",\n          data: args.data,\n          tileSize: config.TILE_SIZE,\n          tileDefinitions: args.tileDefinitions\n        } as { type: string; [key: string]: unknown });\n      }\n    });\n\n    this.blueprints.register(\"collectible_fragment\", {",
+      "isNew": false,
+      "lines": 14,
+      "secondFile": {
+        "end": 393,
+        "endLoc": {
+          "column": 9,
+          "line": 393,
+          "position": 14759
+        },
+        "name": "platformer/PlatformerGame.ts",
+        "start": 379,
+        "startLoc": {
+          "column": 105,
+          "line": 379,
+          "position": 14388
+        }
+      },
+      "tokens": 74
+    },
+    {
+      "firstFile": {
+        "end": 350,
+        "endLoc": {
+          "column": 30,
+          "line": 350,
+          "position": 13101
+        },
+        "name": "echorunner/EchoRunnerGame.ts",
+        "start": 345,
+        "startLoc": {
+          "column": 51,
+          "line": 345,
+          "position": 12728
+        }
+      },
+      "format": "typescript",
+      "fragment": "    this.blueprints.register(\"collectible_fragment\", {\n      spawn: (world, entity, args: { x: number; y: number; id: string }) => {\n        // TODO(refactor): código duplicado detectado (bloque) con platformer/PlatformerGame.ts:189-208. Considerar extraer a función compartida. Ref: fbd854ae\n        EntityBuilder.fromEntity(world, entity)\n          .withTransform({ x: args.x, y: args.y })\n          .withRender({ shape: \"fragment\", size: 16, order: 1 });",
+      "isNew": false,
+      "lines": 6,
+      "secondFile": {
+        "end": 367,
+        "endLoc": {
+          "column": 30,
+          "line": 367,
+          "position": 13667
+        },
+        "name": "echorunner/EchoRunnerGame.ts",
+        "start": 363,
+        "startLoc": {
+          "column": 47,
+          "line": 363,
+          "position": 13456
+        }
+      },
+      "tokens": 58
+    },
+    {
+      "firstFile": {
+        "end": 350,
+        "endLoc": {
+          "column": 30,
+          "line": 350,
+          "position": 13101
+        },
+        "name": "echorunner/EchoRunnerGame.ts",
+        "start": 345,
+        "startLoc": {
+          "column": 51,
+          "line": 345,
+          "position": 12728
+        }
+      },
+      "format": "typescript",
+      "fragment": "    this.blueprints.register(\"collectible_fragment\", {\n      spawn: (world, entity, args: { x: number; y: number; id: string }) => {\n        // TODO(refactor): código duplicado detectado (bloque) con platformer/PlatformerGame.ts:189-208. Considerar extraer a función compartida. Ref: fbd854ae\n        EntityBuilder.fromEntity(world, entity)\n          .withTransform({ x: args.x, y: args.y })\n          .withRender({ shape: \"fragment\", size: 16, order: 1 });",
+      "isNew": false,
+      "lines": 6,
+      "secondFile": {
+        "end": 384,
+        "endLoc": {
+          "column": 30,
+          "line": 384,
+          "position": 14223
+        },
+        "name": "echorunner/EchoRunnerGame.ts",
+        "start": 380,
+        "startLoc": {
+          "column": 46,
+          "line": 380,
+          "position": 14012
+        }
+      },
+      "tokens": 58
+    },
+    {
+      "firstFile": {
+        "end": 363,
+        "endLoc": {
+          "column": 29,
+          "line": 363,
+          "position": 13438
+        },
+        "name": "echorunner/EchoRunnerGame.ts",
+        "start": 348,
+        "startLoc": {
+          "column": 21,
+          "line": 348,
+          "position": 12993
+        }
+      },
+      "format": "typescript",
+      "fragment": "        EntityBuilder.fromEntity(world, entity)\n          .withTransform({ x: args.x, y: args.y })\n          .withRender({ shape: \"fragment\", size: 16, order: 1 });\n\n        world.addComponent(entity, {\n          type: \"Collectible\",\n          kind: \"fragment\",\n          value: 10,\n          persistent: false,\n          collectOnce: false,\n          id: args.id\n        } as { type: string; [key: string]: unknown });\n      }\n    });\n\n    this.blueprints.register(\"collectible_core\", {",
+      "isNew": false,
+      "lines": 16,
+      "secondFile": {
+        "end": 214,
+        "endLoc": {
+          "column": 29,
+          "line": 214,
+          "position": 7478
+        },
+        "name": "platformer/PlatformerGame.ts",
+        "start": 194,
+        "startLoc": {
+          "column": 27,
+          "line": 194,
+          "position": 6829
+        }
+      },
+      "tokens": 101
+    },
+    {
+      "firstFile": {
+        "end": 397,
+        "endLoc": {
+          "column": 29,
+          "line": 397,
+          "position": 14563
+        },
+        "name": "echorunner/EchoRunnerGame.ts",
+        "start": 374,
+        "startLoc": {
+          "column": 27,
+          "line": 374,
+          "position": 13869
+        }
+      },
+      "format": "typescript",
+      "fragment": "          collectOnce: true,\n          id: args.id\n        } as { type: string; [key: string]: unknown });\n      }\n    });\n\n    this.blueprints.register(\"checkpoint_node\", {\n      spawn: (world, entity, args: { x: number; y: number; id: string }) => {\n        EntityBuilder.fromEntity(world, entity)\n          .withTransform({ x: args.x, y: args.y })\n          .withRender({ shape: \"node\", size: 32, order: 1 });\n\n        world.addComponent(entity, {\n          type: \"RespawnPoint\",\n          x: args.x,\n          y: args.y - 10,\n          checkpointId: args.id\n        } as { type: string; [key: string]: unknown });\n      }\n    });\n\n    registerPlatformerEnemyBlueprints(this.blueprints);\n\n    this.blueprints.register(\"moving_platform\", {",
+      "isNew": false,
+      "lines": 24,
+      "secondFile": {
+        "end": 253,
+        "endLoc": {
+          "column": 29,
+          "line": 253,
+          "position": 8818
+        },
+        "name": "platformer/PlatformerGame.ts",
+        "start": 229,
+        "startLoc": {
+          "column": 28,
+          "line": 229,
+          "position": 7966
+        }
+      },
+      "tokens": 168
+    },
+    {
+      "firstFile": {
+        "end": 432,
+        "endLoc": {
+          "column": 28,
+          "line": 432,
+          "position": 16127
+        },
+        "name": "echorunner/EchoRunnerGame.ts",
+        "start": 427,
+        "startLoc": {
+          "column": 82,
+          "line": 427,
+          "position": 15818
+        }
+      },
+      "format": "typescript",
+      "fragment": "    this.world.addSystem(new EchoRunnerAttackSystem(), { phase: SystemPhase.Input });\n\n    this.world.addSystem(new PlatformerMovementSystem(), { phase: SystemPhase.Simulation });\n    this.world.addSystem(new PlatformerGravitySystem(), { phase: SystemPhase.Simulation });\n    this.world.addSystem(new PlatformerCoyoteSystem(), { phase: SystemPhase.Simulation });\n    this.world.addSystem(new MovingPlatformSystem(), { phase: SystemPhase.Simulation });",
+      "isNew": false,
+      "lines": 6,
+      "secondFile": {
+        "end": 400,
+        "endLoc": {
+          "column": 28,
+          "line": 400,
+          "position": 15474
+        },
+        "name": "platformer/PlatformerGame.ts",
+        "start": 396,
+        "startLoc": {
+          "column": 89,
+          "line": 396,
+          "position": 15166
+        }
+      },
+      "tokens": 70
+    },
+    {
+      "firstFile": {
+        "end": 441,
+        "endLoc": {
+          "column": 28,
+          "line": 441,
+          "position": 17040
+        },
+        "name": "echorunner/EchoRunnerGame.ts",
+        "start": 434,
+        "startLoc": {
+          "column": 48,
+          "line": 434,
+          "position": 16394
+        }
+      },
+      "format": "typescript",
+      "fragment": "    this.world.addSystem(new PlatformCarrySystem(), { phase: SystemPhase.Simulation });\n    this.world.addSystem(new EnemySensorSystem(), { phase: SystemPhase.Simulation });\n    this.world.addSystem(new StateMachineSystem(), { phase: SystemPhase.Simulation });\n    this.world.addSystem(new CheckpointSystem(), { phase: SystemPhase.Simulation });\n    this.world.addSystem(new DeathSystem(), { phase: SystemPhase.Simulation });\n    this.world.addSystem(new RespawnSystem(), { phase: SystemPhase.Simulation });\n    // TODO(refactor): código duplicado detectado (bloque) con platformer/PlatformerGame.ts:393-397. Considerar extraer a función compartida. Ref: 14b9d33b\n    this.world.addSystem(new EchoRunnerDamageSystem(), { phase: SystemPhase.Simulation });",
+      "isNew": false,
+      "lines": 8,
+      "secondFile": {
+        "end": 405,
+        "endLoc": {
+          "column": 28,
+          "line": 405,
+          "position": 15894
+        },
+        "name": "platformer/PlatformerGame.ts",
+        "start": 399,
+        "startLoc": {
+          "column": 51,
+          "line": 399,
+          "position": 15406
+        }
+      },
+      "tokens": 119
+    },
+    {
+      "firstFile": {
+        "end": 448,
+        "endLoc": {
+          "column": 28,
+          "line": 448,
+          "position": 17569
+        },
+        "name": "echorunner/EchoRunnerGame.ts",
+        "start": 441,
+        "startLoc": {
+          "column": 51,
+          "line": 441,
+          "position": 17063
+        }
+      },
+      "format": "typescript",
+      "fragment": "    this.world.addSystem(new EchoRunnerDamageSystem(), { phase: SystemPhase.Simulation });\n\n    this.world.addSystem(new PhysicsIntegrateSystem(), { phase: SystemPhase.Simulation, priority: -10 });\n\n    this.world.addSystem(new TileCollisionSystem(), { phase: SystemPhase.Collision });\n    this.world.addSystem(new CollectibleSystem(), { phase: SystemPhase.Collision });\n    // TODO(refactor): código duplicado detectado (bloque) con platformer/PlatformerGame.ts:399-402. Considerar extraer a función compartida. Ref: d0f615e5\n    this.world.addSystem(new HitDetectionSystem(), { phase: SystemPhase.Collision });",
+      "isNew": false,
+      "lines": 8,
+      "secondFile": {
+        "end": 411,
+        "endLoc": {
+          "column": 28,
+          "line": 411,
+          "position": 16499
+        },
+        "name": "platformer/PlatformerGame.ts",
+        "start": 407,
+        "startLoc": {
+          "column": 38,
+          "line": 407,
+          "position": 16153
+        }
+      },
+      "tokens": 84
+    },
+    {
+      "firstFile": {
+        "end": 454,
+        "endLoc": {
+          "column": 28,
+          "line": 454,
+          "position": 18005
+        },
+        "name": "echorunner/EchoRunnerGame.ts",
+        "start": 448,
+        "startLoc": {
+          "column": 82,
+          "line": 448,
+          "position": 17623
+        }
+      },
+      "format": "typescript",
+      "fragment": "    this.world.addSystem(new HitDetectionSystem(), { phase: SystemPhase.Collision });\n\n    // Presentation Systems\n    this.world.addSystem(new Camera2DSystem(), { phase: SystemPhase.Presentation });\n    // TODO(refactor): código duplicado detectado (bloque) con pong/PongGame.ts:261-267. Considerar extraer a función compartida. Ref: 6ae02dab\n    this.world.addSystem(new TilemapRenderSystem(), { phase: SystemPhase.Presentation });\n    this.world.addSystem(new JuiceSystem(), { phase: SystemPhase.Presentation });",
+      "isNew": false,
+      "lines": 7,
+      "secondFile": {
+        "end": 417,
+        "endLoc": {
+          "column": 28,
+          "line": 417,
+          "position": 17095
+        },
+        "name": "platformer/PlatformerGame.ts",
+        "start": 414,
+        "startLoc": {
+          "column": 85,
+          "line": 414,
+          "position": 16888
+        }
+      },
+      "tokens": 50
+    },
+    {
+      "firstFile": {
+        "end": 458,
+        "endLoc": {
+          "column": 9,
+          "line": 458,
+          "position": 18246
+        },
+        "name": "echorunner/EchoRunnerGame.ts",
+        "start": 453,
+        "startLoc": {
+          "column": 86,
+          "line": 453,
+          "position": 17973
+        }
+      },
+      "format": "typescript",
+      "fragment": "    this.world.addSystem(new TilemapRenderSystem(), { phase: SystemPhase.Presentation });\n    this.world.addSystem(new JuiceSystem(), { phase: SystemPhase.Presentation });\n    this.world.addSystem(new ScreenShakeSystem(), { phase: SystemPhase.Presentation });\n    this.world.addSystem(new RenderUpdateSystem(), { phase: SystemPhase.Presentation });\n\n    await this.onPreloadAssets();",
+      "isNew": false,
+      "lines": 6,
+      "secondFile": {
+        "end": 269,
+        "endLoc": {
+          "column": 3,
+          "line": 269,
+          "position": 11544
+        },
+        "name": "pong/PongGame.ts",
+        "start": 263,
+        "startLoc": {
+          "column": 92,
+          "line": 263,
+          "position": 11248
+        }
+      },
+      "tokens": 63
+    },
+    {
+      "firstFile": {
+        "end": 530,
+        "endLoc": {
+          "column": 82,
+          "line": 530,
+          "position": 21021
+        },
+        "name": "echorunner/EchoRunnerGame.ts",
+        "start": 519,
+        "startLoc": {
+          "column": 63,
+          "line": 519,
+          "position": 20523
+        }
+      },
+      "format": "typescript",
+      "fragment": "        3: { solid: true, kind: \"bounce\" as const, bounce: 1.5 },\n        4: { solid: true, kind: \"spike\" as const },\n        5: { solid: true, oneWay: true, kind: \"normal\" as const }\n      };\n\n    const levelData = this.customLevelData ?? defaultLevelData;\n    const templates = levelData.templates as SegmentTemplate[];\n    const grammar = levelData.grammar as string[];\n\n    // Generate deterministic Plan using SegmentGenerator\n    const levelSeed = this.getSeed() || 41873;\n    this.levelPlan = SegmentGenerator.generatePlan(templates, grammar, levelSeed);",
+      "isNew": false,
+      "lines": 12,
+      "secondFile": {
+        "end": 446,
+        "endLoc": {
+          "column": 82,
+          "line": 446,
+          "position": 18500
+        },
+        "name": "platformer/PlatformerGame.ts",
+        "start": 437,
+        "startLoc": {
+          "column": 61,
+          "line": 437,
+          "position": 18067
+        }
+      },
+      "tokens": 92
+    },
+    {
+      "firstFile": {
+        "end": 564,
+        "endLoc": {
+          "column": 7,
+          "line": 564,
+          "position": 22236
+        },
+        "name": "echorunner/EchoRunnerGame.ts",
+        "start": 550,
+        "startLoc": {
+          "column": 4,
+          "line": 550,
+          "position": 21887
+        }
+      },
+      "format": "typescript",
+      "fragment": "    const cameraEntity = this.world.createEntity();\n    this.world.addComponent(cameraEntity, {\n      type: \"Camera2D\",\n      zoom: 1.0,\n      x: 0,\n      y: 0,\n      targetX: 0,\n      targetY: 0,\n      isMain: true,\n      followEntity: playerEntity,\n      lookAheadX: 80,\n      smoothingX: 6.0,\n      smoothingY: 6.0,\n      verticalDeadzone: 45\n    });",
+      "isNew": false,
+      "lines": 15,
+      "secondFile": {
+        "end": 473,
+        "endLoc": {
+          "column": 7,
+          "line": 473,
+          "position": 19515
+        },
+        "name": "platformer/PlatformerGame.ts",
+        "start": 459,
+        "startLoc": {
+          "column": 4,
+          "line": 459,
+          "position": 19166
+        }
+      },
+      "tokens": 70
+    },
+    {
+      "firstFile": {
         "end": 51,
         "endLoc": {
           "column": 7,
@@ -2367,80 +3181,6 @@
         }
       },
       "tokens": 57
-    },
-    {
-      "firstFile": {
-        "end": 83,
-        "endLoc": {
-          "column": 29,
-          "line": 83,
-          "position": 4839
-        },
-        "name": "flappybird/FlappyBirdGame.ts",
-        "start": 70,
-        "startLoc": {
-          "column": 47,
-          "line": 70,
-          "position": 4270
-        }
-      },
-      "format": "typescript",
-      "fragment": "    this.isMultiplayer = !!config.isMultiplayer;\n  }\n\n  protected override async onRegisterSystems(): Promise<void> {\n    this.config = resolveAndApplyMutators(this.baseConfig, this._config.gameOptions);\n    // TODO(refactor): código duplicado detectado (bloque) con pong/PongGame.ts:109-118. Considerar extraer a función compartida. Ref: 75010e56\n    this.world.setResource(\"GameConfig\", this.config);\n    this.setupCommonArcadeResources();\n    this._config.gameOptions = { ...this._config.gameOptions, ...this.config };\n\n    await this.onPreloadAssets();\n\n    // Register blueprints\n    this.blueprints.register(\"bird\", {",
-      "isNew": false,
-      "lines": 14,
-      "secondFile": {
-        "end": 117,
-        "endLoc": {
-          "column": 29,
-          "line": 117,
-          "position": 5024
-        },
-        "name": "pong/PongGame.ts",
-        "start": 103,
-        "startLoc": {
-          "column": 53,
-          "line": 103,
-          "position": 4444
-        }
-      },
-      "tokens": 83
-    },
-    {
-      "firstFile": {
-        "end": 78,
-        "endLoc": {
-          "column": 9,
-          "line": 78,
-          "position": 4676
-        },
-        "name": "flappybird/FlappyBirdGame.ts",
-        "start": 71,
-        "startLoc": {
-          "column": 2,
-          "line": 71,
-          "position": 4274
-        }
-      },
-      "format": "typescript",
-      "fragment": "  }\n\n  protected override async onRegisterSystems(): Promise<void> {\n    this.config = resolveAndApplyMutators(this.baseConfig, this._config.gameOptions);\n    // TODO(refactor): código duplicado detectado (bloque) con pong/PongGame.ts:109-118. Considerar extraer a función compartida. Ref: 75010e56\n    this.world.setResource(\"GameConfig\", this.config);\n    this.setupCommonArcadeResources();\n    this._config.gameOptions = { ...this._config.gameOptions, ...this.config };",
-      "isNew": false,
-      "lines": 8,
-      "secondFile": {
-        "end": 117,
-        "endLoc": {
-          "column": 9,
-          "line": 117,
-          "position": 6334
-        },
-        "name": "space-invaders/SpaceInvadersGame.ts",
-        "start": 109,
-        "startLoc": {
-          "column": 2,
-          "line": 109,
-          "position": 5922
-        }
-      },
-      "tokens": 51
     },
     {
       "firstFile": {
@@ -4849,6 +5589,80 @@
     },
     {
       "firstFile": {
+        "end": 204,
+        "endLoc": {
+          "column": 15,
+          "line": 204,
+          "position": 7103
+        },
+        "name": "platformer/PlatformerGame.ts",
+        "start": 191,
+        "startLoc": {
+          "column": 51,
+          "line": 191,
+          "position": 6558
+        }
+      },
+      "format": "typescript",
+      "fragment": "    this.blueprints.register(\"collectible_fragment\", {\n      spawn: (world, entity, args: { x: number; y: number; id: string }) => {\n        // TODO(refactor): código duplicado detectado (bloque) con echorunner/EchoRunnerGame.ts:324-339. Considerar extraer a función compartida. Ref: fbd854ae\n        ArcadeEntityBuilder.fromEntity(world, entity)\n          .withTransform({ x: args.x, y: args.y })\n          .withRender({\n            shape: \"fragment\",\n            size: 16,\n            order: 1\n          });\n\n        world.addComponent(entity, {\n          type: \"Collectible\",\n          kind: \"fragment\",",
+      "isNew": false,
+      "lines": 14,
+      "secondFile": {
+        "end": 226,
+        "endLoc": {
+          "column": 15,
+          "line": 226,
+          "position": 7879
+        },
+        "name": "platformer/PlatformerGame.ts",
+        "start": 214,
+        "startLoc": {
+          "column": 47,
+          "line": 214,
+          "position": 7496
+        }
+      },
+      "tokens": 83
+    },
+    {
+      "firstFile": {
+        "end": 262,
+        "endLoc": {
+          "column": 23,
+          "line": 262,
+          "position": 9207
+        },
+        "name": "platformer/PlatformerGame.ts",
+        "start": 253,
+        "startLoc": {
+          "column": 50,
+          "line": 253,
+          "position": 8839
+        }
+      },
+      "format": "typescript",
+      "fragment": "    this.blueprints.register(\"powerup_double_jump\", {\n      spawn: (world, entity, args: { x: number; y: number }) => {\n        ArcadeEntityBuilder.fromEntity(world, entity)\n          .withTransform({ x: args.x, y: args.y })\n          .withCollider2D({\n            shape: { type: \"aabb\", halfWidth: 12, halfHeight: 12 },\n            isTrigger: true\n          })\n          .withCollisionEvents()\n          .withPowerUp(\"double_jump\")",
+      "isNew": false,
+      "lines": 10,
+      "secondFile": {
+        "end": 281,
+        "endLoc": {
+          "column": 23,
+          "line": 281,
+          "position": 9920
+        },
+        "name": "platformer/PlatformerGame.ts",
+        "start": 272,
+        "startLoc": {
+          "column": 43,
+          "line": 272,
+          "position": 9552
+        }
+      },
+      "tokens": 80
+    },
+    {
+      "firstFile": {
         "end": 33,
         "endLoc": {
           "column": 55,
@@ -6736,32 +7550,32 @@
     }
   ],
   "statistics": {
-    "detectionDate": "2026-09-06T21:52:32.224Z",
+    "detectionDate": "2026-09-06T22:24:29.450Z",
     "formats": {
       "typescript": {
-        "clones": 182,
-        "duplicatedLines": 1927,
-        "duplicatedTokens": 14675,
-        "lines": 50812,
+        "clones": 204,
+        "duplicatedLines": 2189,
+        "duplicatedTokens": 16626,
+        "lines": 52010,
         "newClones": 0,
         "newDuplicatedLines": 0,
-        "percentage": 3.79241124143903,
-        "percentageTokens": 5.503159394746217,
-        "sources": 316,
-        "tokens": 266665
+        "percentage": 4.208805998846376,
+        "percentageTokens": 6.050724769540391,
+        "sources": 317,
+        "tokens": 274777
       }
     },
     "total": {
-      "clones": 182,
-      "duplicatedLines": 1927,
-      "duplicatedTokens": 14675,
-      "lines": 50812,
+      "clones": 204,
+      "duplicatedLines": 2189,
+      "duplicatedTokens": 16626,
+      "lines": 52010,
       "newClones": 0,
       "newDuplicatedLines": 0,
-      "percentage": 3.79241124143903,
-      "percentageTokens": 5.503159394746217,
-      "sources": 316,
-      "tokens": 266665
+      "percentage": 4.208805998846376,
+      "percentageTokens": 6.050724769540391,
+      "sources": 317,
+      "tokens": 274777
     }
   }
 }

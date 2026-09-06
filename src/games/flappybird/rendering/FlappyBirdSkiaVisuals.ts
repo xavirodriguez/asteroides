@@ -5,9 +5,15 @@ import {
   StarfieldStar,
   generateStarfield,
   calculateSquashAndStretch,
-  calculateMegastructurePosition,
   calculateFlappyPipeGeometry
 } from "../../shared/rendering/geometry";
+import {
+  calculateWarpFactor,
+  calculateMegastructureData,
+  calculateGroundHazardFlicker,
+  BACKGROUND_NEBULAE,
+  MegastructureData
+} from "./FlappyBirdBackgroundData";
 
 // DUP-04: duplicación intencional de dibujadores visuales entre Canvas2D y Skia.
 // Solo se extrajeron los cálculos puros a src/games/shared/rendering/geometry.ts. Ver docs/tech-debt/duplication.md
@@ -255,6 +261,24 @@ export const drawSkiaFlappyBird: ShapeDrawer<any, FlappyBirdComponentRegistry> =
 
     const vy = birdComp.velocityY;
     const isAlive = birdComp.isAlive;
+
+    // --- TRIGGER NEAR-MISS CYAN SPARKS ---
+    const hasNearMissTriggered = birdComp.nearMissTimer > 0 && state.lastNearMissTimer <= 0;
+    if (hasNearMissTriggered && isAlive) {
+      const transformPos = world.getComponent(entity, "Transform") as TransformComponent;
+      const px = transformPos.worldX ?? transformPos.x ?? x;
+      const py = transformPos.worldY ?? transformPos.y ?? y;
+      const nmSparkCount = world.renderRandom.nextInt(5, 9);
+      for (let i = 0; i < nmSparkCount; i++) {
+        const angleVal = world.renderRandom.next() * Math.PI * 2;
+        const speedVal = world.renderRandom.nextRange(60, 120);
+        const pVx = Math.cos(angleVal) * speedVal;
+        const pVy = Math.sin(angleVal) * speedVal;
+        const lifeVal = world.renderRandom.nextRange(0.25, 0.45);
+        const sizeVal = world.renderRandom.nextRange(2, 4);
+        spawnVisualParticle("spark", px, py, pVx, pVy, lifeVal, sizeVal, "#00F3FF", angleVal);
+      }
+    }
 
     // --- TRIGGER SPARKS ON BOOST THRUST ---
     const flapStrength = FLAPPY_CONFIG.FLAP_STRENGTH;
@@ -506,8 +530,25 @@ export const drawSkiaFlappyPipe: ShapeDrawer<any, FlappyBirdComponentRegistry> =
     paint.setStrokeWidth(1.5);
     canvas.drawRect(Skia.XYWHRect(-capHalfWidth, capYOffset, capWidth, capHeight), paint);
 
-    // Stroboscopic Red Warning Beacons (#FF0000) strictly bound to world.tick
+    // Stroboscopic Red Warning Beacons (#FF0000) strictly bound to world.tick with soft glow halo
     const beaconPulse = 0.35 + 0.65 * Math.abs(Math.sin(world.tick * 0.2));
+
+    const beaconHaloShader = getCachedSkiaShader(`beacon_halo_${beaconPulse.toFixed(2)}`, () =>
+      Skia.Shader.MakeTwoPointConicalGradient(
+        Skia.Point(0, beaconY),
+        4,
+        Skia.Point(0, beaconY),
+        45,
+        [Skia.Color("rgba(255,0,0,0.25)"), Skia.Color("rgba(255,0,0,0.08)"), Skia.Color("rgba(255,0,0,0)")],
+        [0, 0.5, 1.0],
+        Skia.TileMode.Clamp
+      )
+    );
+
+    paint.reset();
+    paint.setStyle(Skia.PaintStyle.Fill);
+    paint.setShader(beaconHaloShader);
+    canvas.drawCircle(0, beaconY, 45, paint);
 
     paint.reset();
     paint.setStyle(Skia.PaintStyle.Fill);
@@ -554,14 +595,18 @@ export const drawSkiaFlappyGround: ShapeDrawer<any, FlappyBirdComponentRegistry>
     paint.setShader(baseShader);
     canvas.drawRect(Skia.XYWHRect(-width / 2, -height / 2, width, height), paint);
 
-    // Yellow / Black caution stripe top rim
+    // Yellow / Black caution stripe top rim with non-linear flickering
+    const hazardFlicker = calculateGroundHazardFlicker(world.tick);
+
     paint.reset();
     paint.setStyle(Skia.PaintStyle.Fill);
     paint.setColor(Skia.Color("#FFCC00"));
+    paint.setAlphaf(hazardFlicker);
     canvas.drawRect(Skia.XYWHRect(-width / 2, -height / 2, width, 8), paint);
 
     paint.setStyle(Skia.PaintStyle.Stroke);
     paint.setColor(Skia.Color("#111116"));
+    paint.setAlphaf(hazardFlicker);
     paint.setStrokeWidth(4);
     const stripeOffset = (world.tick * 3) % 24;
 
@@ -576,6 +621,84 @@ export const drawSkiaFlappyGround: ShapeDrawer<any, FlappyBirdComponentRegistry>
     canvas.drawLine(-width / 2, -height / 2, width / 2, -height / 2, paint);
   }
 };
+
+// Helper to draw 4 distinct megastructure silhouette designs in Skia
+function drawSkiaMegastructure(canvas: any, paint: any, data: MegastructureData): void {
+  if (!Skia) return;
+  const { megaIndex, megaX, megaY, beaconAlpha } = data;
+  canvas.save();
+
+  paint.reset();
+  paint.setStyle(Skia.PaintStyle.Fill);
+  paint.setColor(Skia.Color("rgba(15, 18, 28, 0.65)"));
+
+  if (megaIndex === 0) {
+    // Design 0: Radial Station
+    canvas.drawCircle(megaX, megaY, 36, paint);
+    canvas.drawRect(Skia.XYWHRect(megaX - 85, megaY - 4, 170, 8), paint);
+    canvas.drawRect(Skia.XYWHRect(megaX - 4, megaY - 85, 8, 170), paint);
+    canvas.drawRect(Skia.XYWHRect(megaX - 80, megaY - 25, 6, 50), paint);
+    canvas.drawRect(Skia.XYWHRect(megaX + 74, megaY - 25, 6, 50), paint);
+
+    paint.setColor(Skia.Color("#FF0000"));
+    paint.setAlphaf(beaconAlpha);
+    canvas.drawCircle(megaX, megaY - 85, 2.5, paint);
+  } else if (megaIndex === 1) {
+    // Design 1: Ship Wreckage
+    const path = Skia.Path.Make();
+    path.moveTo(megaX - 60, megaY - 30);
+    path.lineTo(megaX + 70, megaY - 10);
+    path.lineTo(megaX + 40, megaY + 35);
+    path.lineTo(megaX - 50, megaY + 20);
+    path.close();
+    canvas.drawPath(path, paint);
+
+    canvas.drawRect(Skia.XYWHRect(megaX - 90, megaY - 45, 12, 90), paint);
+    canvas.drawRect(Skia.XYWHRect(megaX - 90, megaY - 3, 100, 6), paint);
+
+    paint.setColor(Skia.Color("#FF0000"));
+    paint.setAlphaf(beaconAlpha);
+    canvas.drawCircle(megaX + 70, megaY - 10, 2.5, paint);
+  } else if (megaIndex === 2) {
+    // Design 2: Broken Ring
+    paint.setStyle(Skia.PaintStyle.Stroke);
+    paint.setStrokeWidth(14);
+    const ringPath = Skia.Path.Make();
+    ringPath.addArc(
+      Skia.XYWHRect(megaX - 55, megaY - 55, 110, 110),
+      -126,
+      216
+    );
+    canvas.drawPath(ringPath, paint);
+
+    paint.setStyle(Skia.PaintStyle.Fill);
+    canvas.drawRect(Skia.XYWHRect(megaX - 10, megaY - 60, 20, 10), paint);
+    canvas.drawRect(Skia.XYWHRect(megaX + 48, megaY - 10, 10, 20), paint);
+
+    paint.setColor(Skia.Color("#FF0000"));
+    paint.setAlphaf(beaconAlpha);
+    canvas.drawCircle(megaX - 10, megaY - 60, 2.5, paint);
+  } else {
+    // Design 3: Communications Tower
+    canvas.drawRect(Skia.XYWHRect(megaX - 6, megaY - 90, 12, 180), paint);
+    canvas.drawRect(Skia.XYWHRect(megaX - 25, megaY - 40, 50, 6), paint);
+    canvas.drawRect(Skia.XYWHRect(megaX - 35, megaY + 10, 70, 8), paint);
+
+    const dishPath = Skia.Path.Make();
+    dishPath.addArc(
+      Skia.XYWHRect(megaX - 22, megaY - 92, 44, 44),
+      36,
+      108
+    );
+    canvas.drawPath(dishPath, paint);
+
+    paint.setColor(Skia.Color("#FF0000"));
+    paint.setAlphaf(beaconAlpha);
+    canvas.drawCircle(megaX, megaY - 90, 2.5, paint);
+  }
+
+  canvas.restore();
+}
 
 // ============================================================================
 // THE DEEP VOID PARALLAX BACKGROUND (#050510)
@@ -598,6 +721,43 @@ export const scrollingSkiaBackgroundEffect: EffectDrawer<any, FlappyBirdComponen
     paint.setColor(Skia.Color("#050510"));
     // TODO(refactor): código duplicado detectado (bloque) con flappybird/rendering/FlappyBirdCanvasVisuals.ts:645-655. Considerar extraer a función compartida. Ref: e7c4cf1f
     canvas.drawRect(Skia.XYWHRect(0, 0, width, height), paint);
+
+    // --- ANIMATED LOW-OPACITY RADIAL NEBULAE CLOUDS ---
+    for (let n = 0; n < BACKGROUND_NEBULAE.length; n++) {
+      const neb = BACKGROUND_NEBULAE[n];
+      const nx = width * neb.xRatio + Math.sin(world.tick * 0.01 + n) * 15;
+      const ny = height * neb.yRatio + Math.cos(world.tick * 0.008 + n * 2) * 10;
+      const nebShader = getCachedSkiaShader(`neb_${n}_${width}_${height}`, () =>
+        Skia.Shader.MakeTwoPointConicalGradient(
+          Skia.Point(nx, ny),
+          10,
+          Skia.Point(nx, ny),
+          neb.radius,
+          [Skia.Color(neb.colorHex), Skia.Color(neb.colorHex), Skia.Color("#050510")],
+          [0, 0.6, 1.0],
+          Skia.TileMode.Clamp
+        )
+      );
+      if (nebShader) {
+        paint.reset();
+        paint.setStyle(Skia.PaintStyle.Fill);
+        paint.setShader(nebShader);
+        paint.setAlphaf(0.35);
+        canvas.drawRect(Skia.XYWHRect(0, 0, width, height), paint);
+      }
+    }
+
+    // --- SPORADIC DISTANT BACKGROUND DEBRIS / SPARKS ---
+    // Deterministically spawn faint distant sparks/shards approx every 4-8 seconds (240-480 ticks)
+    if (world.tick % 300 === 0 && world.renderRandom.next() > 0.3) {
+      const dx = world.renderRandom.nextRange(20, width - 20);
+      const dy = world.renderRandom.nextRange(40, height * 0.7);
+      const angle = world.renderRandom.next() * Math.PI * 2;
+      const speed = world.renderRandom.nextRange(15, 35);
+      const vx = Math.cos(angle) * speed;
+      const vy = Math.sin(angle) * speed;
+      spawnVisualParticle("star", dx, dy, vx, vy, world.renderRandom.nextRange(1.0, 2.0), world.renderRandom.nextRange(1.5, 3.0), "#5A6173", angle);
+    }
 
     // Hypervelocity combo factor calculation
     let warpFactor = 1.0;
@@ -637,30 +797,43 @@ export const scrollingSkiaBackgroundEffect: EffectDrawer<any, FlappyBirdComponen
       }
     }
 
-    // --- OCCASIONAL ISOLATED ABANDONED MEGASTRUCTURE SILHOUETTE ---
-    const megaState = calculateMegastructurePosition(tick, width, height);
-    if (megaState.visible) {
-      const { megaX, megaY, beaconAlpha } = megaState;
+    // --- AD-HOC RADIAL WARP SPEED LINES (WARPFACTOR > 1.5) ---
+    // Opting for an ad-hoc local implementation instead of registering global SharedVFX
+    // to preserve zero side-effects on shared VFX state across other minigames (e.g. Geometry Wars)
+    // while pinning radial speed lines strictly to Flappy Bird's viewport center and combo factor.
+    if (warpFactor > 1.5) {
+      const cx = width / 2;
+      const cy = height / 2;
+      const lineCount = 20;
+      const maxR = Math.sqrt(cx * cx + cy * cy);
+      const intensity = Math.min((warpFactor - 1.5) / 1.5, 1.0);
 
       canvas.save();
       paint.reset();
-      paint.setStyle(Skia.PaintStyle.Fill);
-      paint.setColor(Skia.Color("rgba(15, 18, 28, 0.65)"));
+      paint.setStyle(Skia.PaintStyle.Stroke);
+      paint.setColor(Skia.Color("#00F3FF"));
+      paint.setAlphaf(0.15 * intensity);
+      paint.setStrokeWidth(1.2);
 
-      // Hub core
-      canvas.drawCircle(megaX, megaY, 40, paint);
-      // Solar / antenna arrays
-      canvas.drawRect(Skia.XYWHRect(megaX - 90, megaY - 4, 180, 8), paint);
-      canvas.drawRect(Skia.XYWHRect(megaX - 85, megaY - 25, 6, 50), paint);
-      canvas.drawRect(Skia.XYWHRect(megaX + 80, megaY - 25, 6, 50), paint);
-      canvas.drawRect(Skia.XYWHRect(megaX - 4, megaY - 80, 8, 160), paint);
-
-      // Faint beacon on station tip
-      paint.setColor(Skia.Color("#FF0000"));
-      paint.setAlphaf(beaconAlpha);
-      canvas.drawCircle(megaX, megaY - 80, 2, paint);
-
+      for (let l = 0; l < lineCount; l++) {
+        const angle = (l / lineCount) * Math.PI * 2 + (tick * 0.02);
+        const innerR = 40 + (l * 17 + tick * 8) % (maxR * 0.5);
+        const outerR = innerR + 40 * warpFactor;
+        canvas.drawLine(
+          cx + Math.cos(angle) * innerR,
+          cy + Math.sin(angle) * innerR,
+          cx + Math.cos(angle) * outerR,
+          cy + Math.sin(angle) * outerR,
+          paint
+        );
+      }
       canvas.restore();
+    }
+
+    // --- OCCASIONAL ISOLATED ABANDONED MEGASTRUCTURE SILHOUETTE ---
+    const megaData = calculateMegastructureData(tick, width, height);
+    if (megaData.visible) {
+      drawSkiaMegastructure(canvas, paint, megaData);
     }
 
     // Draw active sparks & shards

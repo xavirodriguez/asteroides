@@ -22,6 +22,7 @@ import { SpaceInvadersFormationSystem } from "../systems/SpaceInvadersFormationS
 import { SpaceInvadersCollisionSystem } from "../systems/SpaceInvadersCollisionSystem";
 import { SpaceInvadersGameStateSystem } from "../systems/SpaceInvadersGameStateSystem";
 import { SpaceInvadersRenderSystem } from "../systems/SpaceInvadersRenderSystem";
+import { ComboHUDRenderSystem } from "../systems/ComboHUDRenderSystem";
 import { InvulnerabilitySystem } from "../systems/InvulnerabilitySystem";
 import { CombatSystem } from "@tiny-aster/gameplay-kit";
 import { WaveTransitionSystem } from "../systems/WaveTransitionSystem";
@@ -170,6 +171,7 @@ export class SpaceInvadersGameScene extends Scene<SpaceInvadersComponentRegistry
     this.world.addSystem(new JuiceSystem(), { phase: SystemPhase.Presentation, group: "presentation" });
     this.world.addSystem(new RenderUpdateSystem(), { phase: SystemPhase.Presentation, group: "presentation" }); // No trails
     this.world.addSystem(new SpaceInvadersRenderSystem(), { phase: SystemPhase.Presentation, group: "presentation" });
+    this.world.addSystem(new ComboHUDRenderSystem(), { phase: SystemPhase.Presentation, group: "presentation" });
 
     // 2. Initial entities
     if (this.game.isMultiplayer) return; // Wait for server state

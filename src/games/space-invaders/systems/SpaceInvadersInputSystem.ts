@@ -1,4 +1,4 @@
-import { System, World, Juice, CoreComponentRegistry } from "@tiny-aster/core";
+import { System, World, Juice, CoreComponentRegistry, createEmitter } from "@tiny-aster/core";
 import { TransformComponent, VelocityComponent } from "@tiny-aster/core";
 import { InputComponent, SpaceInvadersComponentRegistry } from "../types/SpaceInvadersTypes";
 import { SpaceInvadersConfig } from "../types/SpaceInvadersConfigSchema";
@@ -112,13 +112,44 @@ export class SpaceInvadersInputSystem extends System<SpaceInvadersComponentRegis
             createPlayerBullet(world, pos.x, pos.y - 25, this.bulletPool);
             nextShootCooldownRemaining = this.config!.PLAYER_SHOOT_COOLDOWN / 1000;
 
-            // Discrete Juice feedback on player shooting recoil and subtle kickback screen shake
-            Juice.squash(world as World<CoreComponentRegistry>, entity, 0.9, 1.15, 100);
-            Juice.shake(world as World<CoreComponentRegistry>, 1.5, 60);
+            // Physical recoil on player ship (Y axis recoil down ~10px and elastic return)
+            Juice.add(world, entity, {
+              property: "y",
+              target: 10,
+              duration: 60,
+              easing: "easeOut"
+            });
+            Juice.add(world, entity, {
+              property: "y",
+              target: 0,
+              duration: 180,
+              delay: 60,
+              easing: "elasticOut"
+            });
+            Juice.squash(world, entity, 0.9, 1.15, 100);
+            Juice.shake(world, 1.5, 60);
+
+            // Muzzle smoke emitter
+            const emitter = createEmitter(world, {
+              type: "smoke",
+              x: pos.x,
+              y: pos.y - 25,
+              rate: 0,
+              burst: true,
+              count: 4,
+              lifetime: [0.2, 0.4],
+              speed: [15, 40],
+              size: [2, 4],
+              color: ["#888888", "#CCCCCC", "#AAAAAA"],
+              angle: [240, 300],
+              loop: false
+            });
+            world.getCommandBuffer().addComponent(emitter, { type: "TTL", timeLeft: 0.5, remaining: 0.5 });
 
             const eventBus = world.getEventBus();
             if (eventBus) {
                 eventBus.emitDeferred("PlaySFX", { name: "shoot" });
+                eventBus.emitDeferred("PlaySFX", { name: "thump" });
             }
           }
         }

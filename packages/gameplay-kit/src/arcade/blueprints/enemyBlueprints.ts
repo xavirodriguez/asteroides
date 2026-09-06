@@ -5,6 +5,7 @@ import {
   BlueprintRegistry,
   World
 } from "@tiny-aster/core";
+import { ArcadeEntityBuilder } from "../builders/ArcadeEntityBuilder";
 
 /**
  * Registers platformer enemy blueprints (`enemy_sentinel`, `enemy_hopper`, `enemy_charger`)
@@ -18,9 +19,17 @@ export function registerPlatformerEnemyBlueprints(
   // TODO(refactor): código duplicado detectado (bloque) con shared/arcade/blueprints/enemyBlueprints.ts:42-47. Considerar extraer a función compartida. Ref: 2db0801e
   blueprints.register("enemy_sentinel", {
     spawn: (world: World<CoreComponentRegistry>, entity: number, args: { x: number; y: number }) => {
-      EntityBuilder.fromEntity(world, entity)
+      ArcadeEntityBuilder.fromEntity(world, entity)
         .withTransform({ x: args.x, y: args.y })
         .withVelocity()
+        .withCollider2D({
+          shape: { type: "aabb", halfWidth: 11, halfHeight: 11 },
+          layer: 1 << 4, // hurtbox layer — matches pulse_hitbox mask
+          mask: 0xffff,
+          isTrigger: false,
+          enabled: true
+        })
+        .withCollisionEvents()
         .withRender({ shape: "sentinel", size: 22, order: 2 });
 
       world.addComponent(entity, { type: "Health", current: 1, max: 1 } as HealthComponent);
@@ -44,9 +53,17 @@ export function registerPlatformerEnemyBlueprints(
   // TODO(refactor): código duplicado detectado (bloque) con shared/arcade/blueprints/enemyBlueprints.ts:19-24. Considerar extraer a función compartida. Ref: 6ab1c6b0
   blueprints.register("enemy_hopper", {
     spawn: (world: World<CoreComponentRegistry>, entity: number, args: { x: number; y: number }) => {
-      EntityBuilder.fromEntity(world, entity)
+      ArcadeEntityBuilder.fromEntity(world, entity)
         .withTransform({ x: args.x, y: args.y })
         .withVelocity()
+        .withCollider2D({
+          shape: { type: "aabb", halfWidth: 12, halfHeight: 12 },
+          layer: 1 << 4, // hurtbox layer — matches pulse_hitbox mask
+          mask: 0xffff,
+          isTrigger: false,
+          enabled: true
+        })
+        .withCollisionEvents()
         .withRender({ shape: "hopper", size: 24, order: 2 });
 
       world.addComponent(entity, { type: "Health", current: 1, max: 1 } as HealthComponent);
@@ -67,9 +84,17 @@ export function registerPlatformerEnemyBlueprints(
 
   blueprints.register("enemy_charger", {
     spawn: (world: World<CoreComponentRegistry>, entity: number, args: { x: number; y: number }) => {
-      EntityBuilder.fromEntity(world, entity)
+      ArcadeEntityBuilder.fromEntity(world, entity)
         .withTransform({ x: args.x, y: args.y })
         .withVelocity()
+        .withCollider2D({
+          shape: { type: "aabb", halfWidth: 14, halfHeight: 14 },
+          layer: 1 << 4, // hurtbox layer — matches pulse_hitbox mask
+          mask: 0xffff,
+          isTrigger: false,
+          enabled: true
+        })
+        .withCollisionEvents()
         .withRender({ shape: "charger", size: 28, order: 2 });
 
       world.addComponent(entity, { type: "Health", current: 1, max: 1 } as HealthComponent);

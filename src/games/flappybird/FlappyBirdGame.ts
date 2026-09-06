@@ -82,6 +82,7 @@ export class FlappyBirdGame
     // Register blueprints
     this.blueprints.register("bird", {
       spawn: (world, entity, args: { x: number, y: number }) => {
+        const config = world.getResource<FlappyBirdConfigType>("GameConfig") || DEFAULT_FLAPPY_BIRD_CONFIG;
         const tint = resolveThemeColor(world, "bird", "player");
 
         EntityBuilder.fromEntity(world, entity)
@@ -89,11 +90,11 @@ export class FlappyBirdGame
           .withVelocity()
           .withRender({
             shape: "bird",
-            size: FLAPPY_CONFIG.BIRD_RADIUS,
+            size: config.BIRD_RADIUS,
             color: tint
           })
           .withCollider({
-            shape: { type: ShapeType.Circle, radius: (FLAPPY_CONFIG.BIRD_RADIUS - 2) * 0.85 } as CircleShape,
+            shape: { type: ShapeType.Circle, radius: (config.BIRD_RADIUS - 2) * 0.85 } as CircleShape,
             layer: CollisionLayers.PLAYER,
             mask: CollisionLayers.ENEMY | CollisionLayers.DEBRIS,
             offsetX: 0,
@@ -148,11 +149,12 @@ export class FlappyBirdGame
 
     this.blueprints.register("pipe", {
       spawn: (world, entity, args: { x: number, gapY: number }) => {
+        const config = world.getResource<FlappyBirdConfigType>("GameConfig") || DEFAULT_FLAPPY_BIRD_CONFIG;
         const pipeColor = resolveThemeColor(world, "pipe", "enemy");
 
-        const halfGap = FLAPPY_CONFIG.GAP_SIZE / 2;
-        const pipeWidth = FLAPPY_CONFIG.PIPE_WIDTH;
-        const pipeSpeed = FLAPPY_CONFIG.PIPE_SPEED;
+        const halfGap = config.GAP_SIZE / 2;
+        const pipeWidth = config.PIPE_WIDTH;
+        const pipeSpeed = config.PIPE_SPEED;
 
         // Top Pipe
         const topY = args.gapY - halfGap;
@@ -167,11 +169,11 @@ export class FlappyBirdGame
           })
           .withCollisionEvents();
 
-        world.addComponent(entity, { type: "Pipe", gapY: args.gapY, gapSize: FLAPPY_CONFIG.GAP_SIZE, scored: false });
+        world.addComponent(entity, { type: "Pipe", gapY: args.gapY, gapSize: config.GAP_SIZE, scored: false });
 
         // Bottom Pipe
         const bottomY = args.gapY + halfGap;
-        const bottomHeight = FLAPPY_CONFIG.SCREEN_HEIGHT - bottomY;
+        const bottomHeight = config.SCREEN_HEIGHT - bottomY;
         EntityBuilder.create(world)
           .withTransform({ x: args.x, y: bottomY + bottomHeight / 2 })
           .withVelocity({ vx: -pipeSpeed, vy: 0 })
@@ -183,23 +185,24 @@ export class FlappyBirdGame
           })
           .withCollisionEvents();
 
-        world.addComponent(entity, { type: "Pipe", gapY: args.gapY, gapSize: FLAPPY_CONFIG.GAP_SIZE, scored: true });
+        world.addComponent(entity, { type: "Pipe", gapY: args.gapY, gapSize: config.GAP_SIZE, scored: true });
       }
     });
 
     this.blueprints.register("ground", {
       spawn: (world, entity, _args: {}) => {
+        const config = world.getResource<FlappyBirdConfigType>("GameConfig") || DEFAULT_FLAPPY_BIRD_CONFIG;
         const groundColor = resolveThemeColor(world, "ground");
 
         EntityBuilder.fromEntity(world, entity)
-          .withTransform({ x: FLAPPY_CONFIG.SCREEN_WIDTH / 2, y: FLAPPY_CONFIG.GROUND_Y })
+          .withTransform({ x: config.SCREEN_WIDTH / 2, y: config.GROUND_Y })
           .withCollider({
-            shape: { type: ShapeType.Box, width: FLAPPY_CONFIG.SCREEN_WIDTH, height: FLAPPY_CONFIG.SCREEN_HEIGHT - FLAPPY_CONFIG.GROUND_Y } as BoxShape,
+            shape: { type: ShapeType.Box, width: config.SCREEN_WIDTH, height: config.SCREEN_HEIGHT - config.GROUND_Y } as BoxShape,
             layer: CollisionLayers.DEBRIS,
             mask: CollisionLayers.PLAYER
           })
           .withCollisionEvents()
-          .withRender({ shape: "ground", size: FLAPPY_CONFIG.SCREEN_WIDTH, color: groundColor, order: 0 });
+          .withRender({ shape: "ground", size: config.SCREEN_WIDTH, color: groundColor, order: 0 });
 
         world.addComponent(entity, { type: "Ground" });
       }
@@ -291,8 +294,9 @@ export class FlappyBirdGame
 
   protected override async onInitializeEntities(): Promise<void> {
     if (this.isMultiplayer) return;
+    const config = this.world.getResource<FlappyBirdConfigType>("GameConfig") || DEFAULT_FLAPPY_BIRD_CONFIG;
     createGameState(this.world);
-    createBird({ world: this.world, x: FLAPPY_CONFIG.BIRD_X, y: FLAPPY_CONFIG.BIRD_START_Y });
+    createBird({ world: this.world, x: config.BIRD_X, y: config.BIRD_START_Y });
     createGround(this.world);
   }
 

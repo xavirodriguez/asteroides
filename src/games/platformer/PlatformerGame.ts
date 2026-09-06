@@ -314,13 +314,15 @@ export class PlatformerGame extends BaseGame<PlatformerGameState, PlatformerInpu
         world.addComponent(entity, { type: "Tag", tags: ["TileCollider", "Player"] } as any);
         world.addComponent(entity, { type: "Tag", tags: ["TileCollider", "Player"] } as { type: string; [key: string]: unknown });
         world.addComponent(entity, { type: "Sprite", assetKey, anchor: { x: 0.5, y: 0.5 } } as { type: string; [key: string]: unknown });
+        const config = world.getResource<PlatformerConfigType>("GameConfig") || DEFAULT_PLATFORMER_CONFIG;
+
         world.addComponent(entity, {
           type: "PlatformerMovementConfig",
-          acceleration: PLATFORMER_CONFIG.PLAYER_ACCEL,
-          maxSpeed: PLATFORMER_CONFIG.PLAYER_SPEED,
-          deceleration: PLATFORMER_CONFIG.PLAYER_DECEL,
-          airAcceleration: PLATFORMER_CONFIG.PLAYER_AIR_ACCEL,
-          airDeceleration: PLATFORMER_CONFIG.PLAYER_AIR_DECEL
+          acceleration: config.PLAYER_ACCEL,
+          maxSpeed: config.PLAYER_SPEED,
+          deceleration: config.PLAYER_DECEL,
+          airAcceleration: config.PLAYER_AIR_ACCEL,
+          airDeceleration: config.PLAYER_AIR_DECEL
         } as { type: string; [key: string]: unknown });
         world.addComponent(entity, {
           type: "PlatformerInput",
@@ -341,10 +343,10 @@ export class PlatformerGame extends BaseGame<PlatformerGameState, PlatformerInpu
         world.addComponent(entity, { type: "WallJumpUnlocked", unlocked: true } as { type: string; [key: string]: unknown });
         world.addComponent(entity, {
           type: "PlatformerGravityConfig",
-          riseGravity: PLATFORMER_CONFIG.RISE_GRAVITY,
-          fallGravity: PLATFORMER_CONFIG.FALL_GRAVITY,
-          jumpVelocity: PLATFORMER_CONFIG.PLAYER_JUMP_VEL,
-          minJumpVelocity: PLATFORMER_CONFIG.PLAYER_MIN_JUMP_VEL
+          riseGravity: config.RISE_GRAVITY,
+          fallGravity: config.FALL_GRAVITY,
+          jumpVelocity: config.PLAYER_JUMP_VEL,
+          minJumpVelocity: config.PLAYER_MIN_JUMP_VEL
         } as { type: string; [key: string]: unknown });
         world.addComponent(entity, {
           type: "PlatformerJumper",
@@ -374,13 +376,14 @@ export class PlatformerGame extends BaseGame<PlatformerGameState, PlatformerInpu
 
     this.blueprints.register("tilemap", {
       spawn: (world, entity, args: { data: number[][]; tileDefinitions: any }) => {
+        const config = world.getResource<PlatformerConfigType>("GameConfig") || DEFAULT_PLATFORMER_CONFIG;
         EntityBuilder.fromEntity(world, entity)
           .withTransform({ x: 0, y: 0 });
 
         world.addComponent(entity, {
           type: "Tilemap",
           data: args.data,
-          tileSize: PLATFORMER_CONFIG.TILE_SIZE,
+          tileSize: config.TILE_SIZE,
           tileDefinitions: args.tileDefinitions
         } as { type: string; [key: string]: unknown });
       }
@@ -442,8 +445,9 @@ export class PlatformerGame extends BaseGame<PlatformerGameState, PlatformerInpu
     const levelSeed = this.getSeed() || 41873;
     this.levelPlan = SegmentGenerator.generatePlan(templates, grammar, levelSeed);
 
+    const config = this.world.getResource<PlatformerConfigType>("GameConfig") || DEFAULT_PLATFORMER_CONFIG;
     this.world.setResource("PlayerStartPoint", { x: 100, y: 350 });
-    SegmentGenerator.instantiatePlan(this.world, this.levelPlan, PLATFORMER_CONFIG.TILE_SIZE, tileDefinitions);
+    SegmentGenerator.instantiatePlan(this.world, this.levelPlan, config.TILE_SIZE, tileDefinitions);
     this.world.flush();
 
     // Spawn player

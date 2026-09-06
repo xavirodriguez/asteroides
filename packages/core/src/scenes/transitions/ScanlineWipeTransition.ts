@@ -42,35 +42,37 @@ export class ScanlineWipeTransition extends BaseTransitionEffect {
       isOutPhase = false;
     }
 
+    const cCtx = ctx as CanvasRenderingContext2D;
+
     // 1. Draw solid color coverage area
-    ctx.fillStyle = color;
+    cCtx.fillStyle = color;
     if (isOutPhase) {
       // Solid behind the sweep line (already wiped out)
-      ctx.fillRect(0, 0, width, sweepY);
+      cCtx.fillRect(0, 0, width, sweepY);
     } else {
       // Solid in front of the sweep line (yet to be revealed)
-      ctx.fillRect(0, sweepY, width, height - sweepY);
+      cCtx.fillRect(0, sweepY, width, height - sweepY);
     }
 
     // 2. Draw glowing neon sweep line
     if (sweepY > 0 && sweepY < height) {
       // Outer glow
-      ctx.strokeStyle = lineColor;
-      ctx.lineWidth = lineWidth * 2;
-      ctx.globalAlpha = 0.4;
-      ctx.beginPath();
-      ctx.moveTo(0, sweepY);
-      ctx.lineTo(width, sweepY);
-      ctx.stroke();
+      cCtx.strokeStyle = lineColor;
+      cCtx.lineWidth = lineWidth * 2;
+      cCtx.globalAlpha = 0.4;
+      cCtx.beginPath();
+      cCtx.moveTo(0, sweepY);
+      cCtx.lineTo(width, sweepY);
+      cCtx.stroke();
 
       // Inner core
-      ctx.strokeStyle = "#FFFFFF";
-      ctx.lineWidth = lineWidth / 2;
-      ctx.globalAlpha = 1.0;
-      ctx.beginPath();
-      ctx.moveTo(0, sweepY);
-      ctx.lineTo(width, sweepY);
-      ctx.stroke();
+      cCtx.strokeStyle = "#FFFFFF";
+      cCtx.lineWidth = lineWidth / 2;
+      cCtx.globalAlpha = 1.0;
+      cCtx.beginPath();
+      cCtx.moveTo(0, sweepY);
+      cCtx.lineTo(width, sweepY);
+      cCtx.stroke();
     }
   }
 }

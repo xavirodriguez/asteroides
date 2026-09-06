@@ -40,10 +40,49 @@ export interface TransitionOptions {
    */
   color?: string;
 
+  /** Center X position for radial/iris transitions. */
+  centerX?: number;
+
+  /** Center Y position for radial/iris transitions. */
+  centerY?: number;
+
+  /** Offscreen canvas for two-scene transitions. */
+  offscreenCanvas?: CanvasImageSource | HTMLCanvasElement | { width?: number; height?: number; [key: string]: unknown };
+
+  /** Pulse frequency for pulse transitions. */
+  frequency?: number;
+
+  /** Pixel/block size for dither and pixelate transitions. */
+  blockSize?: number;
+
+  /** Maximum pixel size for pixelate transition. */
+  maxPixelSize?: number;
+
+  /** Direction for sweep/curtain transitions. */
+  direction?: string;
+
+  /** Angle in radians for diagonal transitions. */
+  angle?: number;
+
+  /** Intensity scaling for glitch or shake transitions. */
+  intensity?: number;
+
+  /** Height of horizontal slices for CRT glitch transition. */
+  sliceHeight?: number;
+
+  /** Line thickness for scanline transitions. */
+  lineThickness?: number;
+
+  /** Line color for scanline wipe transitions. */
+  lineColor?: string;
+
+  /** Line width for scanline wipe transitions. */
+  lineWidth?: number;
+
   /**
-   * Extra configuration options for specific transitions (e.g. blockSize, maxPixelSize).
+   * Extra configuration options for specific transitions.
    */
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 /**

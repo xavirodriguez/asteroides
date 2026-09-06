@@ -86,21 +86,23 @@ export class OutcomeRuleEngine {
     return false;
   }
 
-  private compare(a: any, b: any, operator: string): boolean {
+  private compare(a: unknown, b: unknown, operator: string): boolean {
     if (a === undefined || a === null) return false;
+    const va = a as number | string | boolean;
+    const vb = b as number | string | boolean;
     switch (operator) {
       case "==":
-        return a === b;
+        return va === vb;
       case "!=":
-        return a !== b;
+        return va !== vb;
       case ">":
-        return a > b;
+        return (va as number) > (vb as number);
       case ">=":
-        return a >= b;
+        return (va as number) >= (vb as number);
       case "<":
-        return a < b;
+        return (va as number) < (vb as number);
       case "<=":
-        return a <= b;
+        return (va as number) <= (vb as number);
       default:
         return false;
     }

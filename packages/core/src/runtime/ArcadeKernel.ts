@@ -61,14 +61,14 @@ const VALID_TRANSITIONS: Record<ArcadeState, Set<ArcadeState>> = {
  */
 export class ArcadeKernel {
   private currentState: ArcadeState = ArcadeState.BOOT;
-  private eventBus: EventBus<any>;
+  private eventBus: EventBus;
 
   /**
    * Constructs an instance of `ArcadeKernel`.
    *
    * @param eventBus - Optional custom `EventBus` instance. Defaults to a new `EventBus`.
    */
-  constructor(eventBus?: EventBus<any>) {
+  constructor(eventBus?: EventBus) {
     this.eventBus = eventBus ?? new EventBus();
   }
 

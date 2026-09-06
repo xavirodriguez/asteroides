@@ -35,7 +35,7 @@ export class ReplayRecorder {
   /**
    * Records a single tick's inputs from the World's InputSystem.
    */
-  public recordTick(world: World<any>, tick: number): void {
+  public recordTick(world: World, tick: number): void {
     const inputSystem = world.getResource<InputSystem>("InputSystem");
     if (!inputSystem) return;
 
@@ -49,8 +49,9 @@ export class ReplayRecorder {
     const activeAxes: Record<string, number> = {};
     for (const axis of this.axes) {
       // In case we want to support axes in future custom input systems
-      if (typeof (inputSystem as any).getAxis === "function") {
-        activeAxes[axis] = (inputSystem as any).getAxis(axis);
+      const isys = inputSystem as unknown as { getAxis?: (axis: string) => number };
+      if (typeof isys.getAxis === "function") {
+        activeAxes[axis] = isys.getAxis(axis);
       }
     }
 

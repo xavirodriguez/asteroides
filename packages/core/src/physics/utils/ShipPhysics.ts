@@ -21,7 +21,7 @@ import { getForwardVector } from "./ForwardVector";
 export function computeShipPhysics(
   transform: { rotation: number },
   velocity: { vx: number; vy: number },
-  input: { actions: any; axes: Record<string, number>; rotationAmount?: number; rotateLeft?: boolean; rotateRight?: boolean; thrust?: boolean },
+  input: { actions: Set<string> | string[] | Record<string, boolean>; axes: Record<string, number>; rotationAmount?: number; rotateLeft?: boolean; rotateRight?: boolean; thrust?: boolean },
   config: { SHIP_THRUST: number; SHIP_ROTATION_SPEED: number; SHIP_FRICTION: number },
   deltaTimeSec: number
 ): { vx: number; vy: number; rotation: number } {
@@ -35,8 +35,9 @@ export function computeShipPhysics(
   } else if (Array.isArray(input.actions)) {
     actionsSet = new Set(input.actions);
   } else if (input.actions && typeof input.actions === "object") {
+    const actObj = input.actions as Record<string, boolean>;
     actionsSet = {
-      has: (action: string) => (input.actions as any)[action] === true
+      has: (action: string) => actObj[action] === true
     };
   } else {
     actionsSet = new Set<string>();

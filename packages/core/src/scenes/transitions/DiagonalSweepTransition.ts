@@ -27,17 +27,18 @@ export class DiagonalSweepTransition extends BaseOffscreenTransitionEffect {
     height: number,
     options?: TransitionOptions
   ): void {
+    const cCtx = ctx as CanvasRenderingContext2D;
     // Diagonal frontier sweep line
     const maxDist = width + height;
     const currentDist = maxDist * (1 - progress);
 
-    ctx.beginPath();
-    ctx.moveTo(0, 0);
-    ctx.lineTo(currentDist, 0);
-    ctx.lineTo(0, currentDist);
-    ctx.closePath();
-    ctx.clip();
+    cCtx.beginPath();
+    cCtx.moveTo(0, 0);
+    cCtx.lineTo(currentDist, 0);
+    cCtx.lineTo(0, currentDist);
+    cCtx.closePath();
+    cCtx.clip();
 
-    ctx.drawImage(offscreenCanvas, 0, 0);
+    cCtx.drawImage(offscreenCanvas, 0, 0);
   }
 }

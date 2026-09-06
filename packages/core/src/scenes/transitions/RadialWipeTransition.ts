@@ -27,18 +27,19 @@ export class RadialWipeTransition extends BaseOffscreenTransitionEffect {
     height: number,
     options?: TransitionOptions
   ): void {
+    const cCtx = ctx as CanvasRenderingContext2D;
     const cx = width / 2;
     const cy = height / 2;
     const radius = Math.sqrt(cx * cx + cy * cy);
     const startAngle = -Math.PI / 2; // top center
     const endAngle = startAngle + Math.PI * 2 * (1 - progress);
 
-    ctx.beginPath();
-    ctx.moveTo(cx, cy);
-    ctx.arc(cx, cy, radius, startAngle, endAngle);
-    ctx.closePath();
-    ctx.clip();
+    cCtx.beginPath();
+    cCtx.moveTo(cx, cy);
+    cCtx.arc(cx, cy, radius, startAngle, endAngle);
+    cCtx.closePath();
+    cCtx.clip();
 
-    ctx.drawImage(offscreenCanvas, 0, 0);
+    cCtx.drawImage(offscreenCanvas, 0, 0);
   }
 }

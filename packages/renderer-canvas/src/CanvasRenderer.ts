@@ -78,7 +78,7 @@ export class CanvasRenderer<TRegistry extends CoreComponentRegistry = CoreCompon
                 if (!options) {
                   options = {};
                 }
-                options = { ...options, offscreenCanvas: off };
+                options = { ...options, offscreenCanvas: off as unknown as CanvasImageSource };
               }
             }
           }

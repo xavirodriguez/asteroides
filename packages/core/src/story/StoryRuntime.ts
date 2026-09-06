@@ -9,7 +9,8 @@ import {
   StoryCondition,
   StoryChoice,
   StoryEffect,
-  StoryStateCheckpoint
+  StoryStateCheckpoint,
+  StoryObjective
 } from "./StoryTypes";
 import { RelationshipEngine } from "./RelationshipEngine";
 
@@ -25,7 +26,7 @@ function cloneStoryState(state: StoryState): StoryState {
       variables[k] = state.variables[k];
     }
   }
-  const objectives: Record<string, any> = {};
+  const objectives: Record<string, StoryObjective> = {};
   if (state.objectives) {
     for (const k in state.objectives) {
       if (state.objectives[k]) {
@@ -80,10 +81,10 @@ export class StoryRuntime {
   private eventTimeline: Array<{
     type: string;
     timestamp: Date;
-    payload?: Record<string, any>;
+    payload?: Record<string, unknown>;
   }> = [];
 
-  private recordEvent(type: string, payload?: Record<string, any>): void {
+  private recordEvent(type: string, payload?: Record<string, unknown>): void {
     this.eventTimeline.push({ type, timestamp: new Date(), payload });
     if (this.eventTimeline.length > 100) {
       this.eventTimeline.shift();
@@ -96,8 +97,8 @@ export class StoryRuntime {
    * @public
    */
   public getTimeline(): {
-    recent: (count: number) => Array<{ type: string; timestamp: Date; payload?: Record<string, any> }>;
-    all: () => Array<{ type: string; timestamp: Date; payload?: Record<string, any> }>;
+    recent: (count: number) => Array<{ type: string; timestamp: Date; payload?: Record<string, unknown> }>;
+    all: () => Array<{ type: string; timestamp: Date; payload?: Record<string, unknown> }>;
   } {
     return {
       recent: (count: number) => this.eventTimeline.slice(-count),
@@ -113,7 +114,7 @@ export class StoryRuntime {
   public getStateSnapshot(): {
     currentNodeId: string | null;
     flags: Record<string, { value: boolean; timestamp: Date }>;
-    variables: Record<string, { value: any; timestamp: Date }>;
+    variables: Record<string, { value: number | string | boolean; timestamp: Date }>;
     selectedChoices: string[];
   } {
     const flagsSnapshot: Record<string, { value: boolean; timestamp: Date }> = {};
@@ -121,7 +122,7 @@ export class StoryRuntime {
       flagsSnapshot[k] = { value: v, timestamp: new Date() };
     }
 
-    const variablesSnapshot: Record<string, { value: any; timestamp: Date }> = {};
+    const variablesSnapshot: Record<string, { value: number | string | boolean; timestamp: Date }> = {};
     for (const [k, v] of Object.entries(this.state.variables)) {
       variablesSnapshot[k] = { value: v, timestamp: new Date() };
     }
@@ -222,7 +223,7 @@ export class StoryRuntime {
   public emitStateChanged(): void {
     this.stateVersion++;
     if (this.eventBus) {
-      this.eventBus.emit("story:state_changed" as any, {
+      this.eventBus.emit("story:state_changed", {
         graphId: this.graph?.id || null,
         state: this.getState(),
         currentNode: this.getCurrentNode()
@@ -401,7 +402,7 @@ export class StoryRuntime {
     for (const eventName of listenEvents) {
       if (!this.registeredEvents.has(eventName)) {
         this.registeredEvents.add(eventName);
-        eventBus.on(eventName as unknown as keyof import("../events/EventBus").CombinedEvents<import("../events/EventBus").EventRegistry> & string, (payload: any) => {
+        eventBus.on(eventName as unknown as keyof import("../events/EventBus").CombinedEvents<import("../events/EventBus").EventRegistry> & string, (payload: unknown) => {
           this.handleEvent(eventName, payload);
         });
       }
@@ -483,7 +484,7 @@ export class StoryRuntime {
 
       case "emitEvent": {
         if (this.eventBus) {
-          this.eventBus.emit(effect.event as any, effect.payload || {});
+          this.eventBus.emit(effect.event, (effect.payload || {}) as Record<string, number | string | boolean>);
         }
         if (this.relationshipEngine) {
           if (effect.event === "betrayal" || effect.event === "relationship:betrayal") {
@@ -585,7 +586,7 @@ export class StoryRuntime {
 
     // Emit node custom event if configured
     if (node.emitEvent && this.eventBus) {
-      this.eventBus.emit(node.emitEvent.name as any, node.emitEvent.payload || {});
+      this.eventBus.emit(node.emitEvent.name, (node.emitEvent.payload || {}) as Record<string, number | string | boolean>);
     }
 
     // Invisible branch node handling: auto-evaluate transitions immediately without UI pause
@@ -695,7 +696,7 @@ export class StoryRuntime {
    * @param eventName - Name of the event received via `EventBus`.
    * @param payload - Data payload associated with the event notification.
    */
-  public handleEvent(eventName: string, payload: any): void {
+  public handleEvent(eventName: string, payload: unknown): void {
     // 1. Set transient event flag
     this.state.flags[`event:${eventName}`] = true;
 
@@ -887,7 +888,7 @@ export class StoryRuntime {
    * @param key - Variable name identifier.
    * @returns Variable value or undefined if not set.
    */
-  public getVariable(key: string): any {
+  public getVariable(key: string): number | string | boolean | undefined {
     return this.state.variables[key];
   }
 
@@ -897,9 +898,13 @@ export class StoryRuntime {
    * @param key - Variable name identifier.
    * @param value - Value to assign (number, string, or boolean).
    */
-  public setVariable(key: string, value: any): void {
+  public setVariable(key: string, value: number | string | boolean | undefined): void {
     if (this.state.variables[key] === value) return;
-    this.state.variables[key] = value;
+    if (value === undefined) {
+      delete this.state.variables[key];
+    } else {
+      this.state.variables[key] = value;
+    }
 
     if (key.startsWith("evidence:") && value === true) {
       this.discoverEvidence(key.slice(9));
@@ -932,7 +937,7 @@ export class StoryRuntime {
       this.state.evidence.push(evidenceId);
       this.state.flags[`evidence:${evidenceId}`] = true;
       if (this.eventBus) {
-        this.eventBus.emit("story:evidence_discovered" as any, {
+        this.eventBus.emit("story:evidence_discovered", {
           evidenceId
         });
       }
@@ -1027,11 +1032,12 @@ export class StoryRuntime {
     return this.graph;
   }
 
-  private checkObjectiveProgress(eventName: string, payload: any): void {
+  private checkObjectiveProgress(eventName: string, payload: unknown): void {
     if (eventName.startsWith("story:") || eventName.startsWith("dialogue:") || eventName.startsWith("scene:")) {
       return;
     }
 
+    const payloadObj = (payload && typeof payload === "object") ? (payload as Record<string, unknown>) : undefined;
     let progressMade = false;
 
     for (const objId in this.state.objectives) {
@@ -1040,15 +1046,15 @@ export class StoryRuntime {
 
       const isMatch = obj.eventKey
         ? obj.eventKey === eventName
-        : obj.id === eventName || payload?.objectiveId === obj.id || payload?.event === obj.id || payload?.eventKey === obj.id;
+        : obj.id === eventName || payloadObj?.objectiveId === obj.id || payloadObj?.event === obj.id || payloadObj?.eventKey === obj.id;
 
       if (!isMatch) continue;
 
       const increment =
-        typeof payload?.amount === "number"
-          ? payload.amount
-          : typeof payload?.increment === "number"
-          ? payload.increment
+        typeof payloadObj?.amount === "number"
+          ? payloadObj.amount
+          : typeof payloadObj?.increment === "number"
+          ? payloadObj.increment
           : 1;
 
       obj.currentCount += increment;
@@ -1071,24 +1077,26 @@ export class StoryRuntime {
     }
   }
 
-  private compareValues(current: any, target: any, operator: string): boolean {
+  private compareValues(current: unknown, target: unknown, operator: string): boolean {
+    const c = current as number | string | boolean;
+    const t = target as number | string | boolean;
     switch (operator) {
       case "==":
-        return current == target;
+        return c == t;
       case "!=":
-        return current != target;
+        return c != t;
       case ">":
-        return current > target;
+        return (c as number) > (t as number);
       case ">=":
-        return current >= target;
+        return (c as number) >= (t as number);
       case "<":
-        return current < target;
+        return (c as number) < (t as number);
       case "<=":
-        return current <= target;
+        return (c as number) <= (t as number);
       case "contains":
         return Array.isArray(current) && current.includes(target);
       default:
-        return current == target;
+        return c == t;
     }
   }
 }

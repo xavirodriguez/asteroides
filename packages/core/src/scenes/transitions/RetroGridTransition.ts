@@ -46,7 +46,7 @@ export class RetroGridTransition extends BaseOffscreenTransitionEffect {
         const w = blockSize * cellProgress;
         const h = blockSize * cellProgress;
 
-        ctx.drawImage(offscreenCanvas, c * blockSize, r * blockSize, blockSize, blockSize, cx - w / 2, cy - h / 2, w, h);
+        (ctx as CanvasRenderingContext2D).drawImage(offscreenCanvas, c * blockSize, r * blockSize, blockSize, blockSize, cx - w / 2, cy - h / 2, w, h);
       }
     }
   }

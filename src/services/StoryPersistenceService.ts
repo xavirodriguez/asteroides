@@ -40,7 +40,7 @@ export class StoryPersistenceService {
     const profile = await PlayerProfileService.getProfile();
 
     runtime.setVariable("chapterUnlocked", profile.storyChapterUnlocked);
-    runtime.setVariable("collectedFragments", profile.storyFragmentsCollected);
+    runtime.setVariable("collectedFragments", profile.storyFragmentsCollected.length);
 
     for (const fragId of profile.storyFragmentsCollected) {
       runtime.setFlag(`fragment_collected:${fragId}`, true);

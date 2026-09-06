@@ -5,7 +5,7 @@ import { BaseGame } from "../runtime/BaseGame";
  *
  * @public
  */
-export type CampaignGameFactory = (options?: Record<string, any>) => BaseGame<any, any, any, any, any>;
+export type CampaignGameFactory = (options?: Record<string, unknown>) => BaseGame;
 
 /**
  * Resolver mapping game string IDs to `BaseGame` factory constructors.
@@ -33,7 +33,7 @@ export class CampaignGameResolver {
    * @returns Instantiated `BaseGame` subclass.
    * @throws Error if `gameId` is unrecognized.
    */
-  public static resolveGame(gameId: string, options?: Record<string, any>): BaseGame<any, any, any, any, any> {
+  public static resolveGame(gameId: string, options?: Record<string, unknown>): BaseGame {
     const key = gameId.toLowerCase();
     const factory = this.factories[key];
     if (!factory) {

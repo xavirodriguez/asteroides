@@ -5,18 +5,18 @@
     "total": 8
   },
   "packages/core/src/ai/SteeringSystem.ts": {
-    "anyCount": 7,
-    "unknownCount": 0,
-    "total": 7
+    "anyCount": 0,
+    "unknownCount": 12,
+    "total": 12
   },
   "packages/core/src/assets/WebAssetProvider.ts": {
-    "anyCount": 2,
-    "unknownCount": 0,
+    "anyCount": 0,
+    "unknownCount": 2,
     "total": 2
   },
   "packages/core/src/audio/WebAudioPlayer.ts": {
-    "anyCount": 1,
-    "unknownCount": 0,
+    "anyCount": 0,
+    "unknownCount": 1,
     "total": 1
   },
   "packages/core/src/audio/__tests__/WebAudioPlayer.test.ts": {
@@ -30,9 +30,9 @@
     "total": 2
   },
   "packages/core/src/ecs/Schedule.ts": {
-    "anyCount": 2,
-    "unknownCount": 0,
-    "total": 2
+    "anyCount": 0,
+    "unknownCount": 1,
+    "total": 1
   },
   "packages/core/src/ecs/World.ts": {
     "anyCount": 0,
@@ -50,14 +50,19 @@
     "total": 2
   },
   "packages/core/src/network/RemoteInterpolationSystem.ts": {
-    "anyCount": 4,
-    "unknownCount": 0,
-    "total": 4
+    "anyCount": 0,
+    "unknownCount": 1,
+    "total": 1
+  },
+  "packages/core/src/network/ReplaySystem.ts": {
+    "anyCount": 0,
+    "unknownCount": 2,
+    "total": 2
   },
   "packages/core/src/network/RollbackSimulation.ts": {
-    "anyCount": 2,
-    "unknownCount": 0,
-    "total": 2
+    "anyCount": 0,
+    "unknownCount": 1,
+    "total": 1
   },
   "packages/core/src/network/types.ts": {
     "anyCount": 0,
@@ -80,39 +85,34 @@
     "total": 4
   },
   "packages/core/src/physics/systems/PlatformerMovementSystem.ts": {
-    "anyCount": 4,
-    "unknownCount": 0,
-    "total": 4
-  },
-  "packages/core/src/physics/utils/ShipPhysics.ts": {
-    "anyCount": 1,
-    "unknownCount": 0,
-    "total": 1
+    "anyCount": 0,
+    "unknownCount": 5,
+    "total": 5
   },
   "packages/core/src/rendering/RendererUtils.ts": {
-    "anyCount": 1,
-    "unknownCount": 0,
+    "anyCount": 0,
+    "unknownCount": 1,
     "total": 1
   },
   "packages/core/src/replay/ReplayPlayer.ts": {
-    "anyCount": 1,
-    "unknownCount": 0,
-    "total": 1
-  },
-  "packages/core/src/replay/ReplayRecorder.ts": {
-    "anyCount": 2,
-    "unknownCount": 0,
+    "anyCount": 0,
+    "unknownCount": 2,
     "total": 2
   },
-  "packages/core/src/runtime/NullBaseGame.ts": {
-    "anyCount": 1,
-    "unknownCount": 0,
+  "packages/core/src/replay/ReplayRecorder.ts": {
+    "anyCount": 0,
+    "unknownCount": 1,
     "total": 1
   },
-  "packages/core/src/scenes/CYOAScene.ts": {
-    "anyCount": 1,
-    "unknownCount": 0,
-    "total": 1
+  "packages/core/src/runtime/BaseGame.ts": {
+    "anyCount": 0,
+    "unknownCount": 4,
+    "total": 4
+  },
+  "packages/core/src/runtime/NullBaseGame.ts": {
+    "anyCount": 0,
+    "unknownCount": 5,
+    "total": 5
   },
   "packages/core/src/scenes/transitions/PixelateTransition.ts": {
     "anyCount": 0,
@@ -140,39 +140,24 @@
     "total": 1
   },
   "packages/core/src/snapshots/WorldSnapshot.ts": {
-    "anyCount": 1,
+    "anyCount": 0,
     "unknownCount": 2,
-    "total": 3
+    "total": 2
   },
   "packages/core/src/story/MetaProgressionService.ts": {
     "anyCount": 0,
     "unknownCount": 1,
     "total": 1
   },
-  "packages/core/src/story/NarrativeTimelineEngine.ts": {
-    "anyCount": 1,
-    "unknownCount": 0,
-    "total": 1
-  },
-  "packages/core/src/story/StoryGraphValidator.ts": {
-    "anyCount": 1,
-    "unknownCount": 0,
-    "total": 1
-  },
   "packages/core/src/story/StoryMigrations.ts": {
-    "anyCount": 2,
-    "unknownCount": 0,
-    "total": 2
+    "anyCount": 0,
+    "unknownCount": 1,
+    "total": 1
   },
   "packages/core/src/story/StoryRuntime.ts": {
-    "anyCount": 4,
+    "anyCount": 0,
     "unknownCount": 1,
-    "total": 5
-  },
-  "packages/core/src/story/StorySaveMigrations.ts": {
-    "anyCount": 11,
-    "unknownCount": 0,
-    "total": 11
+    "total": 1
   },
   "packages/core/src/systems/AbstractHierarchySystem.ts": {
     "anyCount": 0,
@@ -185,13 +170,8 @@
     "total": 6
   },
   "packages/core/src/systems/ModifierSystem.ts": {
-    "anyCount": 1,
-    "unknownCount": 0,
-    "total": 1
-  },
-  "packages/core/src/systems/RespawnSystem.ts": {
-    "anyCount": 1,
-    "unknownCount": 0,
+    "anyCount": 0,
+    "unknownCount": 1,
     "total": 1
   },
   "packages/core/src/tests/BoltPerformance.test.ts": {
@@ -200,14 +180,9 @@
     "total": 7
   },
   "packages/core/src/utils/ComponentSetPool.ts": {
-    "anyCount": 3,
-    "unknownCount": 3,
-    "total": 6
-  },
-  "packages/core/src/utils/Juice.ts": {
-    "anyCount": 1,
-    "unknownCount": 0,
-    "total": 1
+    "anyCount": 0,
+    "unknownCount": 4,
+    "total": 4
   },
   "packages/core/tests/ArcadeDebugRun.test.ts": {
     "anyCount": 1,
@@ -386,8 +361,8 @@
   },
   "packages/renderer-canvas/src/CanvasRenderer.ts": {
     "anyCount": 0,
-    "unknownCount": 6,
-    "total": 6
+    "unknownCount": 7,
+    "total": 7
   },
   "packages/renderer-canvas/src/CanvasShapeDrawers.ts": {
     "anyCount": 0,

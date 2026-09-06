@@ -27,7 +27,7 @@ import {
 export abstract class NullBaseGame<
   TState = unknown,
   TInput extends Record<string, any> = Record<string, any>,
-  TComponents extends ComponentRegistry = ComponentRegistry,
+  TComponents extends ComponentRegistry = import("../ecs/CoreComponents").CoreComponentRegistry,
   TEvents extends EventRegistry = EventRegistry
 > implements IGame<TState, TInput, TComponents, TEvents> {
   public get tick(): number { return 0; }
@@ -45,7 +45,7 @@ export abstract class NullBaseGame<
       seed: 0,
       nextEntityId: 0,
       freeEntities: []
-    } as any;
+    } as unknown as WorldSnapshot;
   }
 
   public restore(_snapshot: WorldSnapshot): void {}
@@ -88,18 +88,18 @@ export abstract class NullBaseGame<
   public setInputState(_input: Partial<TInput>): void {}
 
   public enterGameplayFreeze(duration?: number): void {
-    enterGameplayFreeze(this._world, duration);
+    enterGameplayFreeze(this._world as unknown as World, duration);
   }
 
   public exitGameplayFreeze(): void {
-    exitGameplayFreeze(this._world);
+    exitGameplayFreeze(this._world as unknown as World);
   }
 
   public isGameplayFrozen(): boolean {
-    return isGameplayFrozen(this._world);
+    return isGameplayFrozen(this._world as unknown as World);
   }
 
   public getGameplayFreezeRemaining(): number | undefined {
-    return getGameplayFreezeRemaining(this._world);
+    return getGameplayFreezeRemaining(this._world as unknown as World);
   }
 }

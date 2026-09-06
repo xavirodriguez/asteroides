@@ -68,7 +68,7 @@ export class ComponentSetPool<T extends Record<string, Component>> {
       if (comp.type === "Reclaimable") {
         (comp as unknown as ReclaimableComponent).onReclaim = (context: ReleaseContext) => this.release(context);
       }
-      add(comp as any);
+      add(comp as T[keyof T] & { type: keyof T & string });
     }
 
     return { entity, components };
@@ -96,7 +96,7 @@ export class ComponentSetPool<T extends Record<string, Component>> {
 
     if (!this.activeEntities.has(entity)) {
       const reclaimable = world && typeof world.getComponent === "function"
-        ? (world.getComponent(entity, "Reclaimable" as any) as any)
+        ? (world.getComponent(entity, "Reclaimable" as Extract<keyof import("../ecs/CoreComponents").CoreComponentRegistry, string>) as unknown as ReclaimableComponent & { _released?: boolean } | undefined)
         : undefined;
 
       if (reclaimable && !reclaimable._released && typeof world.isAlive === "function" && world.isAlive(entity)) {

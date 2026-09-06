@@ -27,11 +27,12 @@ export class CurtainTransition extends BaseOffscreenTransitionEffect {
     height: number,
     options?: TransitionOptions
   ): void {
+    const cCtx = ctx as CanvasRenderingContext2D;
     const shift = progress * (width / 2);
 
     // Left half
-    ctx.drawImage(offscreenCanvas, 0, 0, width / 2, height, -shift, 0, width / 2, height);
+    cCtx.drawImage(offscreenCanvas, 0, 0, width / 2, height, -shift, 0, width / 2, height);
     // Right half
-    ctx.drawImage(offscreenCanvas, width / 2, 0, width / 2, height, width / 2 + shift, 0, width / 2, height);
+    cCtx.drawImage(offscreenCanvas, width / 2, 0, width / 2, height, width / 2 + shift, 0, width / 2, height);
   }
 }

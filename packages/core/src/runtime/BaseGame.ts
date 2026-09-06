@@ -589,14 +589,14 @@ export abstract class BaseGame<
    * @param duration - Optional freeze duration in seconds. If omitted, freeze persists until manually exited.
    */
   public enterGameplayFreeze(duration?: number): void {
-    enterGameplayFreeze(this.world, duration);
+    enterGameplayFreeze(this.world as unknown as World, duration);
   }
 
   /**
    * Exits soft pause / gameplay freeze state, deleting the `GameplayFreeze` world resource.
    */
   public exitGameplayFreeze(): void {
-    exitGameplayFreeze(this.world);
+    exitGameplayFreeze(this.world as unknown as World);
   }
 
   /**
@@ -605,7 +605,7 @@ export abstract class BaseGame<
    * @returns `true` if frozen, `false` otherwise.
    */
   public isGameplayFrozen(): boolean {
-    return isGameplayFrozen(this.world);
+    return isGameplayFrozen(this.world as unknown as World);
   }
 
   /**
@@ -614,7 +614,7 @@ export abstract class BaseGame<
    * @returns Remaining freeze duration in seconds or `undefined`.
    */
   public getGameplayFreezeRemaining(): number | undefined {
-    return getGameplayFreezeRemaining(this.world);
+    return getGameplayFreezeRemaining(this.world as unknown as World);
   }
 
   /**

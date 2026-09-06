@@ -29,7 +29,7 @@ export function checkPlayerDetectionToAlert(
  * @param entity - The target entity.
  * @public
  */
-export function zeroOutVelocityX(world: World<any>, entity: Entity): void {
+export function zeroOutVelocityX(world: World, entity: Entity): void {
   const vel = world.getComponent(entity, "Velocity");
   if (vel && vel.vx !== 0) {
     const mutableVel = world.getMutableComponent(entity, "Velocity");
@@ -44,10 +44,10 @@ export function zeroOutVelocityX(world: World<any>, entity: Entity): void {
  * @public
  */
 export function zeroVelocityXOnEnter(): {
-  onEnter: (world: World<any>, entity: Entity, data: Record<string, unknown>) => void;
+  onEnter: (world: World, entity: Entity, data: Record<string, unknown>) => void;
 } {
   return {
-    onEnter(world: World<any>, entity: Entity, _data: Record<string, unknown>): void {
+    onEnter(world: World, entity: Entity, _data: Record<string, unknown>): void {
       zeroOutVelocityX(world, entity);
     }
   };
@@ -62,14 +62,14 @@ export function timedTransition(
   nextState: string
 ): {
   onUpdate: (
-    world: World<any>,
+    world: World,
     entity: Entity,
     data: Record<string, unknown>,
     elapsed: number
   ) => string | undefined;
 } {
   return {
-    onUpdate(_world: World<any>, _entity: Entity, data: Record<string, unknown>, elapsed: number): string | undefined {
+    onUpdate(_world: World, _entity: Entity, data: Record<string, unknown>, elapsed: number): string | undefined {
       const dur = (data[durationKey] as number) ?? 0.5;
       if (elapsed >= dur) {
         return nextState;
@@ -90,7 +90,7 @@ export function timedTransition(
  * @public
  */
 export function getHorizontalDirectionToPlayer(
-  world: World<any>,
+  world: World,
   _entity: Entity,
   sensor?: PlayerSensorComponent,
   trans?: TransformComponent
@@ -115,7 +115,7 @@ export function getHorizontalDirectionToPlayer(
  * @public
  */
 export function getDirectionToDetectedPlayer(
-  world: World<any>,
+  world: World,
   _entity: Entity,
   sensor?: PlayerSensorComponent,
   trans?: TransformComponent

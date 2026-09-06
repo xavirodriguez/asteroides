@@ -45,16 +45,17 @@ export class DitherTransition extends BaseTransitionEffect {
     }
 
     if (ditherProgress <= 0) return;
+    const cCtx = ctx as CanvasRenderingContext2D;
     if (ditherProgress >= 1) {
-      ctx.save();
-      ctx.fillStyle = color;
-      ctx.fillRect(0, 0, width, height);
-      ctx.restore();
+      cCtx.save();
+      cCtx.fillStyle = color;
+      cCtx.fillRect(0, 0, width, height);
+      cCtx.restore();
       return;
     }
 
-    ctx.save();
-    ctx.fillStyle = color;
+    cCtx.save();
+    cCtx.fillStyle = color;
     const cols = Math.ceil(width / blockSize);
     const rows = Math.ceil(height / blockSize);
 
@@ -62,10 +63,10 @@ export class DitherTransition extends BaseTransitionEffect {
       for (let c = 0; c < cols; c++) {
         const val = DitherTransition.BAYER_4X4[r % 4][c % 4];
         if (val < ditherProgress * 16) {
-          ctx.fillRect(c * blockSize, r * blockSize, blockSize, blockSize);
+          cCtx.fillRect(c * blockSize, r * blockSize, blockSize, blockSize);
         }
       }
     }
-    ctx.restore();
+    cCtx.restore();
   }
 }

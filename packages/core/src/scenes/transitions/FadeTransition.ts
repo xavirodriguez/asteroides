@@ -38,10 +38,11 @@ export class FadeTransition extends BaseTransitionEffect {
 
     if (opacity <= 0) return;
 
-    ctx.save();
-    ctx.globalAlpha = opacity;
-    ctx.fillStyle = color;
-    ctx.fillRect(0, 0, width, height);
-    ctx.restore();
+    const c = ctx as CanvasRenderingContext2D;
+    c.save();
+    c.globalAlpha = opacity;
+    c.fillStyle = color;
+    c.fillRect(0, 0, width, height);
+    c.restore();
   }
 }

@@ -16,7 +16,7 @@ export interface InternalWorldAccess<TComponents extends ComponentRegistry = Com
   _stateVersion: number;
   _tick: number;
   entityComponentSets: Map<number, Set<string>>;
-  componentMaps: Map<string, Map<number, any>>;
+  componentMaps: Map<string, Map<number, unknown>>;
   componentIndex: Map<string, Set<number>>;
   componentVersions: Map<string, Map<number, number>>;
   queries: Query<TComponents>[];

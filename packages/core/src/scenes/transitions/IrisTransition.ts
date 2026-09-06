@@ -49,10 +49,11 @@ export class IrisTransition extends BaseTransitionEffect {
       currentRadius = maxRadius * t;
     }
 
-    ctx.fillStyle = color;
-    ctx.beginPath();
-    ctx.rect(0, 0, width, height);
-    ctx.arc(cx, cy, currentRadius, 0, Math.PI * 2, true);
-    ctx.fill("evenodd");
+    const c = ctx as CanvasRenderingContext2D;
+    c.fillStyle = color;
+    c.beginPath();
+    c.rect(0, 0, width, height);
+    c.arc(cx, cy, currentRadius, 0, Math.PI * 2, true);
+    c.fill("evenodd");
   }
 }

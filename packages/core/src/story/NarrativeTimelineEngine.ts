@@ -25,7 +25,7 @@ export class NarrativeTimelineEngine {
     title: string;
     causedBy?: string[];
     consequences?: string[];
-    payload?: Record<string, any>;
+    payload?: Record<string, unknown>;
   }): NarrativeEvent {
     this.stepCounter++;
     const id = `evt_${this.stepCounter}_${Date.now().toString(36)}`;
@@ -52,7 +52,7 @@ export class NarrativeTimelineEngine {
           const cons = parent.consequences ? [...parent.consequences] : [];
           if (!cons.includes(id)) {
             cons.push(id);
-            (parent as any).consequences = cons;
+            (parent as { consequences?: string[] }).consequences = cons;
           }
         }
       }

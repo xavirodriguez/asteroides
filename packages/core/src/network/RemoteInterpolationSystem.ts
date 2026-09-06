@@ -34,20 +34,20 @@ export class RemoteInterpolationSystem<TRegistry extends MultiplayerRegistry = M
         if (typeof smoothingFactorOrOptions === "object" && smoothingFactorOrOptions !== null) {
             const options = smoothingFactorOrOptions;
             this.interpolationModel = options.interpolationModel ?? new ExponentialSmoothingModel<TRegistry>(options.smoothingFactor ?? 0.15);
-            this.queryComponents = options.queryComponents ?? (options.interpolationModel?.queryComponents as any) ?? ["Transform", "RemotePlayer"];
+            this.queryComponents = options.queryComponents ?? options.interpolationModel?.queryComponents ?? ["Transform" as Extract<keyof TRegistry, string>, "RemotePlayer" as Extract<keyof TRegistry, string>];
         } else {
             const smoothingFactor = typeof smoothingFactorOrOptions === "number" ? smoothingFactorOrOptions : 0.15;
             this.interpolationModel = new ExponentialSmoothingModel<TRegistry>(smoothingFactor);
-            this.queryComponents = queryComponents ?? (this.interpolationModel.queryComponents as any) ?? ["Transform", "RemotePlayer"];
+            this.queryComponents = queryComponents ?? this.interpolationModel.queryComponents ?? ["Transform" as Extract<keyof TRegistry, string>, "RemotePlayer" as Extract<keyof TRegistry, string>];
         }
     }
 
     public update(world: World<TRegistry>, deltaTime: number): void {
-        const remoteQuery = world.query(...(this.queryComponents as any));
+        const remoteQuery = world.query(...this.queryComponents);
         const qLen = remoteQuery.length;
         for (let i = 0; i < qLen; i++) {
             const entity = remoteQuery[i];
-            const remote = world.getComponent(entity, "RemotePlayer" as Extract<keyof TRegistry, string>) as any;
+            const remote = world.getComponent(entity, "RemotePlayer" as Extract<keyof TRegistry, string>) as unknown as { targetX?: number; targetY?: number; targetRotation?: number } | undefined;
             if (remote && (remote.targetX !== undefined || remote.targetY !== undefined)) {
                 this.interpolationModel.interpolate(world, entity, remote, deltaTime);
             }

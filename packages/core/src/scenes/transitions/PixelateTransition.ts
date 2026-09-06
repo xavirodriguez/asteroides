@@ -77,22 +77,25 @@ export class PixelateTransition extends BaseTransitionEffect {
     const w = Math.max(1, Math.floor(width / blockSize));
     const h = Math.max(1, Math.floor(height / blockSize));
 
-    ctx.save();
+    const cCtx = ctx as CanvasRenderingContext2D;
+    cCtx.save();
     // 1. Copy full canvas down to tiny size on offscreen
     octx.clearRect(0, 0, width, height);
-    octx.drawImage(ctx.canvas, 0, 0, width, height, 0, 0, w, h);
+    if (cCtx.canvas) {
+      octx.drawImage(cCtx.canvas, 0, 0, width, height, 0, 0, w, h);
+    }
 
     // 2. Clear main canvas
-    ctx.clearRect(0, 0, width, height);
+    cCtx.clearRect(0, 0, width, height);
 
     // 3. Draw tiny offscreen image back stretched to fill main canvas without smoothing
-    ctx.imageSmoothingEnabled = false;
-    const vendorCtx = ctx as unknown as VendorPrefixedContext2D;
+    cCtx.imageSmoothingEnabled = false;
+    const vendorCtx = cCtx as unknown as VendorPrefixedContext2D;
     vendorCtx.mozImageSmoothingEnabled = false;
     vendorCtx.webkitImageSmoothingEnabled = false;
     vendorCtx.msImageSmoothingEnabled = false;
 
-    ctx.drawImage(off, 0, 0, w, h, 0, 0, width, height);
-    ctx.restore();
+    cCtx.drawImage(off, 0, 0, w, h, 0, 0, width, height);
+    cCtx.restore();
   }
 }

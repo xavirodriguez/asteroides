@@ -27,7 +27,8 @@ export class CrossfadeTransition extends BaseOffscreenTransitionEffect {
     height: number,
     options?: TransitionOptions
   ): void {
-    ctx.globalAlpha = Math.max(0, Math.min(1, 1 - progress));
-    ctx.drawImage(offscreenCanvas, 0, 0);
+    const cCtx = ctx as CanvasRenderingContext2D;
+    cCtx.globalAlpha = Math.max(0, Math.min(1, 1 - progress));
+    cCtx.drawImage(offscreenCanvas, 0, 0);
   }
 }

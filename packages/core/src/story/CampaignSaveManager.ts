@@ -103,9 +103,9 @@ export class CampaignSaveManager {
       return null;
     }
 
-    let parsed: any;
+    let parsed: Record<string, unknown>;
     try {
-      parsed = JSON.parse(raw);
+      parsed = JSON.parse(raw) as Record<string, unknown>;
     } catch {
       return null;
     }
@@ -126,6 +126,8 @@ export class CampaignSaveManager {
     // Restore MetaProgressionService in-memory state
     metaService.loadState(metaState);
 
+    const parsedStats = (parsed.stats && typeof parsed.stats === "object") ? (parsed.stats as { totalPlaytimeSeconds?: unknown; minigamesPlayed?: unknown }) : undefined;
+
     const envelope: CampaignSaveEnvelopeV1 = {
       schemaVersion: CURRENT_CAMPAIGN_ENVELOPE_VERSION,
       slotId: typeof parsed.slotId === "string" ? parsed.slotId : slotId,
@@ -135,8 +137,8 @@ export class CampaignSaveManager {
       activeGameId: typeof parsed.activeGameId === "string" ? parsed.activeGameId : undefined,
       activeGameSeed: typeof parsed.activeGameSeed === "number" ? parsed.activeGameSeed : undefined,
       stats: {
-        totalPlaytimeSeconds: typeof parsed.stats?.totalPlaytimeSeconds === "number" ? parsed.stats.totalPlaytimeSeconds : 0,
-        minigamesPlayed: typeof parsed.stats?.minigamesPlayed === "object" && parsed.stats.minigamesPlayed ? parsed.stats.minigamesPlayed : {}
+        totalPlaytimeSeconds: typeof parsedStats?.totalPlaytimeSeconds === "number" ? parsedStats.totalPlaytimeSeconds : 0,
+        minigamesPlayed: typeof parsedStats?.minigamesPlayed === "object" && parsedStats.minigamesPlayed ? (parsedStats.minigamesPlayed as Record<string, number>) : {}
       }
     };
 

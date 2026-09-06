@@ -31,7 +31,7 @@ export class SnapshotRestoreSoA {
     soaData: SoAComponentBlock
   ): void {
     const internal = world as unknown as InternalWorldAccess<TComponents>;
-    const storage = new Map<number, any>();
+    const storage = new Map<number, unknown>();
     const index = new Set<number>();
     const versions = new Map<number, number>();
 

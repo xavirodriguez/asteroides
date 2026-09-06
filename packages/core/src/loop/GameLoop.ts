@@ -69,7 +69,7 @@ export class GameLoop {
   private frameHandle: unknown;
 
   private lastTickTime = 0;
-  private watchdogIntervalId: any = undefined;
+  private watchdogIntervalId: ReturnType<typeof setInterval> | undefined = undefined;
   private readonly watchdogTimeout: number;
   private readonly onWatchdogTimeout?: () => void;
 
@@ -203,7 +203,7 @@ export class GameLoop {
 
       const alpha = this.accumulator / this.step;
       this.renderSubscribers.forEach(sub => sub(alpha));
-    } catch (error: any) {
+    } catch (error: unknown) {
       this.stop();
       this.lastError = error instanceof Error ? error : new Error(String(error));
       console.error("[GameLoop] Critical exception in tick, stopping loop:", this.lastError);

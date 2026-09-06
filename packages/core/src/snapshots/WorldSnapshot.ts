@@ -262,7 +262,7 @@ export interface SoAComponentTypeData extends SoAComponentBlock {
  * @public
  */
 export function filterSoASnapshot(snapshot: WorldSnapshot, interestIds: Set<number>): WorldSnapshot {
-  if (!snapshot.isSoA || !(snapshot as any).soaComponentData) {
+  if (!snapshot.isSoA || !(snapshot as import("./WorldSnapshot").SoAWorldSnapshot).soaComponentData) {
     return snapshot;
   }
 

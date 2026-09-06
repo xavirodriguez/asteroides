@@ -11,7 +11,7 @@ import { Entity } from "../ecs/Entity";
  */
 export class RespawnSystem extends System<CoreComponentRegistry> {
   // Safe for determinism/rollback. Internal buffer reused across player respawns to avoid array allocations during entity respawn reconstruction.
-  private itemsToRespawnBuffer: { blueprintKey: string; initialArgs: any }[] = [];
+  private itemsToRespawnBuffer: { blueprintKey: string; initialArgs: Record<string, unknown> }[] = [];
 
   public update(world: World<CoreComponentRegistry>, _deltaTime: number): void {
     if (world.getResource("IsPaused") === true) return;
@@ -81,7 +81,7 @@ export class RespawnSystem extends System<CoreComponentRegistry> {
       for (const item of this.itemsToRespawnBuffer) {
         const newEntity = world.reserveEntityId();
         world.commands.createEntity(newEntity);
-        world.commands.spawnFromBlueprintForEntity(newEntity, item.blueprintKey as any, item.initialArgs);
+        world.commands.spawnFromBlueprintForEntity(newEntity, item.blueprintKey, item.initialArgs);
         world.commands.addComponent(newEntity, {
           type: "Respawnable",
           blueprintKey: item.blueprintKey,

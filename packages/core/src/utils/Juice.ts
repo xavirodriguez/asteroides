@@ -54,7 +54,7 @@ export class Juice {
         world.addComponent(entity, { type: "Juice", active: true, animations: [] });
     }
     if (!world.hasComponent(entity, "VisualOffset")) {
-        world.addComponent(entity, { type: "VisualOffset", offsetX: 0, offsetY: 0, scaleX: 1, scaleY: 1 } as any);
+        world.addComponent(entity, { type: "VisualOffset", offsetX: 0, offsetY: 0 } as import("../ecs/CoreComponents").VisualOffsetComponent);
     }
 
     const durationInSeconds = anim.duration / 1000;

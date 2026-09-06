@@ -39,6 +39,43 @@
     },
     {
       "firstFile": {
+        "end": 44,
+        "endLoc": {
+          "column": 5,
+          "line": 44,
+          "position": 1871
+        },
+        "name": "network/NetworkController.ts",
+        "start": 39,
+        "startLoc": {
+          "column": 11,
+          "line": 39,
+          "position": 1640
+        }
+      },
+      "format": "typescript",
+      "fragment": "      this.world.addComponent(entityId, {\n        type: \"Input\",\n        actions: new Set<string>(),\n        axes: {}\n      } as unknown as TComponents[Extract<keyof TComponents, string>] & { type: Extract<keyof TComponents, string> });\n    }",
+      "isNew": false,
+      "lines": 6,
+      "secondFile": {
+        "end": 77,
+        "endLoc": {
+          "column": 7,
+          "line": 77,
+          "position": 2008
+        },
+        "name": "network/ReplaySystem.ts",
+        "start": 72,
+        "startLoc": {
+          "column": 8,
+          "line": 72,
+          "position": 1767
+        }
+      },
+      "tokens": 54
+    },
+    {
+      "firstFile": {
         "end": 46,
         "endLoc": {
           "column": 11,
@@ -298,22 +335,22 @@
     },
     {
       "firstFile": {
-        "end": 63,
+        "end": 64,
         "endLoc": {
           "column": 13,
-          "line": 63,
-          "position": 1782
+          "line": 64,
+          "position": 1838
         },
         "name": "scenes/transitions/DitherTransition.ts",
-        "start": 57,
+        "start": 58,
         "startLoc": {
-          "column": 25,
-          "line": 57,
-          "position": 1595
+          "column": 26,
+          "line": 58,
+          "position": 1651
         }
       },
       "format": "typescript",
-      "fragment": "    ctx.fillStyle = color;\n    const cols = Math.ceil(width / blockSize);\n    const rows = Math.ceil(height / blockSize);\n\n    for (let r = 0; r < rows; r++) {\n      for (let c = 0; c < cols; c++) {\n        const val = DitherTransition.BAYER_4X4[r % 4][c % 4];",
+      "fragment": "    cCtx.fillStyle = color;\n    const cols = Math.ceil(width / blockSize);\n    const rows = Math.ceil(height / blockSize);\n\n    for (let r = 0; r < rows; r++) {\n      for (let c = 0; c < cols; c++) {\n        const val = DitherTransition.BAYER_4X4[r % 4][c % 4];",
       "isNew": false,
       "lines": 7,
       "secondFile": {
@@ -376,7 +413,7 @@
         "endLoc": {
           "column": 11,
           "line": 55,
-          "position": 2289
+          "position": 2293
         },
         "name": "snapshots/SnapshotRestore.ts",
         "start": 47,
@@ -387,7 +424,7 @@
         }
       },
       "format": "typescript",
-      "fragment": "      const storage = new Map<number, any>();\n      const index = new Set<number>();\n      const versions = new Map<number, number>();\n\n      internal.componentMaps.set(type, storage);\n      internal.componentIndex.set(type, index);\n      internal.componentVersions.set(type, versions);\n\n      const snapshotEntities = state.componentData[type];",
+      "fragment": "      const storage = new Map<number, unknown>();\n      const index = new Set<number>();\n      const versions = new Map<number, number>();\n\n      internal.componentMaps.set(type, storage);\n      internal.componentIndex.set(type, index);\n      internal.componentVersions.set(type, versions);\n\n      const snapshotEntities = state.componentData[type];",
       "isNew": false,
       "lines": 9,
       "secondFile": {
@@ -395,7 +432,7 @@
         "endLoc": {
           "column": 9,
           "line": 42,
-          "position": 1641
+          "position": 1645
         },
         "name": "snapshots/SnapshotRestoreSoA.ts",
         "start": 34,
@@ -413,14 +450,14 @@
         "endLoc": {
           "column": 7,
           "line": 71,
-          "position": 2943
+          "position": 2947
         },
         "name": "snapshots/SnapshotRestore.ts",
         "start": 61,
         "startLoc": {
           "column": 8,
           "line": 61,
-          "position": 2570
+          "position": 2574
         }
       },
       "format": "typescript",
@@ -432,14 +469,14 @@
         "endLoc": {
           "column": 5,
           "line": 55,
-          "position": 2121
+          "position": 2125
         },
         "name": "snapshots/SnapshotRestoreSoA.ts",
         "start": 45,
         "startLoc": {
           "column": 6,
           "line": 45,
-          "position": 1766
+          "position": 1770
         }
       },
       "tokens": 72
@@ -7180,32 +7217,32 @@
     }
   ],
   "statistics": {
-    "detectionDate": "2026-09-05T18:24:02.260Z",
+    "detectionDate": "2026-09-06T12:02:08.351Z",
     "formats": {
       "typescript": {
-        "clones": 202,
-        "duplicatedLines": 2164,
-        "duplicatedTokens": 16559,
-        "lines": 52149,
+        "clones": 195,
+        "duplicatedLines": 2079,
+        "duplicatedTokens": 15840,
+        "lines": 52324,
         "newClones": 0,
         "newDuplicatedLines": 0,
-        "percentage": 4.149648123645708,
-        "percentageTokens": 6.034598999274784,
+        "percentage": 3.9733200825624952,
+        "percentageTokens": 5.754036725575313,
         "sources": 334,
-        "tokens": 274401
+        "tokens": 275285
       }
     },
     "total": {
-      "clones": 202,
-      "duplicatedLines": 2164,
-      "duplicatedTokens": 16559,
-      "lines": 52149,
+      "clones": 195,
+      "duplicatedLines": 2079,
+      "duplicatedTokens": 15840,
+      "lines": 52324,
       "newClones": 0,
       "newDuplicatedLines": 0,
-      "percentage": 4.149648123645708,
-      "percentageTokens": 6.034598999274784,
+      "percentage": 3.9733200825624952,
+      "percentageTokens": 5.754036725575313,
       "sources": 334,
-      "tokens": 274401
+      "tokens": 275285
     }
   }
 }

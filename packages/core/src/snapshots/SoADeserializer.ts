@@ -18,8 +18,8 @@ export class SoADeserializer {
     soaData: SoAComponentBlock,
     entityIndex: number,
     componentType: string
-  ): Record<string, any> {
-    const component: Record<string, any> = { type: componentType };
+  ): Record<string, unknown> {
+    const component: Record<string, unknown> = { type: componentType };
     const keys = soaData.keys;
     const numKeys = keys.length;
     const values = soaData.values;
@@ -55,10 +55,10 @@ export class SoADeserializer {
    * @param onHydrated - Callback invoked for each entity with its entity ID and hydrated component instance.
    */
   public static hydrateEntities(
-    entities: any,
+    entities: ArrayLike<number> | Record<string | number, unknown>,
     soaData: SoAComponentBlock,
     componentType: string,
-    onHydrated: (entityId: number, component: Record<string, any>) => void
+    onHydrated: (entityId: number, component: Record<string, unknown>) => void
   ): void {
     let numEntities = 0;
     if (entities) {

@@ -43,11 +43,11 @@ export class NetworkDeltaSystem<
 }
 /** @public */
 export class NetworkBudgetManager {
-    public prioritize(sessionId: string, interest: any[], selfEntityId?: string): any[] { return interest; }
+    public prioritize<T = unknown>(sessionId: string, interest: T[], _selfEntityId?: string): T[] { return interest; }
 }
 /** @public */
 export class BinaryCompression {
-    public static pack(packet: any): Uint8Array {
+    public static pack(packet: unknown): Uint8Array {
         return packr.pack(packet);
     }
     public static unpack<T = any>(packet: Uint8Array | ArrayBuffer | Buffer): T {

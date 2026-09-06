@@ -218,7 +218,7 @@ export class StoryGraphValidator {
       const isTerminal =
         node.isEndNode === true ||
         node.meta?.isEndNode === true ||
-        node.type === ("end" as any);
+        (node.type as string) === "end";
 
       if (!hasOutgoing && !isTerminal) {
         warnings.push({

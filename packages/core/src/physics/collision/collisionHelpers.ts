@@ -1,6 +1,7 @@
 import { World } from "../../ecs/World";
 import { Entity } from "../../ecs/Entity";
 import { CollisionEventsComponent } from "../../ecs/CoreComponents";
+import { ComponentRegistry } from "../../ecs/Component";
 
 /**
  * Searches through `activeTriggers` and `collisions` on the target entity's `CollisionEvents` component
@@ -13,7 +14,7 @@ import { CollisionEventsComponent } from "../../ecs/CoreComponents";
  *
  * @public
  */
-export function findMatchingEntityInTriggersOrCollisions<TComponents extends Record<string, any>>(
+export function findMatchingEntityInTriggersOrCollisions<TComponents extends ComponentRegistry>(
   world: World<TComponents>,
   entity: Entity,
   predicate: (other: Entity) => boolean
@@ -52,7 +53,7 @@ export function findMatchingEntityInTriggersOrCollisions<TComponents extends Rec
  *
  * @public
  */
-export function findTriggeringPlayer<TComponents extends Record<string, any>>(
+export function findTriggeringPlayer<TComponents extends ComponentRegistry>(
   world: World<TComponents>,
   targetEntity: Entity,
   players: ReadonlyArray<Entity>

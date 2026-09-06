@@ -24,29 +24,32 @@ export class StoryMigrations {
    * @returns Fully migrated and normalized `StoryPackage`.
    */
   public static migrateStoryPackage(
-    raw: any,
+    raw: unknown,
     targetVersion: number = CURRENT_STORY_SCHEMA_VERSION
   ): StoryPackage {
-    if (!raw) {
+    if (!raw || typeof raw !== "object") {
       throw new Error("Cannot migrate null or undefined story data.");
     }
 
+    const rawObj = raw as Record<string, unknown>;
     let pkg: StoryPackage;
 
     // Convert raw single StoryGraph into StoryPackage format if manifest is missing
-    if (!raw.manifest && raw.nodes && raw.entryNodeId) {
+    if (!rawObj.manifest && rawObj.nodes && rawObj.entryNodeId) {
+      const storyId = (typeof rawObj.id === "string" && rawObj.id) ? rawObj.id : "migrated_story";
+      const storyTitle = (typeof rawObj.title === "string" && rawObj.title) ? rawObj.title : "Migrated Story";
       pkg = {
         manifest: {
-          id: raw.id || "migrated_story",
-          title: raw.title || "Migrated Story",
+          id: storyId,
+          title: storyTitle,
           contentVersion: "1.0.0",
           schemaVersion: 1,
-          entryGraph: raw.id || "migrated_story"
+          entryGraph: storyId
         },
         graphs: {
-          [raw.id || "migrated_story"]: raw as StoryGraph
+          [storyId]: raw as StoryGraph
         },
-        characters: raw.characters || {}
+        characters: (rawObj.characters && typeof rawObj.characters === "object") ? (rawObj.characters as Record<string, import("./StoryTypes").StoryCharacter>) : {}
       };
     } else {
       pkg = JSON.parse(JSON.stringify(raw)) as StoryPackage;
@@ -57,14 +60,14 @@ export class StoryMigrations {
     // Step 1 -> 2: Normalize choice/node effect properties and transition targets
     if (currentVersion < 2 && targetVersion >= 2) {
       for (const graph of Object.values(pkg.graphs)) {
-        for (const node of Object.values(graph.nodes) as any[]) {
+        for (const node of Object.values(graph.nodes) as Array<StoryNode & { onEnterEffects?: import("./StoryTypes").StoryEffect[] }>) {
           if (node.onEnterEffects && !node.effects) {
             node.effects = node.onEnterEffects;
             delete node.onEnterEffects;
           }
 
           if (node.choices) {
-            for (const choice of node.choices) {
+            for (const choice of node.choices as Array<StoryChoice & { target?: string; onSelectEffects?: import("./StoryTypes").StoryEffect[] }>) {
               if (choice.target && !choice.targetNodeId) {
                 choice.targetNodeId = choice.target;
                 delete choice.target;
@@ -84,11 +87,15 @@ export class StoryMigrations {
     // Step 2 -> 3: Normalize nested effects structures (e.g. choice.effects.onSelect)
     if (currentVersion < 3 && targetVersion >= 3) {
       for (const graph of Object.values(pkg.graphs)) {
-        for (const node of Object.values(graph.nodes) as any[]) {
+        for (const node of Object.values(graph.nodes) as StoryNode[]) {
           if (node.choices) {
             for (const choice of node.choices) {
-              if (choice.effects && (choice.effects as any).onSelect) {
-                choice.effects = (choice.effects as any).onSelect;
+              const cObj = choice as unknown as Record<string, unknown>;
+              if (cObj.effects && typeof cObj.effects === "object" && !Array.isArray(cObj.effects)) {
+                const effObj = cObj.effects as Record<string, unknown>;
+                if (Array.isArray(effObj.onSelect)) {
+                  cObj.effects = effObj.onSelect;
+                }
               }
             }
           }

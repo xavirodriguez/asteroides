@@ -35,6 +35,8 @@ export class CRTGlitchTransition extends BaseOffscreenTransitionEffect {
     // Wobble amplitude fades towards the end
     const amplitude = 30 * intensity * (1 - progress);
 
+    const cCtx = ctx as CanvasRenderingContext2D;
+
     for (let i = 0; i < numSlices; i++) {
       const y = i * sliceHeight;
       // Procedural displacement wave using sine
@@ -42,21 +44,21 @@ export class CRTGlitchTransition extends BaseOffscreenTransitionEffect {
       // Add occasional static jump/glitch
       const offset = (Math.sin(y * 0.5 + progress * 100) > 0.8) ? wave * 2 : wave;
 
-      ctx.drawImage(offscreenCanvas, 0, y, width, sliceHeight, offset, y, width, sliceHeight);
+      cCtx.drawImage(offscreenCanvas, 0, y, width, sliceHeight, offset, y, width, sliceHeight);
     }
 
     // 2. Draw rolling horizontal interference line
     const rollY = (progress * height * 2) % height;
-    ctx.fillStyle = "rgba(255, 255, 255, 0.15)";
-    ctx.fillRect(0, rollY, width, 6);
+    cCtx.fillStyle = "rgba(255, 255, 255, 0.15)";
+    cCtx.fillRect(0, rollY, width, 6);
 
     // 3. Draw a vintage RGB color separation overlay
     if (progress < 0.8) {
-      ctx.globalCompositeOperation = "screen";
-      ctx.fillStyle = "rgba(255, 0, 0, 0.1)";
-      ctx.fillRect(2, 0, width, height);
-      ctx.fillStyle = "rgba(0, 0, 255, 0.1)";
-      ctx.fillRect(-2, 0, width, height);
+      cCtx.globalCompositeOperation = "screen";
+      cCtx.fillStyle = "rgba(255, 0, 0, 0.1)";
+      cCtx.fillRect(2, 0, width, height);
+      cCtx.fillStyle = "rgba(0, 0, 255, 0.1)";
+      cCtx.fillRect(-2, 0, width, height);
     }
   }
 }

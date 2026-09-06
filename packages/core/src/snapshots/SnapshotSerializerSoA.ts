@@ -89,7 +89,7 @@ export class SnapshotSerializerSoA {
       // 3. Allocate flat continuous buffers (avoid allocating non-numeric array if schema is purely numeric)
       const entitiesArray = new Int32Array(entitiesWithComponent);
       const valuesArray = new Float64Array(numEntities * numKeys);
-      const nonNumericValues: any[] | undefined = hasNonNumericSchema ? new Array(numEntities * numKeys) : undefined;
+      const nonNumericValues: unknown[] | undefined = hasNonNumericSchema ? new Array(numEntities * numKeys) : undefined;
       const booleanKeysSet = new Set<string>();
 
       // 4. Fill buffers efficiently

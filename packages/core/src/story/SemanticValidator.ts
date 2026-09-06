@@ -111,49 +111,50 @@ export class SemanticValidator {
   }
 
   private static validateCondition(
-    condition: any,
+    condition: unknown,
     context: SemanticValidationContext,
     path: string,
     errors: SemanticValidationError[]
   ): void {
     if (!condition || typeof condition !== "object") return;
+    const condObj = condition as Record<string, unknown>;
 
-    if ("all" in condition && Array.isArray(condition.all)) {
-      condition.all.forEach((sub: any, idx: number) =>
+    if ("all" in condObj && Array.isArray(condObj.all)) {
+      condObj.all.forEach((sub: unknown, idx: number) =>
         this.validateCondition(sub, context, `${path}.all[${idx}]`, errors)
       );
       return;
     }
 
-    if ("any" in condition && Array.isArray(condition.any)) {
-      condition.any.forEach((sub: any, idx: number) =>
+    if ("any" in condObj && Array.isArray(condObj.any)) {
+      condObj.any.forEach((sub: unknown, idx: number) =>
         this.validateCondition(sub, context, `${path}.any[${idx}]`, errors)
       );
       return;
     }
 
-    if ("not" in condition) {
-      this.validateCondition(condition.not, context, `${path}.not`, errors);
+    if ("not" in condObj) {
+      this.validateCondition(condObj.not, context, `${path}.not`, errors);
       return;
     }
 
-    if ("metric" in condition) {
-      if (context.knownMetrics && !context.knownMetrics.includes(condition.metric)) {
+    if ("metric" in condObj && typeof condObj.metric === "string") {
+      if (context.knownMetrics && !context.knownMetrics.includes(condObj.metric)) {
         errors.push({
           severity: "warning",
           code: "UNKNOWN_METRIC",
-          message: `Metric '${condition.metric}' is not declared in known game metrics.`,
+          message: `Metric '${condObj.metric}' is not declared in known game metrics.`,
           path: `${path}.metric`
         });
       }
     }
 
-    if ("secret" in condition) {
-      if (context.knownSecrets && !context.knownSecrets.includes(condition.secret)) {
+    if ("secret" in condObj && typeof condObj.secret === "string") {
+      if (context.knownSecrets && !context.knownSecrets.includes(condObj.secret)) {
         errors.push({
           severity: "warning",
           code: "UNKNOWN_SECRET",
-          message: `Secret ID '${condition.secret}' is not declared in known game secrets.`,
+          message: `Secret ID '${condObj.secret}' is not declared in known game secrets.`,
           path: `${path}.secret`
         });
       }
@@ -161,7 +162,7 @@ export class SemanticValidator {
   }
 
   private static validateEffect(
-    effect: any,
+    effect: import("./StoryTypes").StoryEffect,
     context: SemanticValidationContext,
     path: string,
     errors: SemanticValidationError[]

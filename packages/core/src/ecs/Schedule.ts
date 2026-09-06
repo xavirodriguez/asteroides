@@ -146,7 +146,7 @@ export class Schedule<
       const isFrozen = world.getResource("GameplayFreeze") !== undefined || isPausedResource || effectiveTimeScale === 0;
       const scaledDeltaTime = deltaTime * effectiveTimeScale;
 
-      const gameState = world.getSingleton("GameState" as any) as any;
+      const gameState = world.getSingleton("GameState" as Extract<keyof TComponents, string>) as unknown as { phase?: string } | undefined;
       let activeGroups = world.getResource<string[]>("ActiveGroups");
       if (gameState && gameState.phase) {
         if (gameState.phase === "PLAYING") {
